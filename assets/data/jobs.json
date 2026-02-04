@@ -1,0 +1,688 @@
+{
+  "categories": [
+    {
+      "id": "it-software",
+      "name": "IT & Software",
+      "description": "Technology and software development roles",
+      "icon": "💻",
+      "jobCount": 8
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "description": "Engineering and technical positions",
+      "icon": "⚙️",
+      "jobCount": 5
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "description": "Creative and design opportunities",
+      "icon": "🎨",
+      "jobCount": 4
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "description": "Marketing and advertising roles",
+      "icon": "📢",
+      "jobCount": 6
+    },
+    {
+      "id": "sales",
+      "name": "Sales",
+      "description": "Sales and business development",
+      "icon": "💼",
+      "jobCount": 5
+    },
+    {
+      "id": "finance",
+      "name": "Finance",
+      "description": "Finance and accounting positions",
+      "icon": "💰",
+      "jobCount": 4
+    }
+  ],
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Senior Full Stack Developer",
+      "company": "LeapFroggr Inc.",
+      "location": "Manila, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "it-software",
+      "salary": "80k+",
+      "tags": ["Remote", "Top 50"],
+      "posted": "2 weeks ago",
+      "deadline": "Dec 15, 2025",
+      "description": "We are looking for a Senior Full Stack Developer to join our growing team.",
+      "responsibilities": [
+        "Develop and maintain web applications using React and Node.js",
+        "Collaborate with cross-functional teams",
+        "Mentor junior developers"
+      ],
+      "saved": false
+    },
+    {
+      "id": 2,
+      "title": "Solutions Engineer",
+      "company": "AboitizPower",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "it-software",
+      "salary": "60k-80k",
+      "tags": ["Hybrid", "Top 50"],
+      "posted": "1 month ago",
+      "deadline": "Jan 13, 2026",
+      "description": "Join our team as a Solutions Engineer to design innovative solutions.",
+      "responsibilities": [
+        "Design technical solutions for client requirements",
+        "Provide technical support and guidance",
+        "Work with engineering teams"
+      ],
+      "saved": true
+    },
+    {
+      "id": 3,
+      "title": "Apple iOS Developer",
+      "company": "LeapFroggr Inc.",
+      "location": "Manila, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "it-software",
+      "salary": "40k-60k",
+      "tags": ["Remote"],
+      "posted": "9 months ago",
+      "deadline": "Jan 6, 2026",
+      "description": "Develop B2B and B2C iOS applications for iPhone and iPad.",
+      "responsibilities": [
+        "Collaborate closely with product and design to ship features on time",
+        "Write modern, scalable Swift with a focus on performance and UX",
+        "Maintain quality with code reviews, testing, and documentation"
+      ],
+      "saved": false
+    },
+    {
+      "id": 4,
+      "title": "Android Developer",
+      "company": "LeapFroggr Inc.",
+      "location": "Manila, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "it-software",
+      "salary": "40k-60k",
+      "tags": ["Remote"],
+      "posted": "9 months ago",
+      "deadline": "Jan 6, 2026",
+      "description": "Build native Android applications with modern development practices.",
+      "responsibilities": [
+        "Develop Android applications using Kotlin",
+        "Implement Material Design guidelines",
+        "Collaborate with backend developers"
+      ],
+      "saved": false
+    },
+    {
+      "id": 5,
+      "title": "Data Engineer",
+      "company": "LeapFroggr Inc.",
+      "location": "Manila, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "it-software",
+      "salary": "60k-80k",
+      "tags": ["Remote"],
+      "posted": "9 months ago",
+      "deadline": "Jan 6, 2026",
+      "description": "Design and build data pipelines and infrastructure.",
+      "responsibilities": [
+        "Build and maintain data pipelines",
+        "Optimize database performance",
+        "Work with data science team"
+      ],
+      "saved": false
+    },
+    {
+      "id": 6,
+      "title": "Frontend Developer",
+      "company": "Serious MD",
+      "location": "Quezon City, Philippines",
+      "type": "full-time",
+      "level": "entry",
+      "category": "it-software",
+      "salary": "20k-40k",
+      "tags": ["Hybrid"],
+      "posted": "1 week ago",
+      "deadline": "Dec 30, 2025",
+      "description": "Join our team to build beautiful and responsive web interfaces.",
+      "responsibilities": [
+        "Develop responsive web pages using HTML, CSS, JavaScript",
+        "Work with React and modern frameworks",
+        "Collaborate with designers"
+      ],
+      "saved": false
+    },
+    {
+      "id": 7,
+      "title": "DevOps Engineer",
+      "company": "AboitizPower",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "it-software",
+      "salary": "80k+",
+      "tags": ["Hybrid"],
+      "posted": "2 weeks ago",
+      "deadline": "Jan 15, 2026",
+      "description": "Manage and automate our infrastructure and deployment processes.",
+      "responsibilities": [
+        "Manage CI/CD pipelines",
+        "Automate infrastructure with Terraform",
+        "Monitor system performance"
+      ],
+      "saved": false
+    },
+    {
+      "id": 8,
+      "title": "Cloud Architect",
+      "company": "TechCorp Solutions",
+      "location": "BGC, Taguig, Philippines",
+      "type": "full-time",
+      "level": "lead",
+      "category": "it-software",
+      "salary": "80k+",
+      "tags": ["Remote", "Top 50"],
+      "posted": "3 days ago",
+      "deadline": "Jan 20, 2026",
+      "description": "Design and implement cloud infrastructure solutions.",
+      "responsibilities": [
+        "Design cloud architecture on AWS/Azure",
+        "Lead cloud migration projects",
+        "Ensure security and compliance"
+      ],
+      "saved": false
+    },
+    {
+      "id": 9,
+      "title": "Mechanical Engineer",
+      "company": "BuildTech Industries",
+      "location": "Cavite, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "engineering",
+      "salary": "40k-60k",
+      "tags": ["Onsite"],
+      "posted": "1 week ago",
+      "deadline": "Jan 10, 2026",
+      "description": "Design and develop mechanical systems for manufacturing.",
+      "responsibilities": [
+        "Design mechanical components and systems",
+        "Perform CAD modeling and simulations",
+        "Collaborate with production teams"
+      ],
+      "saved": false
+    },
+    {
+      "id": 10,
+      "title": "Electrical Engineer",
+      "company": "PowerGrid Corp",
+      "location": "Quezon City, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "engineering",
+      "salary": "60k-80k",
+      "tags": ["Hybrid"],
+      "posted": "2 weeks ago",
+      "deadline": "Dec 28, 2025",
+      "description": "Oversee electrical system design and implementation.",
+      "responsibilities": [
+        "Design electrical systems and circuits",
+        "Ensure compliance with safety standards",
+        "Supervise installation teams"
+      ],
+      "saved": false
+    },
+    {
+      "id": 11,
+      "title": "Civil Engineer",
+      "company": "Mega Construction",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "engineering",
+      "salary": "40k-60k",
+      "tags": ["Onsite"],
+      "posted": "5 days ago",
+      "deadline": "Jan 5, 2026",
+      "description": "Plan and oversee construction projects.",
+      "responsibilities": [
+        "Design infrastructure projects",
+        "Manage construction sites",
+        "Coordinate with contractors"
+      ],
+      "saved": false
+    },
+    {
+      "id": 12,
+      "title": "Quality Assurance Engineer",
+      "company": "ManufacturePro",
+      "location": "Laguna, Philippines",
+      "type": "full-time",
+      "level": "entry",
+      "category": "engineering",
+      "salary": "20k-40k",
+      "tags": ["Onsite"],
+      "posted": "1 week ago",
+      "deadline": "Dec 25, 2025",
+      "description": "Ensure product quality through testing and inspection.",
+      "responsibilities": [
+        "Perform quality inspections",
+        "Document quality metrics",
+        "Implement quality improvement processes"
+      ],
+      "saved": false
+    },
+    {
+      "id": 13,
+      "title": "Process Engineer",
+      "company": "ChemTech Industries",
+      "location": "Batangas, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "engineering",
+      "salary": "60k-80k",
+      "tags": ["Onsite"],
+      "posted": "3 weeks ago",
+      "deadline": "Jan 8, 2026",
+      "description": "Optimize manufacturing processes and efficiency.",
+      "responsibilities": [
+        "Analyze and improve production processes",
+        "Reduce waste and increase efficiency",
+        "Train production staff"
+      ],
+      "saved": false
+    },
+    {
+      "id": 14,
+      "title": "UI/UX Designer",
+      "company": "DesignHub Studios",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "design",
+      "salary": "40k-60k",
+      "tags": ["Hybrid"],
+      "posted": "1 week ago",
+      "deadline": "Dec 20, 2025",
+      "description": "Create beautiful and intuitive user interfaces.",
+      "responsibilities": [
+        "Design user interfaces for web and mobile",
+        "Create wireframes and prototypes",
+        "Conduct user research"
+      ],
+      "saved": false
+    },
+    {
+      "id": 15,
+      "title": "Graphic Designer",
+      "company": "Creative Solutions",
+      "location": "Quezon City, Philippines",
+      "type": "full-time",
+      "level": "entry",
+      "category": "design",
+      "salary": "20k-40k",
+      "tags": ["Remote"],
+      "posted": "4 days ago",
+      "deadline": "Jan 2, 2026",
+      "description": "Design marketing materials and brand assets.",
+      "responsibilities": [
+        "Create visual designs for marketing campaigns",
+        "Design logos and brand identities",
+        "Collaborate with marketing team"
+      ],
+      "saved": false
+    },
+    {
+      "id": 16,
+      "title": "Motion Graphics Designer",
+      "company": "VideoWorks Media",
+      "location": "Manila, Philippines",
+      "type": "freelance",
+      "level": "mid",
+      "category": "design",
+      "salary": "40k-60k",
+      "tags": ["Remote"],
+      "posted": "2 weeks ago",
+      "deadline": "Jan 12, 2026",
+      "description": "Create engaging motion graphics and animations.",
+      "responsibilities": [
+        "Design motion graphics for videos",
+        "Create animations using After Effects",
+        "Collaborate with video production team"
+      ],
+      "saved": false
+    },
+    {
+      "id": 17,
+      "title": "Product Designer",
+      "company": "TechStartup Inc",
+      "location": "BGC, Taguig, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "design",
+      "salary": "60k-80k",
+      "tags": ["Hybrid", "Top 50"],
+      "posted": "5 days ago",
+      "deadline": "Dec 18, 2025",
+      "description": "Lead product design and strategy.",
+      "responsibilities": [
+        "Define product vision and strategy",
+        "Design end-to-end user experiences",
+        "Lead design team"
+      ],
+      "saved": false
+    },
+    {
+      "id": 18,
+      "title": "Digital Marketing Specialist",
+      "company": "MarketPro Agency",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "marketing",
+      "salary": "40k-60k",
+      "tags": ["Hybrid"],
+      "posted": "1 week ago",
+      "deadline": "Dec 22, 2025",
+      "description": "Execute digital marketing campaigns across channels.",
+      "responsibilities": [
+        "Manage social media campaigns",
+        "Analyze marketing metrics",
+        "Create content strategies"
+      ],
+      "saved": false
+    },
+    {
+      "id": 19,
+      "title": "Content Marketing Manager",
+      "company": "ContentCraft",
+      "location": "Quezon City, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "marketing",
+      "salary": "60k-80k",
+      "tags": ["Remote"],
+      "posted": "3 days ago",
+      "deadline": "Jan 15, 2026",
+      "description": "Lead content marketing strategy and execution.",
+      "responsibilities": [
+        "Develop content marketing strategies",
+        "Manage content creation team",
+        "Measure content performance"
+      ],
+      "saved": false
+    },
+    {
+      "id": 20,
+      "title": "SEO Specialist",
+      "company": "SearchMasters",
+      "location": "Manila, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "marketing",
+      "salary": "40k-60k",
+      "tags": ["Remote"],
+      "posted": "2 weeks ago",
+      "deadline": "Jan 10, 2026",
+      "description": "Optimize websites for search engines.",
+      "responsibilities": [
+        "Conduct keyword research",
+        "Optimize website content",
+        "Build backlink strategies"
+      ],
+      "saved": false
+    },
+    {
+      "id": 21,
+      "title": "Brand Manager",
+      "company": "BrandBuilders Inc",
+      "location": "BGC, Taguig, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "marketing",
+      "salary": "60k-80k",
+      "tags": ["Hybrid", "Top 50"],
+      "posted": "1 week ago",
+      "deadline": "Dec 30, 2025",
+      "description": "Manage brand strategy and positioning.",
+      "responsibilities": [
+        "Develop brand strategies",
+        "Manage brand campaigns",
+        "Analyze brand performance"
+      ],
+      "saved": false
+    },
+    {
+      "id": 22,
+      "title": "Social Media Manager",
+      "company": "SocialBuzz",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "entry",
+      "category": "marketing",
+      "salary": "20k-40k",
+      "tags": ["Hybrid"],
+      "posted": "5 days ago",
+      "deadline": "Jan 5, 2026",
+      "description": "Manage social media presence and engagement.",
+      "responsibilities": [
+        "Create social media content",
+        "Engage with followers",
+        "Track social media metrics"
+      ],
+      "saved": false
+    },
+    {
+      "id": 23,
+      "title": "Email Marketing Specialist",
+      "company": "MailGenius",
+      "location": "Quezon City, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "marketing",
+      "salary": "40k-60k",
+      "tags": ["Remote"],
+      "posted": "1 week ago",
+      "deadline": "Jan 8, 2026",
+      "description": "Design and execute email marketing campaigns.",
+      "responsibilities": [
+        "Create email campaigns",
+        "Segment email lists",
+        "Analyze email performance"
+      ],
+      "saved": false
+    },
+    {
+      "id": 24,
+      "title": "Sales Executive",
+      "company": "SalesPro Corp",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "sales",
+      "salary": "40k-60k",
+      "tags": ["Hybrid"],
+      "posted": "3 days ago",
+      "deadline": "Dec 28, 2025",
+      "description": "Drive sales and build client relationships.",
+      "responsibilities": [
+        "Generate new leads",
+        "Close sales deals",
+        "Maintain client relationships"
+      ],
+      "saved": false
+    },
+    {
+      "id": 25,
+      "title": "Business Development Manager",
+      "company": "GrowthPartners",
+      "location": "BGC, Taguig, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "sales",
+      "salary": "80k+",
+      "tags": ["Hybrid", "Top 50"],
+      "posted": "1 week ago",
+      "deadline": "Jan 12, 2026",
+      "description": "Identify and pursue new business opportunities.",
+      "responsibilities": [
+        "Develop business strategies",
+        "Build partnerships",
+        "Negotiate contracts"
+      ],
+      "saved": false
+    },
+    {
+      "id": 26,
+      "title": "Account Manager",
+      "company": "ClientFirst Solutions",
+      "location": "Manila, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "sales",
+      "salary": "40k-60k",
+      "tags": ["Hybrid"],
+      "posted": "2 weeks ago",
+      "deadline": "Jan 5, 2026",
+      "description": "Manage client accounts and ensure satisfaction.",
+      "responsibilities": [
+        "Manage client relationships",
+        "Upsell products and services",
+        "Resolve client issues"
+      ],
+      "saved": false
+    },
+    {
+      "id": 27,
+      "title": "Sales Associate",
+      "company": "RetailMax",
+      "location": "Quezon City, Philippines",
+      "type": "full-time",
+      "level": "entry",
+      "category": "sales",
+      "salary": "20k-40k",
+      "tags": ["Onsite"],
+      "posted": "4 days ago",
+      "deadline": "Dec 25, 2025",
+      "description": "Assist customers and drive retail sales.",
+      "responsibilities": [
+        "Assist customers with purchases",
+        "Maintain store appearance",
+        "Process transactions"
+      ],
+      "saved": false
+    },
+    {
+      "id": 28,
+      "title": "Inside Sales Representative",
+      "company": "TechSales Inc",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "entry",
+      "category": "sales",
+      "salary": "20k-40k",
+      "tags": ["Remote"],
+      "posted": "1 week ago",
+      "deadline": "Jan 3, 2026",
+      "description": "Generate leads and close sales remotely.",
+      "responsibilities": [
+        "Make outbound sales calls",
+        "Qualify leads",
+        "Demo products"
+      ],
+      "saved": false
+    },
+    {
+      "id": 29,
+      "title": "Financial Analyst",
+      "company": "FinanceHub Corp",
+      "location": "BGC, Taguig, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "finance",
+      "salary": "60k-80k",
+      "tags": ["Hybrid"],
+      "posted": "1 week ago",
+      "deadline": "Jan 10, 2026",
+      "description": "Analyze financial data and create reports.",
+      "responsibilities": [
+        "Prepare financial reports",
+        "Analyze financial trends",
+        "Support budgeting process"
+      ],
+      "saved": false
+    },
+    {
+      "id": 30,
+      "title": "Accountant",
+      "company": "AccuBooks Inc",
+      "location": "Makati, Philippines",
+      "type": "full-time",
+      "level": "mid",
+      "category": "finance",
+      "salary": "40k-60k",
+      "tags": ["Onsite"],
+      "posted": "3 days ago",
+      "deadline": "Dec 20, 2025",
+      "description": "Manage accounting operations and financial records.",
+      "responsibilities": [
+        "Maintain financial records",
+        "Prepare tax filings",
+        "Reconcile accounts"
+      ],
+      "saved": false
+    },
+    {
+      "id": 31,
+      "title": "Finance Manager",
+      "company": "GlobalFinance",
+      "location": "Manila, Philippines",
+      "type": "full-time",
+      "level": "senior",
+      "category": "finance",
+      "salary": "80k+",
+      "tags": ["Hybrid", "Top 50"],
+      "posted": "2 weeks ago",
+      "deadline": "Jan 15, 2026",
+      "description": "Lead financial planning and strategy.",
+      "responsibilities": [
+        "Develop financial strategies",
+        "Manage finance team",
+        "Oversee budgets"
+      ],
+      "saved": false
+    },
+    {
+      "id": 32,
+      "title": "Bookkeeper",
+      "company": "SmallBiz Accounting",
+      "location": "Quezon City, Philippines",
+      "type": "part-time",
+      "level": "entry",
+      "category": "finance",
+      "salary": "0-20k",
+      "tags": ["Remote"],
+      "posted": "5 days ago",
+      "deadline": "Dec 30, 2025",
+      "description": "Maintain financial records for small businesses.",
+      "responsibilities": [
+        "Record financial transactions",
+        "Prepare invoices",
+        "Reconcile bank statements"
+      ],
+      "saved": false
+    }
+  ]
+}

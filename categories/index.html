@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hunter – Categories</title>
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="nav-left">
+        <button class="burger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <a class="brand" href="../index.html" aria-label="Hunter home">
+          <!-- Simple mark approximating the head + magnifier logo -->
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#222" />
+                <stop offset="1" stop-color="#111" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="18" r="9" fill="url(#g)" />
+            <rect x="5" y="28" width="22" height="10" rx="5" fill="#111" />
+            <circle cx="35" cy="29" r="7" fill="#111" />
+            <rect x="39" y="33" width="8" height="4" rx="2" fill="#111" />
+          </svg>
+        </a>
+      </div>
+      <div class="nav-right">
+        <button class="lang" aria-label="Language">EN</button>
+        <button class="icon-btn" aria-label="Mail">
+          <svg width="26" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <polyline points="3,6 12,13 21,6"></polyline>
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="Notifications">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+          </svg>
+          <span class="badge">1</span>
+        </button>
+        <a class="user" href="../profile/profile.html"></a>
+      </div>
+    </div>
+    <!-- Search bar strip -->
+    <!-- <div class="search-bar">
+      <div class="container search-row">
+        <label class="input-group" aria-label="Search jobs">
+          <input type="text" placeholder="Search for a job title or company" />
+          <button class="search-btn">Search</button>
+        </label>
+        <label class="input-group" aria-label="Location">
+          <input type="text" placeholder="Location" />
+          <i class="caret" aria-hidden="true"></i>
+        </label>
+        <div class="chips" aria-label="Quick filters">
+          <span class="chip" role="button" tabindex="0">Remote Work</span>
+          <span class="chip" role="button" tabindex="0">Hybrid</span>
+          <span class="chip" role="button" tabindex="0">Fresh Grad</span>
+        </div>
+      </div>
+    </div> -->
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="section" aria-labelledby="categories-heading">
+        <h2 id="categories-heading">Browse Jobs by Category</h2>
+        <p class="section-description">Find your perfect job in the category that matches your skills and interests</p>
+        <div class="grid" id="categories-grid">
+          <!-- Categories will be loaded here by JavaScript -->
+          <div class="loading-message">Loading categories...</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">© 2025 Hunter. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="../assets/js/core/storage.js"></script>
+  <script src="../assets/js/core/header.js"></script>
+  <script src="../assets/js/core/auth.js"></script>
+  <script src="../assets/js/modules/category-filter.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Hunter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+</head>
+
+<body>
+  <div id="header-container"></div>
+
+  <main class="container my-5">
+    <div class="alert alert-info">
+      <h4>🛡️ Admin Dashboard - Coming Soon</h4>
+      <p class="mb-0">The admin panel is under construction. You'll be able to:</p>
+      <ul class="mb-0">
+        <li>Approve/reject job postings</li>
+        <li>Manage users</li>
+        <li>View system analytics</li>
+        <li>Moderate content</li>
+      </ul>
+    </div>
+
+    <a href="../index.html" class="btn btn-primary">← Back to Home</a>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="../assets/js/core/storage.js"></script>
+  <script src="../assets/js/core/header.js"></script>
+  <script>
+    // Check if admin
+    const user = window.StorageManager?.getCurrentUser();
+    if (user && user.userType !== 'admin') {
+      alert('Access denied. Admin only.');
+      window.location.href = '../index.html';
+    }
+
+    // Load header
+    if (typeof window.HeaderComponent !== 'undefined') {
+      window.HeaderComponent.init('header-container');
+    }
+  </script>
+</body>
+
+</html>

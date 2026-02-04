@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Hunter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <!-- Header Navigation -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button class="menu-toggle" aria-label="Menu">
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+        </button>
+        <div class="logo">
+          <div class="logo-icon">
+            <div class="person-icon"></div>
+            <div class="search-icon"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button class="lang-btn">EN</button>
+        <button class="icon-btn mail-btn" aria-label="Mail">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button class="icon-btn notification-btn" aria-label="Notifications">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="notification-badge">1</span>
+        </button>
+        <div class="user-profile">
+          <span class="user-name"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">Profile</h1>
+        <div class="page-actions">
+          <a class="btn-secondary" href="./preview.html">PREVIEW PROFILE</a>
+          <button class="btn-primary">SUBMIT PROFILE</button>
+        </div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="content-grid">
+        <!-- Left Column -->
+        <div class="left-column grid-left">
+          <!-- Basic Information Section -->
+          <section class="card basic-info-card">
+            <div class="card-header">
+              <h2 class="section-title" data-bs-toggle="collapse" data-bs-target="#basicInfoCollapse"
+                aria-expanded="true" aria-controls="basicInfoCollapse" role="button">
+                <span class="expand-icon">▼</span>
+                Basic Information
+              </h2>
+              <button class="edit-btn" data-section="basic-info" onclick="event.stopPropagation();">EDIT</button>
+            </div>
+
+            <div class="collapse show" id="basicInfoCollapse">
+              <div class="card-content">
+                <div class="profile-info">
+                  <div class="profile-avatar">
+                    <img src="../assets/images/profile/profile-avatar.svg" alt="Profile Avatar" class="avatar-img">
+                    <div class="avatar-edit">@</div>
+                  </div>
+
+                  <div class="profile-details">
+                    <div class="profile-main">
+                      <div class="profile-header-info">
+                        <div class="name-section">
+                          <h3 class="profile-name"></h3>
+                          <div class="profile-icons">
+                            <svg class="profile-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"
+                                fill="currentColor" />
+                            </svg>
+                          </div>
+                        </div>
+
+                        <div class="contact-info">
+                          <div class="contact-item location">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path
+                                d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                                stroke="currentColor" stroke-width="2" />
+                              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                            <span></span>
+                          </div>
+
+                          <div class="contact-item email">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path
+                                d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                                stroke="currentColor" stroke-width="2" />
+                              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                            <span></span>
+                          </div>
+
+                          <div class="contact-item phone">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path
+                                d="M22 16.92V19.92C22 20.52 21.39 21 20.84 21C9.28 21 0 11.72 0 0.16C0 -0.39 0.48 -1 1.08 -1H4.09C4.69 -1 5.23 -0.47 5.23 0.09C5.23 1.58 5.52 3.01 6.05 4.33C6.2 4.7 6.09 5.15 5.76 5.47L3.9 7.33C5.51 10.24 7.75 12.48 10.67 14.09L12.53 12.23C12.85 11.9 13.3 11.79 13.67 11.94C14.99 12.47 16.42 12.76 17.91 12.76C18.47 12.76 19 13.3 19 13.91V16.92C19 17.52 18.47 18 17.91 18H22Z"
+                                fill="currentColor" />
+                            </svg>
+                            <span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="profile-stats">
+                    <div class="stat-item views">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor"
+                          stroke-width="2" />
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                      </svg>
+                      <span class="stat-number">11 views</span>
+                    </div>
+
+                    <div class="profile-status">
+                      <div class="status-item">
+                        <div class="status-indicator online"></div>
+                        <span>Online Now</span>
+                      </div>
+
+                      <div class="status-item job-status">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                          <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                        <span>Passively looking for jobs</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </section>
+
+          <!-- Resume Section -->
+          <section class="card resume-card">
+            <div class="card-header">
+              <h2 class="section-title" data-bs-toggle="collapse" data-bs-target="#resumeCollapse" aria-expanded="true"
+                aria-controls="resumeCollapse" role="button">
+                <span class="expand-icon">▼</span>
+                Resume
+              </h2>
+              <button class="edit-btn" data-section="resume" onclick="event.stopPropagation();">EDIT</button>
+            </div>
+
+            <div class="collapse show" id="resumeCollapse">
+              <div class="card-content">
+                <p class="resume-note">
+                  <strong>Note:</strong> Your profile is the first thing recruiters see and not your uploaded resume, so
+                  make sure your Hunter profile is as complete and detailed as your uploaded resume.
+                </p>
+
+                <div class="file-upload-section">
+                  <div class="file-info">
+                    <span class="file-name"></span>
+                    <button class="remove-file" aria-label="Remove file">×</button>
+                  </div>
+                  <button class="btn-primary update-btn">UPDATE</button>
+                </div>
+
+                <p class="file-requirements">
+                  Acceptable file types are DOC, DOCX, PDF, and RTF. <strong>Max file size is 10 MB.</strong>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Skills Section -->
+          <section class="card skills-card">
+            <div class="card-header">
+              <h2 class="section-title" data-bs-toggle="collapse" data-bs-target="#skillsCollapse" aria-expanded="true"
+                aria-controls="skillsCollapse" role="button">
+                <span class="expand-icon">▼</span>
+                Skills
+              </h2>
+              <button class="add-btn" data-section="skills" onclick="event.stopPropagation();">ADD</button>
+            </div>
+
+            <div class="collapse show" id="skillsCollapse">
+              <div class="card-content">
+                <div class="skills-container">
+                  <!-- Technical Skills -->
+                  <div class="skills-category">
+                    <h4 class="category-title">Technical Skills</h4>
+                    <div class="skills-grid">
+                      <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-level">
+                          <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                          </div>
+                          <span class="skill-percentage">90%</span>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <span class="skill-name">React</span>
+                        <div class="skill-level">
+                          <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                          </div>
+                          <span class="skill-percentage">85%</span>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <span class="skill-name">Node.js</span>
+                        <div class="skill-level">
+                          <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                          </div>
+                          <span class="skill-percentage">80%</span>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-level">
+                          <div class="skill-bar">
+                            <div class="skill-progress" style="width: 75%"></div>
+                          </div>
+                          <span class="skill-percentage">75%</span>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <span class="skill-name">SQL</span>
+                        <div class="skill-level">
+                          <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                          </div>
+                          <span class="skill-percentage">70%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Soft Skills -->
+                  <div class="skills-category">
+                    <h4 class="category-title">Soft Skills</h4>
+                    <div class="skills-tags">
+                      <span class="skill-tag">Leadership</span>
+                      <span class="skill-tag">Communication</span>
+                      <span class="skill-tag">Problem Solving</span>
+                      <span class="skill-tag">Team Collaboration</span>
+                      <span class="skill-tag">Project Management</span>
+                      <span class="skill-tag">Critical Thinking</span>
+                      <span class="skill-tag">Adaptability</span>
+                      <span class="skill-tag">Time Management</span>
+                    </div>
+                  </div>
+
+                  <!-- Tools & Technologies -->
+                  <div class="skills-category">
+                    <h4 class="category-title">Tools & Technologies</h4>
+                    <div class="tools-grid">
+                      <div class="tool-item">
+                        <div class="tool-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                              stroke-linejoin="round" />
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"
+                              stroke-linejoin="round" />
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
+                              stroke-linejoin="round" />
+                          </svg>
+                        </div>
+                        <span class="tool-name">Git</span>
+                        <span class="tool-level">Expert</span>
+                      </div>
+
+                      <div class="tool-item">
+                        <div class="tool-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor"
+                              stroke-width="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2" />
+                            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2" />
+                          </svg>
+                        </div>
+                        <span class="tool-name">VS Code</span>
+                        <span class="tool-level">Expert</span>
+                      </div>
+
+                      <div class="tool-item">
+                        <div class="tool-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path
+                              d="M14.7 6.3C15.1 5.9 15.1 5.3 14.7 4.9C14.3 4.5 13.7 4.5 13.3 4.9L9.3 8.9C8.9 9.3 8.9 9.9 9.3 10.3L13.3 14.3C13.7 14.7 14.3 14.7 14.7 14.3C15.1 13.9 15.1 13.3 14.7 12.9L12.4 10.6L20 10.6C20.6 10.6 21 10.2 21 9.6C21 9 20.6 8.6 20 8.6L12.4 8.6L14.7 6.3Z"
+                              fill="currentColor" />
+                          </svg>
+                        </div>
+                        <span class="tool-name">Docker</span>
+                        <span class="tool-level">Advanced</span>
+                      </div>
+
+                      <div class="tool-item">
+                        <div class="tool-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                            <path d="M8 14S9.5 16 12 16S16 14 16 14" stroke="currentColor" stroke-width="2" />
+                            <line x1="9" y1="9" x2="9.01" y2="9" stroke="currentColor" stroke-width="2" />
+                            <line x1="15" y1="9" x2="15.01" y2="9" stroke="currentColor" stroke-width="2" />
+                          </svg>
+                        </div>
+                        <span class="tool-name">Figma</span>
+                        <span class="tool-level">Intermediate</span>
+                      </div>
+
+                      <div class="tool-item">
+                        <div class="tool-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 19C-2 19 -2 5 9 5H15C26 5 26 19 15 19" stroke="currentColor" stroke-width="2" />
+                            <path d="M15 5C26 5 26 19 15 19H9C-2 19 -2 5 9 5" stroke="currentColor" stroke-width="2" />
+                          </svg>
+                        </div>
+                        <span class="tool-name">AWS</span>
+                        <span class="tool-level">Intermediate</span>
+                      </div>
+
+                      <div class="tool-item">
+                        <div class="tool-icon">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor"
+                              stroke-width="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" />
+                            <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" />
+                            <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" />
+                          </svg>
+                        </div>
+                        <span class="tool-name">Jira</span>
+                        <span class="tool-level">Advanced</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Work Experience Section -->
+          <section class="card experience-card">
+            <div class="card-header">
+              <h2 class="section-title" data-bs-toggle="collapse" data-bs-target="#experienceCollapse"
+                aria-expanded="true" aria-controls="experienceCollapse" role="button">
+                <span class="expand-icon">▼</span>
+                Work Experience
+              </h2>
+              <button class="edit-btn" data-section="experience" onclick="event.stopPropagation();">EDIT</button>
+            </div>
+
+            <div class="collapse show" id="experienceCollapse">
+              <div class="card-content">
+                <div class="experience-list">
+                  <div class="experience-item">
+                    <div class="experience-header">
+                      <div class="experience-main">
+                        <h5 class="job-title">Senior Full Stack Developer</h5>
+                        <span class="company-name">TechCorp Solutions</span>
+                      </div>
+                      <div class="experience-period">
+                        <span class="duration">2022 - Present</span>
+                        <span class="location">Manila, Philippines</span>
+                      </div>
+                    </div>
+                    <ul class="job-responsibilities">
+                      <li>Led a team of 5 developers in building scalable web applications using React and Node.js</li>
+                      <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
+                      <li>Collaborated with product team to deliver features for 50,000+ active users</li>
+                    </ul>
+                  </div>
+
+                  <div class="experience-item">
+                    <div class="experience-header">
+                      <div class="experience-main">
+                        <h5 class="job-title">Frontend Developer</h5>
+                        <span class="company-name">Digital Innovations Inc.</span>
+                      </div>
+                      <div class="experience-period">
+                        <span class="duration">2020 - 2022</span>
+                        <span class="location">Makati, Philippines</span>
+                      </div>
+                    </div>
+                    <ul class="job-responsibilities">
+                      <li>Developed responsive web applications using React, Vue.js, and TypeScript</li>
+                      <li>Optimized application performance improving load times by 40%</li>
+                      <li>Mentored junior developers and conducted code reviews</li>
+                    </ul>
+                  </div>
+
+                  <div class="experience-item">
+                    <div class="experience-header">
+                      <div class="experience-main">
+                        <h5 class="job-title">Web Developer</h5>
+                        <span class="company-name">StartupHub Philippines</span>
+                      </div>
+                      <div class="experience-period">
+                        <span class="duration">2018 - 2020</span>
+                        <span class="location">Quezon City, Philippines</span>
+                      </div>
+                    </div>
+                    <ul class="job-responsibilities">
+                      <li>Built and maintained multiple client websites using HTML, CSS, JavaScript, and PHP</li>
+                      <li>Integrated third-party APIs and payment systems</li>
+                      <li>Provided technical support and training to clients</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Education Section -->
+          <section class="card education-card">
+            <div class="card-header">
+              <h2 class="section-title" data-bs-toggle="collapse" data-bs-target="#educationCollapse"
+                aria-expanded="true" aria-controls="educationCollapse" role="button">
+                <span class="expand-icon">▼</span>
+                Education
+              </h2>
+              <button class="edit-btn" data-section="education" onclick="event.stopPropagation();">EDIT</button>
+            </div>
+
+            <div class="collapse show" id="educationCollapse">
+              <div class="card-content">
+                <div class="education-list">
+                  <div class="education-item">
+                    <div class="education-header">
+                      <div class="education-main">
+                        <h5 class="degree-title">Bachelor of Science in Computer Science</h5>
+                        <span class="school-name">University of the Philippines - Diliman</span>
+                      </div>
+                      <div class="education-period">
+                        <span class="graduation">2014 - 2018</span>
+                        <span class="gpa">GPA: 3.8/4.0</span>
+                      </div>
+                    </div>
+                    <div class="education-details">
+                      <p class="education-description">Graduated Magna Cum Laude. Specialized in Software Engineering
+                        and
+                        Web Development.</p>
+                      <div class="relevant-courses">
+                        <span class="courses-label">Relevant Courses:</span>
+                        <div class="courses-tags">
+                          <span class="course-tag">Data Structures & Algorithms</span>
+                          <span class="course-tag">Database Systems</span>
+                          <span class="course-tag">Software Engineering</span>
+                          <span class="course-tag">Web Development</span>
+                          <span class="course-tag">Machine Learning</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="education-item">
+                    <div class="education-header">
+                      <div class="education-main">
+                        <h5 class="degree-title">Full Stack Web Development Bootcamp</h5>
+                        <span class="school-name">Kodego Bootcamp</span>
+                      </div>
+                      <div class="education-period">
+                        <span class="graduation">2017</span>
+                        <span class="gpa">Certificate</span>
+                      </div>
+                    </div>
+                    <div class="education-details">
+                      <p class="education-description">Intensive 6-month program covering modern web development
+                        technologies and best practices.</p>
+                      <div class="relevant-courses">
+                        <span class="courses-label">Technologies Learned:</span>
+                        <div class="courses-tags">
+                          <span class="course-tag">MEAN Stack</span>
+                          <span class="course-tag">React</span>
+                          <span class="course-tag">Node.js</span>
+                          <span class="course-tag">MongoDB</span>
+                          <span class="course-tag">Git & GitHub</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Column - To-Do List -->
+        <aside class="right-column grid-right">
+          <div class="card todo-card">
+            <div class="card-header">
+              <h2 class="section-title">To-Do List</h2>
+              <div class="progress-badge">
+                <span class="progress-text">56% Done</span>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="progress-section">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 56%"></div>
+                </div>
+              </div>
+
+              <div class="todo-list">
+                <div class="todo-item completed" data-weight="15">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="create-account" checked>
+                    <label for="create-account" class="checkbox-custom"></label>
+                  </div>
+                  <span class="todo-text">Create Account</span>
+                  <button class="info-btn" aria-label="15% of total" title="Worth 15%">15%</button>
+                </div>
+
+                <div class="todo-item completed" data-weight="25">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="complete-basic" checked>
+                    <label for="complete-basic" class="checkbox-custom"></label>
+                  </div>
+                  <span class="todo-text">Complete Basic Info</span>
+                  <button class="info-btn" aria-label="25% of total" title="Worth 25%">25%</button>
+                </div>
+
+                <div class="todo-item completed" data-weight="20">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="work-experience" checked>
+                    <label for="work-experience" class="checkbox-custom"></label>
+                  </div>
+                  <span class="todo-text">Add Work Experience</span>
+                  <button class="info-btn" aria-label="20% of total" title="Worth 20%">20%</button>
+                </div>
+
+                <div class="todo-item completed" data-weight="20">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="upload-resume" checked>
+                    <label for="upload-resume" class="checkbox-custom"></label>
+                  </div>
+                  <span class="todo-text">Upload Resume</span>
+                  <button class="info-btn" aria-label="20% of total" title="Worth 20%">20%</button>
+                </div>
+
+                <div class="todo-item" data-weight="20">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="add-education">
+                    <label for="add-education" class="checkbox-custom"></label>
+                  </div>
+                  <span class="todo-text">Add Education</span>
+                  <button class="info-btn" aria-label="20% of total" title="Worth 20%">20%</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="../assets/js/core/storage.js"></script>
+  <script src="../assets/js/core/header.js"></script>
+  <script src="../assets/js/core/auth.js"></script>
+  <script src="../assets/js/job-seeker/profile.js"></script>
+
+  <!-- Edit Basic Info Modal -->
+  <div class="modal fade" id="editBasicInfoModal" tabindex="-1" aria-labelledby="editBasicInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBasicInfoLabel">Edit Basic Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="basicInfoForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="bi-name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="bi-name" name="name" required />
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+            <div class="mb-3">
+              <label for="bi-title" class="form-label">Professional Title</label>
+              <input type="text" class="form-control" id="bi-title" name="title" />
+            </div>
+            <div class="mb-3">
+              <label for="bi-location" class="form-label">Location</label>
+              <input type="text" class="form-control" id="bi-location" name="location" />
+            </div>
+            <div class="mb-3">
+              <label for="bi-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="bi-email" name="email" required />
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+            <div class="mb-3">
+              <label for="bi-phone" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="bi-phone" name="phone" />
+            </div>
+            <div class="mb-3">
+              <label for="bi-jobStatus" class="form-label">Job Status</label>
+              <select id="bi-jobStatus" name="jobStatus" class="form-select">
+                <option value="Actively looking for jobs">Actively looking for jobs</option>
+                <option value="Passively looking for jobs">Passively looking for jobs</option>
+                <option value="Not looking">Not looking</option>
+              </select>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="true" id="bi-online" name="online">
+              <label class="form-check-label" for="bi-online">Online Now</label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Resume Modal -->
+  <div class="modal fade" id="editResumeModal" tabindex="-1" aria-labelledby="editResumeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editResumeLabel">Edit Resume</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="resumeForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="re-fileName" class="form-label">File Name</label>
+              <input type="text" class="form-control" id="re-fileName" name="fileName" required />
+              <div class="invalid-feedback">Please enter a file name.</div>
+            </div>
+            <div class="mb-3">
+              <label for="re-url" class="form-label">Public URL (optional)</label>
+              <input type="url" class="form-control" id="re-url" name="url" placeholder="https://..." />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Skill Modal -->
+  <div class="modal fade" id="addSkillModal" tabindex="-1" aria-labelledby="addSkillLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSkillLabel">Add Skill</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="skillForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="sk-type" class="form-label">Skill Type</label>
+              <select id="sk-type" name="type" class="form-select" required>
+                <option value="technical">Technical</option>
+                <option value="soft">Soft</option>
+                <option value="tool">Tool</option>
+              </select>
+              <div class="invalid-feedback">Select a type.</div>
+            </div>
+            <div class="mb-3">
+              <label for="sk-name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="sk-name" name="name" required />
+              <div class="invalid-feedback">Provide a name.</div>
+            </div>
+            <div class="mb-3" id="sk-level-wrap">
+              <label for="sk-level" class="form-label">Level (0-100 or Label)</label>
+              <input type="text" inputmode="numeric" class="form-control" id="sk-level" name="level"
+                placeholder="e.g. 85 or Expert" />
+              <div class="form-text">For Technical: 0-100. For Tool: label (e.g., Expert).</div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Experience Modal -->
+  <div class="modal fade" id="addExperienceModal" tabindex="-1" aria-labelledby="addExperienceLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addExperienceLabel">Add Work Experience</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="experienceForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="ex-title" class="form-label">Job Title</label>
+              <input type="text" class="form-control" id="ex-title" name="title" required />
+              <div class="invalid-feedback">Enter a job title.</div>
+            </div>
+            <div class="mb-3">
+              <label for="ex-company" class="form-label">Company</label>
+              <input type="text" class="form-control" id="ex-company" name="company" required />
+              <div class="invalid-feedback">Enter a company.</div>
+            </div>
+            <div class="mb-3">
+              <label for="ex-duration" class="form-label">Duration</label>
+              <input type="text" class="form-control" id="ex-duration" name="duration"
+                placeholder="e.g., 2022 - Present" required />
+              <div class="invalid-feedback">Enter duration.</div>
+            </div>
+            <div class="mb-3">
+              <label for="ex-location" class="form-label">Location</label>
+              <input type="text" class="form-control" id="ex-location" name="location" />
+            </div>
+            <div class="mb-3">
+              <label for="ex-resp" class="form-label">Responsibilities (one per line)</label>
+              <textarea class="form-control" id="ex-resp" name="responsibilities" rows="4"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Education Modal -->
+  <div class="modal fade" id="addEducationModal" tabindex="-1" aria-labelledby="addEducationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addEducationLabel">Add Education</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="educationForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="ed-degree" class="form-label">Degree</label>
+              <input type="text" class="form-control" id="ed-degree" name="degree" required />
+              <div class="invalid-feedback">Enter degree.</div>
+            </div>
+            <div class="mb-3">
+              <label for="ed-school" class="form-label">School</label>
+              <input type="text" class="form-control" id="ed-school" name="school" required />
+              <div class="invalid-feedback">Enter school.</div>
+            </div>
+            <div class="mb-3">
+              <label for="ed-graduation" class="form-label">Graduation</label>
+              <input type="text" class="form-control" id="ed-graduation" name="graduation"
+                placeholder="e.g., 2014 - 2018" />
+            </div>
+            <div class="mb-3">
+              <label for="ed-gpa" class="form-label">GPA / Award</label>
+              <input type="text" class="form-control" id="ed-gpa" name="gpa" />
+            </div>
+            <div class="mb-3">
+              <label for="ed-desc" class="form-label">Description</label>
+              <textarea class="form-control" id="ed-desc" name="description" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="ed-courses" class="form-label">Courses (comma-separated)</label>
+              <input type="text" class="form-control" id="ed-courses" name="courses" placeholder="Course A, Course B" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collapse Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get all collapsible card headers
+      const collapsibleHeaders = document.querySelectorAll('[data-bs-toggle="collapse"]');
+
+      collapsibleHeaders.forEach(header => {
+        const targetId = header.getAttribute('data-bs-target');
+        const collapseElement = document.querySelector(targetId);
+        const expandIcon = header.querySelector('.expand-icon');
+
+        // Set initial state
+        if (collapseElement.classList.contains('show')) {
+          expandIcon.style.transform = 'rotate(0deg)';
+        } else {
+          expandIcon.style.transform = 'rotate(-90deg)';
+        }
+
+        // Listen for collapse events
+        collapseElement.addEventListener('show.bs.collapse', function () {
+          expandIcon.style.transform = 'rotate(0deg)';
+        });
+
+        collapseElement.addEventListener('hide.bs.collapse', function () {
+          expandIcon.style.transform = 'rotate(-90deg)';
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

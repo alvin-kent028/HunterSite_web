@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storage Strategy Visual Guide</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    h2 {
+      margin: 40px 0 20px;
+      color: #555;
+      border-bottom: 2px solid #ffc107;
+      padding-bottom: 10px;
+    }
+
+    .diagram {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .flow {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      background: #e3f2fd;
+      border: 2px solid #2196f3;
+      padding: 20px;
+      border-radius: 8px;
+      min-width: 180px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .box.json {
+      background: #fff3e0;
+      border-color: #ff9800;
+    }
+
+    .box.storage {
+      background: #e8f5e9;
+      border-color: #4caf50;
+    }
+
+    .box.user {
+      background: #f3e5f5;
+      border-color: #9c27b0;
+    }
+
+    .box.check {
+      background: #fff9c4;
+      border-color: #ffc107;
+    }
+
+    .arrow {
+      font-size: 24px;
+      color: #666;
+      flex-shrink: 0;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      margin: 15px 0;
+    }
+
+    .keyword {
+      color: #569cd6;
+    }
+
+    .string {
+      color: #ce9178;
+    }
+
+    .comment {
+      color: #6a9955;
+    }
+
+    .function {
+      color: #dcdcaa;
+    }
+
+    .priority-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .priority-table th,
+    .priority-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .priority-table th {
+      background: #ffc107;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .priority-table tr:hover {
+      background: #f5f5f5;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge.high {
+      background: #4caf50;
+      color: white;
+    }
+
+    .badge.medium {
+      background: #ff9800;
+      color: white;
+    }
+
+    .badge.low {
+      background: #9e9e9e;
+      color: white;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      color: #ffc107;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .card li:last-child {
+      border-bottom: none;
+    }
+
+    .card li:before {
+      content: "✓";
+      color: #4caf50;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🗄️ Storage Strategy Visual Guide</h1>
+
+    <h2>📊 Data Flow - First Time User</h2>
+    <div class="diagram">
+      <div class="flow">
+        <div class="box user">User Visits<br>Profile Page</div>
+        <div class="arrow">→</div>
+        <div class="box check">Check<br>localStorage</div>
+        <div class="arrow">→</div>
+        <div class="box" style="background: #ffebee; border-color: #f44336;">Empty!</div>
+      </div>
+
+      <div class="flow">
+        <div class="arrow">↓</div>
+      </div>
+
+      <div class="flow">
+        <div class="box json">Load from<br>profile.json</div>
+        <div class="arrow">→</div>
+        <div class="box storage">Save to<br>localStorage</div>
+        <div class="arrow">→</div>
+        <div class="box" style="background: #e8f5e9; border-color: #4caf50;">Render UI</div>
+      </div>
+    </div>
+
+    <h2>🔄 Data Flow - Returning User</h2>
+    <div class="diagram">
+      <div class="flow">
+        <div class="box user">User Returns</div>
+        <div class="arrow">→</div>
+        <div class="box check">Check<br>localStorage</div>
+        <div class="arrow">→</div>
+        <div class="box storage">Data Found!</div>
+        <div class="arrow">→</div>
+        <div class="box" style="background: #e8f5e9; border-color: #4caf50;">Render UI<br>(Instant)</div>
+      </div>
+      <p style="margin-top: 15px; color: #666; font-style: italic;">
+        No JSON fetch needed - data loads instantly from localStorage!
+      </p>
+    </div>
+
+    <h2>✏️ Data Flow - User Edits Profile</h2>
+    <div class="diagram">
+      <div class="flow">
+        <div class="box user">User Clicks<br>"Save"</div>
+        <div class="arrow">→</div>
+        <div class="box check">Load existing<br>from storage</div>
+        <div class="arrow">→</div>
+        <div class="box" style="background: #fff3e0; border-color: #ff9800;">Deep Merge<br>Changes</div>
+      </div>
+
+      <div class="flow">
+        <div class="arrow">↓</div>
+      </div>
+
+      <div class="flow">
+        <div class="box storage">Save merged<br>to localStorage</div>
+        <div class="arrow">→</div>
+        <div class="box" style="background: #e1f5fe; border-color: #03a9f4;">Update<br>Metadata</div>
+        <div class="arrow">→</div>
+        <div class="box" style="background: #e8f5e9; border-color: #4caf50;">Refresh UI<br>(No reload)</div>
+      </div>
+    </div>
+
+    <h2>🎯 Data Priority Rules</h2>
+    <table class="priority-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Data Source</th>
+          <th>Priority</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>User has edited profile</td>
+          <td>localStorage</td>
+          <td><span class="badge high">High</span></td>
+          <td>User modifications always take priority</td>
+        </tr>
+        <tr>
+          <td>localStorage is empty</td>
+          <td>profile.json</td>
+          <td><span class="badge medium">Medium</span></td>
+          <td>Use defaults for first-time users</td>
+        </tr>
+        <tr>
+          <td>localStorage corrupted</td>
+          <td>profile.json</td>
+          <td><span class="badge medium">Medium</span></td>
+          <td>Fallback to defaults on error</td>
+        </tr>
+        <tr>
+          <td>profile.json missing</td>
+          <td>Default structure</td>
+          <td><span class="badge low">Low</span></td>
+          <td>Last resort: empty profile template</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>💾 LocalStorage Keys</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>huntersite_user</h3>
+        <ul>
+          <li>Email address</li>
+          <li>User type (jobseeker/employer)</li>
+          <li>Login timestamp</li>
+          <li>Display name</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>huntersite_user_profile</h3>
+        <ul>
+          <li>Basic info (name, location, etc.)</li>
+          <li>Resume data</li>
+          <li>Skills (technical, soft, tools)</li>
+          <li>Experience array</li>
+          <li>Education array</li>
+          <li>Todo progress</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>huntersite_saved_jobs</h3>
+        <ul>
+          <li>Job ID</li>
+          <li>Title & company</li>
+          <li>Location & salary</li>
+          <li>Job type</li>
+          <li>Saved timestamp</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>huntersite_applications</h3>
+        <ul>
+          <li>Job ID</li>
+          <li>Job title & company</li>
+          <li>Applied date</li>
+          <li>Status (pending/accepted/rejected)</li>
+          <li>Cover letter (optional)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>💻 Code Examples</h2>
+
+    <div class="diagram">
+      <h3>Load Profile (First Time)</h3>
+      <div class="code-block">
+        <span class="comment">// In profile.html</span>
+        <span class="keyword">document</span>.<span class="function">addEventListener</span>(<span
+          class="string">'DOMContentLoaded'</span>, <span class="keyword">async</span> () => {
+        <span class="comment">// This checks localStorage → JSON → defaults</span>
+        <span class="keyword">const</span> profile = <span class="keyword">await</span> <span
+          class="keyword">window</span>.<span class="keyword">StorageManager</span>.<span
+          class="function">loadProfileData</span>();
+
+        <span class="comment">// Render the UI</span>
+        <span class="function">renderProfile</span>(profile);
+
+        <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">'Profile loaded
+          from:'</span>, profile.<span class="keyword">_source</span>);
+        });
+      </div>
+    </div>
+
+    <div class="diagram">
+      <h3>Update Profile (Partial)</h3>
+      <div class="code-block">
+        <span class="comment">// Update only basic info, keep everything else</span>
+        <span class="keyword">const</span> result = <span class="keyword">window</span>.<span
+          class="keyword">StorageManager</span>.<span class="function">saveUserProfile</span>(
+        {
+        <span class="keyword">basicInfo:</span> {
+        <span class="keyword">name:</span> <span class="string">"John Doe"</span>,
+        <span class="keyword">email:</span> <span class="string">"john@example.com"</span>,
+        <span class="keyword">phone:</span> <span class="string">"+1234567890"</span>
+        }
+        },
+        <span class="keyword">true</span> <span class="comment">// isPartialUpdate = merge, don't replace</span>
+        );
+
+        <span class="keyword">if</span> (result.<span class="keyword">success</span>) {
+        <span class="keyword">alert</span>(<span class="string">'Profile updated!'</span>);
+        <span class="function">refreshUI</span>();
+        }
+      </div>
+    </div>
+
+    <div class="diagram">
+      <h3>Save a Job</h3>
+      <div class="code-block">
+        <span class="keyword">function</span> <span class="function">saveJob</span>(jobData) {
+        <span class="keyword">const</span> result = <span class="keyword">window</span>.<span
+          class="keyword">StorageManager</span>.<span class="function">saveJob</span>({
+        <span class="keyword">id:</span> jobData.<span class="keyword">id</span>,
+        <span class="keyword">title:</span> jobData.<span class="keyword">title</span>,
+        <span class="keyword">company:</span> jobData.<span class="keyword">company</span>,
+        <span class="keyword">location:</span> jobData.<span class="keyword">location</span>,
+        <span class="keyword">salary:</span> jobData.<span class="keyword">salary</span>
+        });
+
+        <span class="keyword">if</span> (result.<span class="keyword">success</span>) {
+        <span class="keyword">alert</span>(<span class="string">'Job saved!'</span>);
+        <span class="function">updateSaveButton</span>(jobData.<span class="keyword">id</span>, <span
+          class="keyword">true</span>);
+        } <span class="keyword">else</span> {
+        <span class="keyword">alert</span>(result.<span class="keyword">message</span>); <span class="comment">// "Job
+          already saved"</span>
+        }
+        }
+      </div>
+    </div>
+
+    <div class="diagram">
+      <h3>Apply to Job</h3>
+      <div class="code-block">
+        <span class="keyword">function</span> <span class="function">applyToJob</span>(jobId, title, company) {
+        <span class="keyword">const</span> result = <span class="keyword">window</span>.<span
+          class="keyword">StorageManager</span>.<span class="function">saveApplication</span>(
+        jobId,
+        title,
+        company
+        );
+
+        <span class="keyword">if</span> (result.<span class="keyword">success</span>) {
+        <span class="keyword">alert</span>(<span class="string">'Application submitted!'</span>);
+        <span class="function">disableApplyButton</span>(jobId);
+        } <span class="keyword">else</span> {
+        <span class="keyword">alert</span>(result.<span class="keyword">message</span>); <span class="comment">//
+          "Already applied"</span>
+        }
+        }
+      </div>
+    </div>
+
+    <h2>🐛 Debug Commands</h2>
+    <div class="diagram">
+      <p style="margin-bottom: 15px;">Open browser console and try these:</p>
+      <div class="code-block">
+        <span class="comment">// View storage statistics</span>
+        <span class="keyword">console</span>.<span class="function">table</span>(<span
+          class="keyword">window</span>.<span class="keyword">StorageManager</span>.<span
+          class="function">getStorageInfo</span>());
+
+        <span class="comment">// View saved profile</span>
+        <span class="keyword">console</span>.<span class="function">log</span>(<span class="keyword">window</span>.<span
+          class="keyword">StorageManager</span>.<span class="function">getUserProfile</span>());
+
+        <span class="comment">// View saved jobs</span>
+        <span class="keyword">console</span>.<span class="function">table</span>(<span
+          class="keyword">window</span>.<span class="keyword">StorageManager</span>.<span
+          class="function">getSavedJobs</span>());
+
+        <span class="comment">// View applications</span>
+        <span class="keyword">console</span>.<span class="function">table</span>(<span
+          class="keyword">window</span>.<span class="keyword">StorageManager</span>.<span
+          class="function">getUserApplications</span>());
+
+        <span class="comment">// Clear all data (careful!)</span>
+        <span class="keyword">window</span>.<span class="keyword">StorageManager</span>.<span
+          class="function">clearAllData</span>();
+
+        <span class="comment">// Test async loading</span>
+        <span class="keyword">window</span>.<span class="keyword">StorageManager</span>.<span
+          class="function">loadProfileData</span>().<span class="function">then</span>(<span
+          class="keyword">console</span>.<span class="keyword">log</span>);
+      </div>
+    </div>
+
+    <h2>✅ Key Takeaways</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>For Developers</h3>
+        <ul>
+          <li>Always use StorageManager API</li>
+          <li>Use async for first load</li>
+          <li>Check return values</li>
+          <li>Prefer partial updates</li>
+          <li>Handle errors gracefully</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>For Users</h3>
+        <ul>
+          <li>Data persists across sessions</li>
+          <li>No need to re-enter info</li>
+          <li>Changes save instantly</li>
+          <li>Works offline</li>
+          <li>Your data is private (local only)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Data Safety</h3>
+        <ul>
+          <li>localStorage always wins</li>
+          <li>JSON files are backups</li>
+          <li>Partial updates merge safely</li>
+          <li>Corruption handled gracefully</li>
+          <li>Version tracking for migrations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      style="margin-top: 40px; padding: 30px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
+      <h3 style="margin-bottom: 15px; color: #856404;">📝 Remember</h3>
+      <p style="color: #856404; font-size: 16px;">
+        <strong>JSON files (profile.json, jobs.json) remain unchanged as templates.</strong><br>
+        User modifications live in localStorage and take priority.<br>
+        This gives you the best of both worlds: defaults for new users + persistence for existing users.
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>

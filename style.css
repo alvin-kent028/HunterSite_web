@@ -1,0 +1,251 @@
+/*
+	JobFinder Landing — Bootstrap-enhanced CSS
+	- Custom colors with Bootstrap utilities
+	- Responsive using Bootstrap grid
+*/
+
+/* =Root tokens ----------------------------------------------------------- */
+:root {
+	--bs-warning: #f1b91a;
+	--bs-warning-rgb: 241, 185, 26;
+	--brand: #f1b91a;
+	--brand-dark: #d99f00;
+	--soft: #fff7da;
+	--soft-2: #f8fbf5;
+}
+
+/* =Base ------------------------------------------------------------------ */
+body {
+	font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+}
+
+/* =Hero ------------------------------------------------------------------ */
+.hero {
+	background: var(--soft);
+}
+
+.search-form {
+	border-color: #e8cf8d !important;
+	box-shadow: 0 8px 0 rgba(215, 193, 120, 0.3), 0 3px 14px rgba(0, 0, 0, 0.06) !important;
+}
+
+.location-dot {
+	box-shadow: 0 0 0 3px #ffe9a8;
+}
+
+/* Stat badges */
+.stat-badge {
+	background: #ffdf86 !important;
+	border-color: #e7c86f !important;
+	color: #4a3a00;
+}
+
+.stat-badge .fs-4 {
+	color: #111;
+}
+
+/* Responsive positioning for stat badges */
+@media (max-width: 992px) {
+	.stat-badge:nth-of-type(1) {
+		left: -4% !important;
+		top: -4% !important;
+	}
+	.stat-badge:nth-of-type(2) {
+		right: -4% !important;
+		top: 36% !important;
+		bottom: auto !important;
+	}
+	.stat-badge:nth-of-type(3) {
+		left: -4% !important;
+		bottom: -4% !important;
+	}
+}
+
+/* =Split feature --------------------------------------------------------- */
+.split-feature {
+	background: #f2f9ec;
+}
+
+.split-feature .card {
+	background: #fff8d5;
+	border-color: #f0dc9c !important;
+}
+
+.split-feature .col-md-6:first-child .card {
+	background: #ffe6a8;
+}
+
+.split-feature .col-md-6:last-child .card {
+	background: #ffefbd;
+}
+
+/* =Categories ------------------------------------------------------------ */
+.categories .card {
+	background: #ffe9a8;
+	border-color: #f0dc9c !important;
+}
+
+.categories .icon {
+	background: #fff2bf;
+}
+
+/* Carousel custom styling */
+.categories .carousel-control-prev,
+.categories .carousel-control-next {
+	width: 34px;
+	height: 34px;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 1;
+}
+
+.categories .carousel-control-prev {
+	left: -50px;
+}
+
+.categories .carousel-control-next {
+	right: -50px;
+}
+
+.categories .carousel-control-prev-icon,
+.categories .carousel-control-next-icon {
+	background-color: #fde9a4;
+	border: 1px solid #e8c872;
+	border-radius: 50%;
+	width: 34px;
+	height: 34px;
+	display: inline-block;
+}
+
+.categories .carousel-control-prev-icon::before,
+.categories .carousel-control-next-icon::before {
+	content: '';
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-left: 2px solid #333;
+	border-bottom: 2px solid #333;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.categories .carousel-control-prev-icon::before {
+	transform: translate(-40%, -50%) rotate(45deg);
+}
+
+.categories .carousel-control-next-icon::before {
+	transform: translate(-60%, -50%) rotate(-135deg);
+}
+
+.categories .carousel-control-prev:hover .carousel-control-prev-icon,
+.categories .carousel-control-next:hover .carousel-control-next-icon {
+	background-color: #f1d89a;
+}
+
+.categories .carousel-indicators button {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	opacity: 0.4;
+	margin: 0 4px;
+}
+
+.categories .carousel-indicators button.active {
+	opacity: 1;
+}
+
+/* Responsive carousel controls */
+@media (max-width: 992px) {
+	.categories .carousel-control-prev {
+		left: -20px;
+	}
+	
+	.categories .carousel-control-next {
+		right: -20px;
+	}
+}
+
+@media (max-width: 768px) {
+	.categories .carousel-control-prev,
+	.categories .carousel-control-next {
+		display: none;
+	}
+}
+
+/* =Jobs ------------------------------------------------------------------ */
+.jobs {
+	background: #f3f9ef;
+}
+
+/* =Custom Bootstrap overrides ------------------------------------------- */
+.btn-warning {
+	background: var(--brand);
+	border-color: var(--brand);
+	color: #111;
+}
+
+.btn-warning:hover {
+	background: var(--brand-dark);
+	border-color: var(--brand-dark);
+	color: #111;
+}
+
+.badge.bg-warning {
+	background: #ffeab3 !important;
+	border: 1px solid #ffd46e;
+}
+
+.text-warning {
+	color: #8a5b00 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.search-form .row > div {
+		width: 100%;
+	}
+}
+
+/* =Prevent JavaScript elements from breaking layout ---------------------- */
+/* Ensure fixed elements don't interfere with content */
+body {
+	position: relative;
+	overflow-x: hidden;
+}
+
+/* Confetti container fix */
+.confetti-container {
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+}
+
+/* Toast notifications positioning */
+.custom-toast {
+	max-width: 350px;
+	word-wrap: break-word;
+}
+
+/* Suggestion box styling */
+.suggestion-item {
+	transition: background-color 0.2s ease;
+}
+
+/* Hide filter buttons on mobile */
+@media (max-width: 991px) {
+	.filter-quick {
+		display: none !important;
+	}
+}
+
+/* View counter responsive */
+@media (max-width: 576px) {
+	#viewCount {
+		display: none;
+	}
+}

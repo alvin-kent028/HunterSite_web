@@ -1,0 +1,6 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="32" cy="32" r="32" fill="#DC2626"/>
+  <circle cx="32" cy="24" r="10" fill="white"/>
+  <path d="M12 52C12 42 21 34 32 34C43 34 52 42 52 52" fill="white"/>
+  <text x="32" y="20" text-anchor="middle" fill="#DC2626" font-family="Arial, sans-serif" font-size="8" font-weight="bold">RG</text>
+</svg>

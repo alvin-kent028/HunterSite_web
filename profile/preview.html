@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Preview - Hunter</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- Header Navigation -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button class="menu-toggle" aria-label="Menu">
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+          <span class="hamburger"></span>
+        </button>
+        <div class="logo">
+          <div class="logo-icon">
+            <div class="person-icon"></div>
+            <div class="search-icon"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <button class="lang-btn">EN</button>
+        <button class="icon-btn mail-btn" aria-label="Mail">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </button>
+        <button class="icon-btn notification-btn" aria-label="Notifications">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+              d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="notification-badge">1</span>
+        </button>
+        <div class="user-profile">
+          <span class="user-name"></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">Profile Preview</h1>
+        <div class="page-actions">
+          <a href="./profile.html" class="btn-secondary">BACK TO EDIT</a>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="left-column grid-left">
+          <!-- Basic Information -->
+          <section class="card basic-info-card">
+            <div class="card-header">
+              <h2 class="section-title">Basic Information</h2>
+            </div>
+            <div class="card-content">
+              <div class="profile-info">
+                <div class="profile-avatar">
+                  <img id="pp-avatar" src="" alt="Profile Avatar" class="avatar-img" />
+                </div>
+                <div class="profile-details">
+                  <div class="profile-main">
+                    <div class="profile-header-info">
+                      <div class="name-section">
+                        <h3 id="pp-name" class="profile-name">—</h3>
+                      </div>
+                      <div class="contact-info">
+                        <div class="contact-item location">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path
+                              d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                              stroke="currentColor" stroke-width="2" />
+                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                          </svg>
+                          <span id="pp-location">—</span>
+                        </div>
+                        <div class="contact-item email">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path
+                              d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                              stroke="currentColor" stroke-width="2" />
+                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" />
+                          </svg>
+                          <span id="pp-email">—</span>
+                        </div>
+                        <div class="contact-item phone">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path
+                              d="M22 16.92V19.92C22 20.52 21.39 21 20.84 21C9.28 21 0 11.72 0 0.16C0 -0.39 0.48 -1 1.08 -1H4.09C4.69 -1 5.23 -0.47 5.23 0.09C5.23 1.58 5.52 3.01 6.05 4.33C6.2 4.7 6.09 5.15 5.76 5.47L3.9 7.33C5.51 10.24 7.75 12.48 10.67 14.09L12.53 12.23C12.85 11.9 13.3 11.79 13.67 11.94C14.99 12.47 16.42 12.76 17.91 12.76C18.47 12.76 19 13.3 19 13.91V16.92C19 17.52 18.47 18 17.91 18H22Z"
+                              fill="currentColor" />
+                          </svg>
+                          <span id="pp-phone">—</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="profile-stats">
+                  <div class="stat-item views">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path d="M1 12S5 4 12 4S23 12 23 12S19 20 12 20S1 12 1 12Z" stroke="currentColor"
+                        stroke-width="2" />
+                      <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                    <span class="stat-number" id="pp-views">0 views</span>
+                  </div>
+                  <div class="profile-status">
+                    <div class="status-item">
+                      <div id="pp-online-dot" class="status-indicator"></div>
+                      <span>Online Now</span>
+                    </div>
+                    <div class="status-item job-status">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                        <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="2" />
+                      </svg>
+                      <span id="pp-job-status">—</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Resume -->
+          <section class="card resume-card">
+            <div class="card-header">
+              <h2 class="section-title">Resume</h2>
+            </div>
+            <div class="card-content">
+              <p class="resume-note">
+                <strong>Note:</strong> Your profile is the first thing recruiters see and not your uploaded resume, so
+                make sure your Hunter profile is as complete and detailed as your uploaded resume.
+              </p>
+
+              <div class="file-upload-section">
+                <div class="file-info">
+                  <span id="pp-resume-name" class="file-name">—</span>
+                </div>
+                <a id="pp-resume-link" class="btn-primary update-btn" href="#" target="_blank"
+                  rel="noopener noreferrer">VIEW</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Skills -->
+          <section class="card skills-card">
+            <div class="card-header">
+              <h2 class="section-title">Skills</h2>
+            </div>
+            <div class="card-content">
+              <div class="skills-container">
+                <div class="skills-category">
+                  <h4 class="category-title">Technical Skills</h4>
+                  <div id="pp-tech-skills" class="skills-grid"></div>
+                </div>
+
+                <div class="skills-category">
+                  <h4 class="category-title">Soft Skills</h4>
+                  <div id="pp-soft-skills" class="skills-tags"></div>
+                </div>
+
+                <div class="skills-category">
+                  <h4 class="category-title">Tools & Technologies</h4>
+                  <div id="pp-tools" class="tools-grid"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Work Experience -->
+          <section class="card experience-card">
+            <div class="card-header">
+              <h2 class="section-title">Work Experience</h2>
+            </div>
+            <div class="card-content">
+              <div id="pp-experience" class="experience-list"></div>
+            </div>
+          </section>
+
+          <!-- Education -->
+          <section class="card education-card">
+            <div class="card-header">
+              <h2 class="section-title">Education</h2>
+            </div>
+            <div class="card-content">
+              <div id="pp-education" class="education-list"></div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Column - To-Do List (Preview shows status only) -->
+        <aside class="right-column grid-right">
+          <div class="card todo-card">
+            <div class="card-header">
+              <h2 class="section-title">To-Do Status</h2>
+              <div class="progress-badge">
+                <span class="progress-text">—</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="progress-section">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 56%"></div>
+                </div>
+              </div>
+              <p class="text-muted mb-0">This is a read-only preview of your profile.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/core/storage.js"></script>
+  <script src="../assets/js/core/header.js"></script>
+  <script src="../assets/js/job-seeker/profile-preview.js"></script>
+</body>
+
+</html>

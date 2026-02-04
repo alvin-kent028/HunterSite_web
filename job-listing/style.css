@@ -1,0 +1,235 @@
+/*
+  Hunter Job Listing Page
+  - Pure CSS, responsive, semantic structure
+  - Design tokens for maintainability
+*/
+
+/* ================== TOKENS ================== */
+:root{
+  --bg: #fffef3;          /* page cream */
+  --bar: #ffe38f;         /* search strip */
+  --chip: #ffd56a;        /* chips */
+  --card: #ffffff;        /* list card bg */
+  --line: #e6e3d3;        /* subtle lines */
+  --ink: #111111;         /* primary text */
+  --muted:#444444;        /* secondary */
+  --accent:#ffc83d;       /* primary button */
+  --accent-2:#f3a93d;     /* gradient end */
+  --pill:#ffeab3;         /* small tag */
+  --yellow-100:#fff2bf;   /* hero */
+  --radius-lg:16px; --radius-md:12px; --radius-sm:8px;
+  --shadow:0 1px 0 rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.08);
+  --container: 1180px;
+}
+
+/* ================== BASE/RESET ================== */
+body{color:var(--ink);background:var(--bg);font-family:Inter, ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+.container{max-width:var(--container);margin-inline:auto;padding:12px 20px}
+button{cursor:pointer}
+
+/* ================== HEADER ================== */
+.site-header{background:#fff;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.nav-left{display:flex;align-items:center;gap:16px}
+.burger{display:grid;gap:5px;padding:8px}
+.burger span{width:24px;height:2px;background:#151515;border-radius:2px}
+.brand{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none}
+.brand svg{width:42px;height:42px}
+.nav-right{display:flex;align-items:center;gap:20px}
+.lang{padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-weight:600}
+.icon-btn{position:relative;width:40px;height:32px;display:grid;place-items:center;border-radius:8px}
+.icon-btn:hover{background:#f5f5f5}
+.badge{position:absolute;top:3px;right:6px;width:14px;height:14px;background:#e60012;color:#fff;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700}
+.user{font-weight:700}
+
+/* ================== SEARCH STRIP ================== */
+.search-strip{background:var(--bar);border-bottom:1px solid #e7dca2}
+.search-row{display:grid;grid-template-columns:1.2fr 1fr auto;gap:16px;align-items:center;padding:12px 0}
+.search-input-wrapper{position:relative;background:#fff;border:1.5px solid #eadc9a;border-radius:14px;box-shadow:var(--shadow);height:48px;display:flex;align-items:center;padding-inline:16px}
+.search-input-wrapper input{width:100%;border:0;outline:none;font-size:14px;color:#555;background:transparent}
+.search-input-wrapper select{width:100%;border:0;outline:none;font-size:14px;color:#555;background:transparent;padding-right:30px;cursor:pointer}
+.search-input-wrapper .form-select{padding:0;height:auto;font-size:14px;color:#555;background:transparent;border:none;box-shadow:none}
+.search-input-wrapper .form-select:focus{border:none;box-shadow:none;outline:none}
+.search-btn{position:absolute;right:6px;top:6px;bottom:6px;background:var(--accent);border:1px solid #e2b94c;border-radius:10px;padding:0 18px;font-weight:900}
+.search-ico{width:18px;height:18px;border:2px solid #999;border-radius:50%;margin-right:8px;position:relative}
+.search-ico::after{content:"";position:absolute;right:-5px;bottom:-5px;width:8px;height:2px;background:#999;transform:rotate(45deg);border-radius:2px}
+.pin{width:14px;height:14px;border:2px solid #999;border-top:none;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;margin-right:8px}
+.caret{position:absolute;right:14px;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #333}
+.chips{display:flex;gap:16px}
+.chip{background:var(--chip);border:1px solid #eadc9a;border-radius:10px;padding:10px 16px;font-weight:800;box-shadow:var(--shadow);transition:all 0.2s ease}
+.chip:hover{background:#ffc83d;transform:translateY(-1px);box-shadow:0 2px 0 rgba(0,0,0,.05),0 6px 20px rgba(0,0,0,.12)}
+.chip.active{background:#ffc83d;border-color:#e2b94c;box-shadow:inset 0 2px 4px rgba(0,0,0,.1),0 1px 0 rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.08);font-weight:900}
+
+/* filters row */
+.filters-row{display:flex;gap:28px;align-items:center;border-top:1px solid #e6d79f;border-bottom:2px solid #e6d79f;padding:12px 0;margin-top:10px}
+.filters-row .d-flex{gap:12px}
+
+/* Bootstrap dropdown customization - scoped to filters only */
+.filters-row .btn.dropdown-toggle{
+  /* Override Bootstrap defaults */
+  background-color:transparent;
+  border-color:transparent;
+  color:#222;
+  font-weight:800;
+  font-size:14px;
+  padding:6px 8px;
+  /* Remove Bootstrap shadows and outlines */
+  box-shadow:none;
+}
+
+.filters-row .btn.dropdown-toggle:hover,
+.filters-row .btn.dropdown-toggle:focus,
+.filters-row .btn.dropdown-toggle:active,
+.filters-row .btn.dropdown-toggle.show{
+  background-color:transparent;
+  border-color:transparent;
+  color:#222;
+  box-shadow:none;
+}
+
+/* Bootstrap dropdown caret customization */
+.filters-row .btn.dropdown-toggle::after{
+  /* Match original design triangle */
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:6px solid #222;
+  border-bottom:0;
+  margin-left:6px;
+  vertical-align:middle;
+}
+
+/* Bootstrap dropdown menu customization */
+.filters-row .dropdown-menu{
+  /* Override Bootstrap defaults */
+  border:1px solid #e6e6e6;
+  border-radius:12px;
+  box-shadow:var(--shadow);
+  padding:8px 0;
+  margin-top:8px;
+  min-width:200px;
+}
+
+/* Bootstrap dropdown item customization */
+.filters-row .dropdown-item{
+  /* Override Bootstrap defaults */
+  padding:10px 18px;
+  color:#222;
+  font-weight:600;
+  font-size:14px;
+}
+
+.filters-row .dropdown-item:hover,
+.filters-row .dropdown-item:focus{
+  background-color:#f7f7f7;
+  color:#222;
+}
+
+.filters-row .dropdown-item.active,
+.filters-row .dropdown-item:active{
+  background-color:var(--chip);
+  color:#222;
+  font-weight:800;
+}
+
+/* Bootstrap dropdown divider customization */
+.filters-row .dropdown-divider{
+  margin:6px 12px;
+  border-top-color:#e6e6e6;
+}
+
+/* Clear filters button - Bootstrap link button customization */
+.filters-row .btn-link{
+  font-weight:800;
+  font-size:14px;
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:8px;
+}
+
+.filters-row .btn-link:hover{
+  background-color:rgba(220, 53, 69, 0.1);
+  text-decoration:none;
+}
+
+/* Legacy filter styles (keep for reference) */
+.filter{display:inline-flex;align-items:center;gap:6px;color:#222;font-weight:800}
+.down{display:inline-block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #222}
+
+/* ================== TWO-COLUMN ================== */
+.two-col{display:grid;grid-template-columns:480px 1fr}
+.results{border-right:2px solid #d8d4c2}
+.list{max-height:calc(100vh - 260px);overflow:auto}
+.list::-webkit-scrollbar{width:12px}
+.list::-webkit-scrollbar-thumb{background:#111;border-radius:10px}
+
+.job-card{background:var(--card);border:1px solid #e6e6e6;border-left:4px solid transparent;border-radius:12px;margin:10px; padding:16px 18px; box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.job-card.selected{border-left-color:#111}
+.job-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.job-title{font-size:26px;line-height:1.15;margin:0 0 6px;font-weight:900}
+.love{padding:6px;border:1px solid #ddd;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;background:#fff}
+.love.loved{border-color:#ffc0d2;background:#ffe6ee}
+.heart{position:relative;display:block;width:16px;height:16px;transform:rotate(-45deg);background:#ff5e7a;border-radius:2px}
+.heart::before,.heart::after{content:"";position:absolute;width:16px;height:16px;background:#ff5e7a;border-radius:50%}
+.heart::before{top:-8px;left:0}
+.heart::after{left:8px;top:0}
+
+/* Outline (unloved) variant */
+.heart.outline{background:#fff;box-shadow:inset 0 0 0 2px #ff5e7a}
+.heart.outline::before,.heart.outline::after{background:#fff;box-shadow:inset 0 0 0 2px #ff5e7a}
+.company a{color:#f3a93d;font-weight:800;text-decoration:none}
+.place{color:#666;margin:6px 0}
+.meta{color:#666;font-size:13px;line-height:1.5}
+.tags{display:flex;gap:8px;margin-top:12px}
+.pill{display:inline-block;background:var(--pill);border:1px solid #eadc9a;color:#111;border-radius:999px;padding:6px 10px;font-weight:800;font-size:12px}
+
+/* ================== DETAILS ================== */
+.details{background:#fff}
+.hero{height:60px;background:var(--yellow-100);border-bottom:2px solid #e6d79f;position:relative;display:flex;align-items:center;padding:0 22px}
+.ribbon{background:#c89a53;color:#111;padding:10px 16px;border-radius:6px;box-shadow:var(--shadow);font-weight:900;font-size:14px}
+.detail-card{padding:18px 22px}
+.detail-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end}
+.detail-head h2{font-size:32px;margin:10px 0 6px;font-weight:900}
+.company-line a{color:#f3a93d;font-weight:800;text-decoration:none}
+.summary{color:#333}
+.pill.tiny{padding:4px 8px;font-size:11px}
+.posted{color:#444;font-size:12px;line-height:1.4;text-align:right;max-width:360px}
+
+.cta-row{display:flex;gap:12px;align-items:center;margin:18px 0 8px}
+.btn-primary{background:linear-gradient(180deg,var(--accent),var(--accent-2));border:1px solid #e2b94c;color:#111;font-weight:900;border-radius:10px;height:46px;padding:0 18px}
+.btn-ghost{border:1px solid #e6e6e6;border-radius:10px;height:46px;padding:0 16px;background:#f7f7f7;color:#222;display:flex;align-items:center;gap:8px}
+.ico.share{width:16px;height:16px;border-right:2px solid #222;border-top:2px solid #222;transform:rotate(45deg);position:relative}
+.ico.share::before{content:"";position:absolute;left:-8px;top:6px;width:10px;height:2px;background:#222}
+
+/* JD */
+.jd{border-top:2px solid #d8d4c2;padding-top:14px}
+.jd h3{font-size:24px;margin:8px 0 10px;font-weight:900}
+.jd p{color:#222;line-height:1.7;margin:8px 0}
+.jd h4{font-size:18px;margin:18px 0 10px}
+.bullets{margin:0 0 18px 18px}
+.bullets li{margin:6px 0;line-height:1.5}
+
+/* ================== NO RESULTS ================== */
+.no-results{padding:60px 20px;text-align:center}
+.no-results h3{font-size:24px;font-weight:900;margin:0 0 12px;color:#333}
+.no-results p{font-size:16px;color:#666;margin:0}
+.no-results a{color:var(--accent-2);font-weight:700;text-decoration:underline}
+
+/* ================== FOOTER ================== */
+.site-footer{padding:24px 0;color:#666;text-align:center}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 1200px){
+  .two-col{grid-template-columns:440px 1fr}
+}
+@media (max-width: 980px){
+  .search-row{grid-template-columns:1fr;row-gap:10px}
+  .two-col{grid-template-columns:1fr}
+  .results{border-right:0;border-bottom:0}
+  .detail-head{flex-direction:column;align-items:flex-start}
+  .posted{text-align:left}
+  .list{max-height:none}
+}
+@media (max-width: 560px){
+  .job-title{font-size:22px}
+  .detail-head h2{font-size:26px}
+}

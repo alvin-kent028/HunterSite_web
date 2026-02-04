@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="720" height="560" viewBox="0 0 720 560" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="decorative rings">
+  <!-- Outer ring -->
+  <circle cx="420" cy="260" r="230" fill="none" stroke="#b7902e" stroke-width="6"/>
+  <!-- Inner thick ring -->
+  <circle cx="380" cy="300" r="200" fill="none" stroke="#e8cf8d" stroke-width="28" opacity="0.9"/>
+  <!-- Inner outline ring -->
+  <circle cx="360" cy="300" r="185" fill="none" stroke="#b7902e" stroke-width="6"/>
+</svg>

@@ -1,0 +1,166 @@
+/*
+  Hunter Categories Page Styles
+  - Pure CSS, semantic structure, responsive
+  - Palette approximates the provided design
+*/
+
+/* ========== CSS Variables (Design Tokens) ========== */
+:root {
+  --bg: #fffef0;              /* page background (very light cream) */
+  --bar: #ffe38f;             /* search bar background */
+  --chip: #ffd56a;            /* filter chips (darker) */
+  --card: #ffe39c;            /* category card background */
+  --text: #0f0f0f;            /* primary text */
+  --muted: #4b4b4b;           /* secondary text */
+  --border: #eadc9a;          /* subtle borders */
+  --accent: #ffc83d;          /* accent (search button) */
+  --accent-hover: #ffb703;    /* accent hover */
+  --white: #ffffff;
+  --shadow: 0 1px 0 rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.05);
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 8px;
+  --container: 1180px;
+}
+
+/* ========== Base (global reset in assets/css/base.css) ========== */
+body { color: var(--text); background: var(--bg); }
+
+.container { max-width: var(--container); margin-inline: auto; padding: 16px 20px; }
+
+/* ========== Header ========== */
+header.site-header {
+  background: var(--white);
+  border-bottom: 1px solid #e9e9e9;
+  position: sticky; top: 0; z-index: 10;
+}
+
+.navbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+
+.nav-left { display: flex; align-items: center; gap: 18px; }
+.burger { display: grid; gap: 5px; padding: 8px; }
+.burger span { width: 22px; height: 2px; background:#151515; border-radius: 2px; }
+
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+.brand svg { width: 42px; height: 42px; }
+
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.lang { padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-weight: 600; }
+.icon-btn { position: relative; width: 40px; height: 32px; display: grid; place-items: center; border-radius: 8px; }
+.icon-btn:hover { background: #f5f5f5; }
+.badge { position: absolute; top: 3px; right: 6px; width: 14px; height: 14px; background: #e60012; color: #fff; border-radius: 50%; display:grid; place-items:center; font-size: 10px; font-weight: 700; }
+.user { font-weight: 700; }
+
+/* ========== Search Bar ========== */
+.search-bar { background: var(--bar); border-block: 1px solid var(--border); }
+.search-row { display: grid; grid-template-columns: 1.2fr 1fr auto; gap: 16px; align-items: center; padding: 14px 0; }
+
+.input-group { position: relative; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); height: 46px; display: flex; align-items: center; padding-inline: 16px; }
+.input-group input { width: 100%; border: 0; outline: none; font-size: 14px; color: var(--muted); background: transparent; }
+.input-group .search-btn { position: absolute; right: 6px; top: 6px; bottom: 6px; background: var(--accent); color: #111; border-radius: var(--radius-md); padding: 0 18px; font-weight: 800; text-transform: capitalize; letter-spacing: .2px; box-shadow: 0 1px 0 rgba(0,0,0,.06); }
+.input-group .search-btn:hover { background: var(--accent-hover); }
+.input-group .caret { position: absolute; right: 14px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid #333; }
+
+.chips { display: flex; gap: 16px; }
+.chip { background: var(--chip); border: 1px solid var(--border); color: #131313; border-radius: var(--radius-md); padding: 10px 16px; font-weight: 700; box-shadow: var(--shadow); }
+
+/* ========== Sections & Typography ========== */
+main { padding: 18px 0 36px; }
+.section { margin-top: 12px; }
+.section h2 { font-size: 28px; line-height: 1.2; margin: 10px 0 18px; font-weight: 800; }
+.section-description { font-size: 16px; color: var(--muted); margin-bottom: 24px; }
+.separator { height: 1px; background: #efefef; margin: 18px 0 6px; }
+
+/* ========== Category Grid ========== */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+/* Category Card (New Design) */
+.category-card {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 20px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  min-height: 200px;
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent);
+  background: #fffef8;
+}
+
+.category-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.category-name {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+.category-description {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 16px;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.category-count {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111;
+  background: var(--chip);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-top: auto;
+}
+
+/* Loading Message */
+.loading-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* Old card styles (keeping for backwards compatibility) */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow); height: 88px; display: grid; place-items: center; text-align: center; padding: 10px; }
+.card a { color: #111; text-decoration: none; font-weight: 800; font-size: 18px; line-height: 1.2; }
+.card a.underline { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ========== Footer ========== */
+footer { padding: 28px 0 36px; color: var(--muted); font-size: 13px; text-align: center; }
+
+/* ========== Responsive ========== */
+@media (max-width: 1100px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .search-row { grid-template-columns: 1fr; row-gap: 10px; }
+  .chips { flex-wrap: wrap; }
+  .nav-right .user { display: none; }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .card { height: 84px; }
+}
+@media (max-width: 420px) {
+  .grid { grid-template-columns: 1fr; }
+  .chip { padding: 10px 12px; }
+}

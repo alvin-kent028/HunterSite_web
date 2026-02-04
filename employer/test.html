@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employer Dashboard - Quick Test</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .test-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+    }
+
+    .btn-test {
+      padding: 1rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="test-card">
+    <h1 class="h3 mb-4">🧪 Employer Dashboard Test</h1>
+
+    <div class="alert alert-info">
+      <strong>Quick Setup:</strong> Click the button below to initialize sample data, then login as an employer.
+    </div>
+
+    <div class="mb-4">
+      <h5>Step 1: Initialize Sample Data</h5>
+      <button class="btn btn-primary btn-test w-100 mb-3" onclick="initData()">
+        📊 Load Sample Jobs & Applications
+      </button>
+      <div id="dataStatus"></div>
+    </div>
+
+    <hr>
+
+    <div class="mb-4">
+      <h5>Step 2: Login as Employer</h5>
+      <p class="small text-muted mb-3">Use any of these test accounts:</p>
+
+      <div class="d-grid gap-2">
+        <button class="btn btn-outline-primary" onclick="loginAs('employer@techcorp.com')">
+          Login as TechCorp (1 active job, 12 applications)
+        </button>
+        <button class="btn btn-outline-primary" onclick="loginAs('employer@growthhub.com')">
+          Login as GrowthHub (1 active job, 8 applications)
+        </button>
+        <button class="btn btn-outline-primary" onclick="loginAs('employer@designstudio.com')">
+          Login as DesignStudio (1 pending job, 5 applications)
+        </button>
+        <button class="btn btn-outline-secondary" onclick="loginAs('newemployer@test.com')">
+          Login as New Employer (no jobs yet)
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div>
+      <h5>Alternative: Manual Login</h5>
+      <a href="../login/login.html" class="btn btn-secondary w-100">Go to Login Page</a>
+      <p class="small text-muted mt-2 mb-0">Select "Employer" and enter any email</p>
+    </div>
+
+    <hr>
+
+    <div class="small text-muted">
+      <strong>What you'll see:</strong>
+      <ul class="mb-0">
+        <li>Dashboard with stats (Active Jobs, Applications, etc.)</li>
+        <li>List of posted jobs</li>
+        <li>Post new job form</li>
+        <li>View applications per job</li>
+        <li>Delete jobs</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="../assets/js/core/storage.js"></script>
+  <script src="../assets/js/core/sample-data.js"></script>
+  <script>
+    function initData() {
+      const btn = event.target;
+      btn.disabled = true;
+      btn.textContent = 'Loading...';
+
+      try {
+        initializeSampleData();
+
+        document.getElementById('dataStatus').innerHTML = `
+          <div class="alert alert-success">
+            ✅ Sample data loaded successfully!<br>
+            <small>3 jobs and 3 applications created</small>
+          </div>
+        `;
+
+        btn.textContent = '✅ Data Loaded';
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-success');
+      } catch (error) {
+        document.getElementById('dataStatus').innerHTML = `
+          <div class="alert alert-danger">
+            ❌ Error loading data: ${error.message}
+          </div>
+        `;
+        btn.disabled = false;
+        btn.textContent = '📊 Load Sample Jobs & Applications';
+      }
+    }
+
+    function loginAs(email) {
+      // Save login
+      const success = window.StorageManager.saveUserLogin(email, 'employer');
+
+      if (success) {
+        // Redirect to dashboard
+        window.location.href = './dashboard.html';
+      } else {
+        alert('Login failed. Please try again.');
+      }
+    }
+  </script>
+</body>
+
+</html>

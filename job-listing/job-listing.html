@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hunter – Job Listing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <div class="nav-left">
+        <button class="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+        <a class="brand" href="../index.html" aria-label="Hunter home">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#222" />
+                <stop offset="1" stop-color="#111" />
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="18" r="9" fill="url(#g)" />
+            <rect x="5" y="28" width="22" height="10" rx="5" fill="#111" />
+            <circle cx="35" cy="29" r="7" fill="#111" />
+            <rect x="39" y="33" width="8" height="4" rx="2" fill="#111" />
+          </svg>
+        </a>
+      </div>
+      <div class="nav-right">
+        <button class="lang" aria-label="Language">EN</button>
+        <button class="icon-btn" aria-label="Mail">
+          <svg width="26" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <polyline points="3,6 12,13 21,6"></polyline>
+          </svg>
+        </button>
+        <button class="icon-btn" aria-label="Notifications">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 01-3.46 0"></path>
+          </svg>
+          <span class="badge">1</span>
+        </button>
+        <a class="user" href="../profile/profile.html"></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search strip -->
+  <section class="search-strip" aria-label="search">
+    <div class="container search-row">
+      <label class="search-input-wrapper" aria-label="Search jobs">
+        <span class="search-ico" aria-hidden="true"></span>
+        <input type="text" placeholder="Search for a job title or company" />
+        <button class="search-btn" type="button">Search</button>
+      </label>
+      <label class="search-input-wrapper" aria-label="Location">
+        <span class="pin" aria-hidden="true"></span>
+        <select class="form-select" id="locationFilter" aria-label="Location filter">
+          <option value="">All Locations</option>
+        </select>
+      </label>
+      <div class="chips" aria-label="quick filters">
+        <button class="chip">Remote Work</button>
+        <button class="chip">Hybrid</button>
+        <button class="chip">Fresh Grad</button>
+      </div>
+    </div>
+    <div class="container filters-row" role="navigation" aria-label="Filters">
+      <div class="d-flex flex-wrap align-items-center">
+        <!-- Job Level Filter -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="jobLevelFilter" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Job Level
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="jobLevelFilter">
+            <li><a class="dropdown-item" href="#" data-filter="level" data-value="">All Levels</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="level" data-value="entry">Entry Level</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="level" data-value="mid">Mid Level</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="level" data-value="senior">Senior Level</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="level" data-value="lead">Lead / Manager</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="level" data-value="executive">Executive</a></li>
+          </ul>
+        </div>
+
+        <!-- Employment Type Filter -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="employmentTypeFilter" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Employment Type
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="employmentTypeFilter">
+            <li><a class="dropdown-item" href="#" data-filter="type" data-value="">All Types</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="type" data-value="full-time">Full-time</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="type" data-value="part-time">Part-time</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="type" data-value="contract">Contract</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="type" data-value="freelance">Freelance</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="type" data-value="internship">Internship</a></li>
+          </ul>
+        </div>
+
+        <!-- Job Function Filter -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="jobFunctionFilter" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Job Function
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="jobFunctionFilter">
+            <li><a class="dropdown-item" href="#" data-filter="function" data-value="">All Functions</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="function" data-value="it-software">IT & Software</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="function" data-value="engineering">Engineering</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="function" data-value="design">Design</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="function" data-value="marketing">Marketing</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="function" data-value="sales">Sales</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="function" data-value="finance">Finance</a></li>
+          </ul>
+        </div>
+
+        <!-- Education Filter -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="educationFilter" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Education
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="educationFilter">
+            <li><a class="dropdown-item" href="#" data-filter="education" data-value="">All Levels</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="education" data-value="high-school">High School</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="education" data-value="associate">Associate Degree</a>
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="education" data-value="bachelor">Bachelor's Degree</a>
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="education" data-value="master">Master's Degree</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="education" data-value="phd">PhD / Doctorate</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Filter -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="companyFilter" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Company
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="companyFilter">
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="">All Companies</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="leapfroggr">LeapFroggr Inc.</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="aboitizpower">AboitizPower</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="seriousmd">Serious MD</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="techcorp">TechCorp Solutions</a>
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="buildtech">BuildTech Industries</a>
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="powergrid">PowerGrid Corp</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="designhub">DesignHub Studios</a>
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="marketpro">MarketPro Agency</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="salespro">SalesPro Corp</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="company" data-value="financehub">FinanceHub Corp</a></li>
+          </ul>
+        </div>
+
+        <!-- Salary Filter -->
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="salaryFilter" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Salary
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="salaryFilter">
+            <li><a class="dropdown-item" href="#" data-filter="salary" data-value="">All Ranges</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" data-filter="salary" data-value="0-20k">₱0 - ₱20,000</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="salary" data-value="20k-40k">₱20,000 - ₱40,000</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="salary" data-value="40k-60k">₱40,000 - ₱60,000</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="salary" data-value="60k-80k">₱60,000 - ₱80,000</a></li>
+            <li><a class="dropdown-item" href="#" data-filter="salary" data-value="80k+">₱80,000+</a></li>
+          </ul>
+        </div>
+
+        <!-- Clear All Filters Button -->
+        <button class="btn btn-link text-danger ms-auto" id="clearFilters" style="display: none;">
+          Clear All Filters
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <main class="jobs-main" role="main">
+    <div class="container two-col">
+      <!-- Results list -->
+      <section class="results" aria-labelledby="results-heading">
+        <h2 id="results-heading" class="visually-hidden">Job results</h2>
+        <div class="list" role="list">
+          <!-- Job cards will be populated by JavaScript from category-filter.js -->
+
+          <!-- No results placeholder (hidden by default). Toggle visibility from JS when there are no items to show. -->
+          <article class="job-card no-results" role="status" aria-live="polite"
+            style="display:none; text-align: center; padding: 40px 18px;">
+            <div style="margin-bottom: 20px;">
+              <h3 class="job-title" style="margin-bottom: 12px;">No jobs found</h3>
+              <p class="company" style="margin-bottom: 8px;">We couldn't find any jobs matching your filters.</p>
+              <p class="place" style="color: #999;">Try clearing filters or adjusting your search.</p>
+            </div>
+            <button class="btn btn-sm" id="noResultsClearFilters"
+              style="background: var(--accent); border: 1px solid #e2b94c; color: #111; font-weight: 900; border-radius: 8px; padding: 10px 20px;">Clear
+              filters</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Details pane - Hidden on mobile, shown on desktop -->
+      <aside class="details d-none d-lg-block" aria-labelledby="detail-title">
+        <div class="hero">
+          <div class="ribbon"><span>Serious MD</span></div>
+        </div>
+
+        <!-- Details placeholder shown by default. When a job is selected, hide this and show `.detail-card`. -->
+        <div class="detail-placeholder" aria-hidden="false" style="padding: 18px 22px;">
+          <div style="padding-top: 10px;">
+            <h2 style="font-size: 32px; margin: 10px 0 16px; font-weight: 900;">Select a job to view details</h2>
+            <p style="color: #666; line-height: 1.7; margin: 0 0 12px; font-size: 16px;">
+              Browse the list of jobs on the left and choose one to see the full job description, responsibilities, and
+              application options.
+            </p>
+            <p style="color: #999; font-size: 14px; margin: 0;">
+              💡 Tip: Use the search or filters above to narrow results.
+            </p>
+          </div>
+        </div>
+
+        <!-- Existing detail card (hidden by default). JS should set style.display = '' when showing details for a selected job. -->
+        <article class="detail-card" style="display:none;">
+          <header class="detail-head">
+            <div class="left">
+              <h2 id="detail-title">Apple iOS Developer</h2>
+              <p class="company-line"><a href="#">LeapFroggr Inc.</a></p>
+              <p class="summary">Manila, Philippines • Full time • <span class="pill tiny">Remote</span></p>
+            </div>
+            <p class="posted">Posted about 9 month ago and deadline of application is on 6 Jan<br />Recruiter was hiring
+              4 days ago</p>
+          </header>
+
+          <div class="cta-row">
+            <button class="btn-primary">Apply Now</button>
+            <button class="btn-ghost"><span class="ico heart" aria-hidden="true"></span> Save</button>
+            <button class="btn-ghost"><span class="ico share" aria-hidden="true"></span> Share</button>
+          </div>
+
+          <section class="jd" aria-labelledby="jd-heading">
+            <h3 id="jd-heading">Job Description</h3>
+            <p>The Position is responsible for developing B2B and B2C iOS Apps.</p>
+            <p>The person is responsible for developing native iOS applications that runs on both iPhone and iPad. The
+              person should be able to translate the company’s needs into functional and appealing interactive
+              applications.</p>
+
+            <h4>Responsibilities</h4>
+            <ul class="bullets">
+              <li>Collaborate closely with product and design to ship features on time</li>
+              <li>Write modern, scalable Swift with a focus on performance and UX</li>
+              <li>Maintain quality with code reviews, testing, and documentation</li>
+            </ul>
+          </section>
+        </article>
+      </aside>
+    </div>
+
+    <!-- Mobile Offcanvas Drawer for Job Details (only shown on mobile/tablet) -->
+    <div class="offcanvas offcanvas-end d-lg-none" tabindex="-1" id="jobDetailsOffcanvas"
+      aria-labelledby="offcanvasJobTitle" style="width: 90%; max-width: 500px;">
+      <div class="offcanvas-header"
+        style="background: var(--yellow-100); border-bottom: 2px solid #e6d79f; padding: 16px 20px;">
+        <div class="hero-mobile d-flex align-items-center">
+          <div class="ribbon-mobile"
+            style="background: #c89a53; color: #111; padding: 8px 14px; border-radius: 6px; font-weight: 900; font-size: 14px;">
+            <span id="offcanvasCompanyName">Company Name</span>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body p-0" style="overflow-y: auto;">
+        <article class="detail-card-mobile" style="padding: 18px 22px;">
+          <header class="detail-head">
+            <div class="left">
+              <h2 id="offcanvasJobTitle" style="font-size: 28px; margin: 10px 0 6px; font-weight: 900;">Job Title</h2>
+              <p class="company-line"><a href="#" id="offcanvasCompanyLink"
+                  style="color: #f3a93d; font-weight: 800; text-decoration: none;">Company</a></p>
+              <p class="summary" id="offcanvasJobSummary" style="color: #333;">Location • Type</p>
+            </div>
+            <p class="posted" id="offcanvasJobPosted"
+              style="color: #444; font-size: 12px; line-height: 1.4; margin-top: 12px;">Posted info</p>
+          </header>
+
+          <div class="cta-row" style="display: flex; gap: 12px; align-items: center; margin: 18px 0 8px;">
+            <button class="btn-primary">Apply Now</button>
+            <button class="btn-ghost"><span class="ico heart" aria-hidden="true"></span> Save</button>
+            <button class="btn-ghost"><span class="ico share" aria-hidden="true"></span> Share</button>
+          </div>
+
+          <section class="jd" style="border-top: 2px solid #d8d4c2; padding-top: 14px;">
+            <h3 style="font-size: 22px; margin: 8px 0 10px; font-weight: 900;">Job Description</h3>
+            <p id="offcanvasJobDescription" style="color: #222; line-height: 1.7; margin: 8px 0;">Description</p>
+
+            <h4 style="font-size: 18px; margin: 18px 0 10px;">Responsibilities</h4>
+            <ul class="bullets" id="offcanvasJobResponsibilities" style="margin: 0 0 18px 18px;">
+              <li style="margin: 6px 0; line-height: 1.5;">Responsibility item</li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© 2025 Hunter. All rights reserved.</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/core/utils.js"></script>
+  <script src="../assets/js/core/storage.js"></script>
+  <script src="../assets/js/core/header.js"></script>
+  <script src="../assets/js/core/auth.js"></script>
+  <script src="../assets/js/modules/performance.js"></script>
+  <script src="../assets/js/modules/category-filter.js"></script>
+  <script src="../assets/js/modules/job-filters.js"></script>
+  <script src="../assets/js/modules/location-filter.js"></script>
+  <script src="../assets/js/job-seeker/jobs.js"></script>
+</body>
+
+</html>

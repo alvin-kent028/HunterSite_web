@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="820" height="64" viewBox="0 0 820 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google, Amazon, RCBC, Accenture">
+  <defs>
+    <style>
+      .g{font:700 28px 'Inter',system-ui,sans-serif;fill:#1a73e8}
+      .o1{fill:#ea4335}
+      .o2{fill:#fbbc05}
+      .o3{fill:#34a853}
+      .a{font:700 28px 'Inter',system-ui,sans-serif;fill:#000}
+      .z{fill:#ff9900}
+      .r{font:700 28px 'Inter',system-ui,sans-serif;fill:#0047bb}
+      .c{fill:#00a1e0}
+      .b{fill:#0047bb}
+      .acc{font:700 28px 'Inter',system-ui,sans-serif;fill:#000}
+      .p{fill:#a100ff}
+    </style>
+  </defs>
+  <!-- Google -->
+  <g transform="translate(0,42)">
+    <text class="g">G</text>
+    <circle class="o1" cx="48" cy="-6" r="6"/>
+    <circle class="o2" cx="60" cy="-6" r="6"/>
+    <circle class="o3" cx="72" cy="-6" r="6"/>
+    <text x="86" y="0" class="g" style="fill:#202124;font-weight:700">oogle</text>
+  </g>
+  <!-- Amazon -->
+  <g transform="translate(210,42)">
+    <text class="a">amazon</text>
+    <path class="z" d="M10 8c40 20 100 20 140 0c4-2 8 2 5 5c-45 30-104 30-150 0c-3-2 0-7 5-5z"/>
+    <path class="z" d="M122 2c6 0 12 6 12 12c0 3-2 5-4 3c-6-6-16-9-27-9c-8 0-17 2-24 5c-2 1-4-2-2-3c12-6 27-8 45-8z"/>
+  </g>
+  <!-- RCBC -->
+  <g transform="translate(470,42)">
+    <rect x="0" y="-30" width="44" height="44" rx="6" ry="6" fill="#e6f4ff"/>
+    <path class="c" d="M12 -9l10 -10l10 10l-10 10z"/>
+    <text x="56" y="0" class="r">RCBC</text>
+  </g>
+  <!-- Accenture -->
+  <g transform="translate(650,42)">
+    <text class="acc">accenture</text>
+    <polygon class="p" points="122,-18 148,-28 148,-8"/>
+  </g>
+</svg>

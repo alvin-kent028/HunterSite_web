@@ -1,0 +1,60 @@
+{
+  "_readme": "This file serves as a template for user-specific data structure. On first load, if localStorage is empty, the app will initialize with default values. User actions (profile edits, saved jobs, applications) are stored in localStorage and override these defaults.",
+  "_instructions": {
+    "dataFlow": "JSON defaults → localStorage (on first use) → LocalStorage always wins on subsequent loads",
+    "conflictResolution": "LocalStorage data takes priority over JSON defaults",
+    "edgeCases": [
+      "First-time user: Load from profile.json, save to localStorage",
+      "Returning user: Load from localStorage",
+      "Corrupted localStorage: Fallback to JSON defaults",
+      "Storage quota exceeded: Clear old data, notify user"
+    ]
+  },
+  "savedJobs": {
+    "_description": "Jobs saved by the user. Each save action adds to localStorage.",
+    "_example": [
+      {
+        "id": 1,
+        "title": "Senior Full Stack Developer",
+        "company": "LeapFroggr Inc.",
+        "location": "Remote",
+        "salary": "$100k - $150k",
+        "type": "Full-time",
+        "savedDate": "2025-10-28T10:30:00.000Z"
+      }
+    ],
+    "data": []
+  },
+  "applications": {
+    "_description": "Job applications submitted by the user. Each application is timestamped.",
+    "_example": [
+      {
+        "jobId": 1,
+        "jobTitle": "Senior Full Stack Developer",
+        "company": "LeapFroggr Inc.",
+        "appliedDate": "2025-10-28T11:00:00.000Z",
+        "status": "pending",
+        "coverLetter": "I am interested in this position...",
+        "resumeUsed": "Ruby Grace Jasper.pdf"
+      }
+    ],
+    "data": []
+  },
+  "searchHistory": {
+    "_description": "Recent job searches. Limited to 10 most recent.",
+    "_example": [
+      {
+        "query": "Full Stack Developer",
+        "location": "Remote",
+        "date": "2025-10-28T09:00:00.000Z"
+      }
+    ],
+    "data": []
+  },
+  "profileModifications": {
+    "_description": "Tracks when user has modified their profile from the default template",
+    "hasModifications": false,
+    "lastModified": null,
+    "modifiedSections": []
+  }
+}

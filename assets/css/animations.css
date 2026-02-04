@@ -1,0 +1,72 @@
+/**
+ * JobFinder Animation Styles
+ * Keyframes and animation utilities
+ */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.1); 
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Active button animation */
+.btn.active {
+  animation: pulse 0.3s ease;
+}
+
+/* Fade in animation utility class */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Fade in up animation utility class */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}

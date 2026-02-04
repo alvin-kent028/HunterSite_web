@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JobFinder — Meet Opportunity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Nunito:wght@700;800;900&display=swap"
+    rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header sticky-top bg-white border-bottom">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light p-0 py-3">
+        <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="#" aria-label="JobFinder Home">
+          <span class="logo-mark fs-4">🔎</span>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-lg-3 me-auto">
+            <li class="nav-item"><a class="nav-link active fw-bold" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="categories/index.html">Find Jobs</a></li>
+            <li class="nav-item"><a class="nav-link" href="categories/index.html">Companies</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <a class="text-decoration-underline text-dark" href="login/login.html">Log in</a>
+            <a class="btn btn-warning rounded-pill px-3 fw-semibold" href="login/login.html?as=employer">Post Job</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero py-5" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <article class="col-lg-7">
+            <p class="text-warning fw-bold mb-1">People Search:</p>
+            <h1 id="hero-title" class="display-4 fw-bold mb-3">Got talent? <br />Meet opportunity</h1>
+            <p class="text-muted mb-4">Company reviews, Salaries, Interviews, Jobs</p>
+
+            <form class="search-form bg-white border border-3 rounded-pill shadow p-2 mb-4" role="search"
+              aria-label="Job Search">
+              <div class="d-flex flex-nowrap align-items-center gap-1">
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center px-2 px-md-3">
+                    <img src="assets/images/search.svg" alt="" width="18" height="18"
+                      class="me-2 opacity-75 d-none d-sm-block" />
+                    <input type="search" class="form-control border-0 shadow-none px-1"
+                      placeholder="Jobs title or keywords" />
+                  </div>
+                </div>
+                <div class="flex-shrink-0" style="min-width: 120px;">
+                  <div class="d-flex align-items-center px-2">
+                    <span class="location-dot rounded-circle bg-warning me-2 d-none d-sm-block"
+                      style="width: 10px; height: 10px;"></span>
+                    <input type="text" class="form-control border-0 shadow-none px-1" placeholder="All Location" />
+                  </div>
+                </div>
+                <div class="flex-shrink-0">
+                  <button class="btn btn-warning fw-bold rounded-pill px-3 px-md-4" type="submit">Search</button>
+                </div>
+              </div>
+            </form>
+
+            <p class="text-muted small">
+              Popular Searches: <a href="#" class="text-warning">Data Management</a>, <a href="#"
+                class="text-warning">Marketing Manager</a>, <a href="#" class="text-warning">Customer Support</a>
+            </p>
+          </article>
+          <aside class="col-lg-5 text-center" aria-label="Highlights">
+            <div class="position-relative d-inline-block">
+              <img
+                src="https://images.pexels.com/photos/840996/pexels-photo-840996.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=600"
+                alt="Smiling professional working on a laptop"
+                class="rounded-circle border border-5 border-white shadow"
+                style="width: 300px; height: 300px; object-fit: cover;" />
+              <div class="stat-badge position-absolute bg-warning border border-2 rounded-3 shadow p-3"
+                style="top: 20px; right: -20px; min-width: 160px;">
+                <div class="fs-4 fw-bold">75k+</div>
+                <div class="small opacity-90">remote job listings<br />available today</div>
+              </div>
+              <div class="stat-badge position-absolute bg-warning border border-2 rounded-3 shadow p-3"
+                style="bottom: 80px; right: -40px; min-width: 160px;">
+                <div class="fs-4 fw-bold">5k+</div>
+                <div class="small opacity-90">fake &amp; low quality<br />jobs removed daily</div>
+              </div>
+              <div class="stat-badge position-absolute bg-warning border border-2 rounded-3 shadow p-3"
+                style="bottom: 20px; left: -20px; min-width: 160px;">
+                <div class="fs-4 fw-bold">2k+</div>
+                <div class="small opacity-90">new jobs<br />posted daily</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANIES -->
+    <section class="companies bg-white py-4" id="companies" aria-labelledby="companies-title">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center gap-3">
+          <span class="dot rounded-circle bg-danger"
+            style="width: 10px; height: 10px; box-shadow: 0 0 0 4px #ffe6ec;"></span>
+          <span class="fw-normal"><strong>Urgently hiring</strong> Top Companies Hiring Remotely</span>
+          <div class="ms-auto">
+            <img src="assets/images/top-companies.svg" alt="Logos: Google, Amazon, RCBC, Accenture"
+              style="max-height: 40px;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPLIT FEATURE -->
+    <section class="split-feature py-5" aria-label="Audience">
+      <div class="container">
+        <div class="row g-4">
+          <article class="col-md-6">
+            <div class="card border-2 rounded-4 shadow-sm h-100 position-relative overflow-hidden">
+              <div class="card-body p-4">
+                <h2 class="h4 fw-bold mb-2">For Employers</h2>
+                <p class="text-muted">Find Professionals from around the world and across all skills</p>
+                <a class="btn btn-warning fw-semibold rounded-pill mt-3" href="login/login.html?as=employer">Post jobs
+                  for Free</a>
+                <img class="position-absolute bottom-0 end-0 m-3" src="assets/images/employer-illustration.svg" alt=""
+                  style="width: 160px; opacity: 0.9;" />
+              </div>
+            </div>
+          </article>
+          <article class="col-md-6">
+            <div class="card border-2 rounded-4 shadow-sm h-100 position-relative overflow-hidden">
+              <div class="card-body p-4">
+                <h2 class="h4 fw-bold mb-2">For Candidate</h2>
+                <p class="text-muted">Build your professional profile, find new job opportunities.</p>
+                <a class="btn btn-warning fw-semibold rounded-pill mt-3" href="#">Upload your CV</a>
+                <img class="position-absolute bottom-0 end-0 m-3" src="assets/images/candidate-illustration.svg" alt=""
+                  style="width: 160px; opacity: 0.9;" />
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories bg-white py-5" aria-labelledby="categories-title">
+      <div class="container">
+        <header class="d-flex align-items-end justify-content-between mb-4">
+          <div>
+            <h2 id="categories-title" class="h3 mb-1">Popular category</h2>
+            <p class="text-muted small mb-0">2025 jobs live • 293 added today</p>
+          </div>
+          <a class="text-decoration-underline text-dark" href="categories/index.html">View all categories</a>
+        </header>
+
+        <div id="categoriesCarousel" class="carousel slide position-relative" data-bs-ride="carousel">
+          <div class="carousel-inner"></div>
+
+
+          <!-- Custom styled carousel controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#categoriesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#categoriesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+          <!-- Carousel indicators -->
+          <div class="carousel-indicators position-relative mt-4" style="bottom: auto;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOBS -->
+    <section class="jobs py-5" aria-labelledby="jobs-title" id="jobs">
+      <div class="container">
+        <header class="d-flex align-items-end justify-content-between mb-4">
+          <div>
+            <h2 id="jobs-title" class="h3 mb-1">Popular Jobs</h2>
+            <p class="text-muted small mb-0">2025 jobs live • 293 added today</p>
+          </div>
+          <a class="text-decoration-underline text-dark" href="job-listing/job-listing.html">View all jobs</a>
+        </header>
+
+        <div class="row g-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer py-4 border-top bg-white">
+    <div class="container">
+      <p class="text-muted text-center mb-0">© 2025 JobFinder. Crafted for the exercise.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JavaScript - Load in order of dependency -->
+  <!-- Core utilities -->
+  <script src="assets/js/core/utils.js"></script>
+  <script src="assets/js/core/storage.js"></script>
+  <script src="assets/js/core/auth.js"></script>
+
+  <!-- Modules -->
+  <script src="assets/js/modules/performance.js"></script>
+  <script src="assets/js/modules/category-filter.js"></script>
+  <script src="assets/js/modules/main.js"></script>
+  <script src="assets/js/modules/index-page.js"></script>
+
+  <!-- Job seeker features -->
+  <script src="assets/js/job-seeker/jobs.js"></script>
+</body>
+
+</html>
