@@ -68,4 +68,4 @@ Each component is represented by classes:
 ## How to Run the Project
 1. Clone this repository:
    ```bash
-   git clone https://github.com/camille-rose013/hunters.ph.com.git
+   git clone https://github.com/alvin-kent028/HunterSite_web.git
