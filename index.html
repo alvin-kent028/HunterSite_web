@@ -225,6 +225,46 @@
 
   <!-- Job seeker features -->
   <script src="assets/js/job-seeker/jobs.js"></script>
+
+  
+  <!-- API -->
+<script src="assets/js/api/jobsAPI.js"></script>
+
+<script>
+    async function loadJobs() {
+        console.log("⏳ Fetching jobs from MongoDB...");
+        
+        try {
+            // This calls the function we just created in step 2
+            const jobs = await jobsAPI.getAllJobs();
+            
+            console.log('✅ Success! Jobs received:', jobs);
+            
+            // Temporary: Alert just to prove it works
+            if(jobs.length > 0) {
+                alert(`Success! Loaded ${jobs.length} jobs from database!`);
+            } else {
+                alert("Connected to database, but no jobs found yet.");
+            }
+
+        } catch (error) {
+            console.error('❌ Error:', error);
+            alert("Could not connect to Backend. Is the server running?");
+        }
+    }
+
+    // Run it immediately when page loads
+    loadJobs();
+</script>
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
