@@ -98,11 +98,6 @@ function handleCredentialResponse(response) {
   }
 }
 
-/**
- * Basic JWT decoder for Google ID Tokens
- * @param {string} token - The JWT token
- * @returns {Object} Decoded payload
- */
 function decodeJwtResponse(token) {
   try {
     if (!token || typeof token !== 'string') {
