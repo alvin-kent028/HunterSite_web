@@ -963,6 +963,7 @@ window.StorageManager = {
   saveUserLogin,
   logoutUser,
   isLoggedIn,
+  saveToStorage, // Export saveToStorage for custom user objects
 
   // Job management functions
   getSavedJobs,

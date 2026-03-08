@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com">
   <title>Huntersite – Login</title>
   <link rel="stylesheet" href="../assets/css/base.css" />
   <link rel="stylesheet" href="./style.css" />
@@ -45,19 +46,26 @@
           any time by following the unsubscribe link in our messages, or as detailed in our terms.
         </p>
 
-        <!-- Social login buttons commented out - not implemented yet
+        <!-- Social login buttons -->
         <div class="auth-actions">
-          <button class="btn-social">
-            <span class="ico google" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#EA4335"
-                  d="M12 10.2h10.1c.1.6.1 1.2.1 1.8 0 6-4 10.3-10.2 10.3-5.9 0-10.7-4.8-10.7-10.7S6.1 1 12 1c2.6 0 4.8.9 6.6 2.4l-2.7 2.7C14.8 5 13.5 4.6 12 4.6 8.5 4.6 5.7 7.4 5.7 11s2.8 6.4 6.3 6.4c3.3 0 5.5-1.9 5.9-4.5H12v-2.7z" />
-              </svg>
-            </span>
-            <span class="btn-text underline">Continue with Google</span>
-          </button>
+          <div id="g_id_onload"
+               data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+               data-context="signin"
+               data-ux_mode="popup"
+               data-callback="handleCredentialResponse"
+               data-auto_prompt="false">
+          </div>
 
-          <button class="btn-social">
+          <div class="g_id_signin"
+               data-type="standard"
+               data-shape="rectangular"
+               data-theme="outline"
+               data-text="signin_with"
+               data-size="large"
+               data-logo_alignment="left">
+          </div>
+
+          <button class="btn-social" style="margin-top: 10px;">
             <span class="ico apple" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#111"
@@ -69,7 +77,6 @@
         </div>
 
         <div class="divider" role="separator" aria-label="or">or</div>
-        -->
 
         <form class="auth-form" action="../job-listing/job-listing.html" method="get" novalidate>
           <label class="field">
@@ -86,6 +93,7 @@
   </main>
 
   <!-- Scripts - Load utilities first -->
+  <script src="https://accounts.google.com/gsi/client" async></script>
   <script src="../assets/js/core/utils.js"></script>
   <script src="../assets/js/core/storage.js"></script>
   <script src="../assets/js/core/auth.js"></script>

@@ -23,6 +23,69 @@ function initAuth() {
 
   // Setup user type selector
   setupUserTypeSelector();
+
+  // Make Google callback available globally
+  window.handleCredentialResponse = handleCredentialResponse;
+}
+
+/**
+ * Handle Google Sign-In response
+ * @param {Object} response - Credential response from Google
+ */
+function handleCredentialResponse(response) {
+  try {
+    // Decode the JWT ID Token
+    const payload = decodeJwtResponse(response.credential);
+    console.log("Google user logged in:", payload);
+
+    // Get user type (default to jobseeker)
+    const userType = getUserTypeFromPage();
+
+    // Save login using our storage manager
+    const user = {
+      email: payload.email,
+      userType: userType,
+      loginDate: new Date().toISOString(),
+      name: payload.name,
+      picture: payload.picture,
+      authSource: "google",
+    };
+
+    const success = window.StorageManager.saveToStorage(
+      window.StorageManager.STORAGE_KEYS.USER,
+      user
+    );
+
+    if (success) {
+      alert(`Welcome, ${payload.name}! Login successful.`);
+      redirectAfterLogin(userType);
+    } else {
+      alert("Login failed. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error handling Google login:", error);
+    alert("An error occurred during Google login.");
+  }
+}
+
+/**
+ * Basic JWT decoder for Google ID Tokens
+ * @param {string} token - The JWT token
+ * @returns {Object} Decoded payload
+ */
+function decodeJwtResponse(token) {
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+
+  return JSON.parse(jsonPayload);
 }
 
 function updateAuthUI(user) {
@@ -179,16 +242,20 @@ function setupUserTypeSelector() {
 }
 
 function redirectAfterLogin(userType) {
+  // Determine the base path based on where we are
+  const isInLoginDir = window.location.pathname.includes("/login/");
+  const prefix = isInLoginDir ? "../" : "";
+
   // Redirect based on user type
   switch (userType) {
     case "employer":
-      window.location.href = "../employer/dashboard.html"; // Employer dashboard
+      window.location.href = prefix + "employer/dashboard.html"; // Employer dashboard
       break;
     case "admin":
-      window.location.href = "../admin/dashboard.html"; // Admin panel
+      window.location.href = prefix + "admin/dashboard.html"; // Admin panel
       break;
     default:
-      window.location.href = "../job-listing/job-listing.html"; // Job listings
+      window.location.href = prefix + "job-listing/job-listing.html"; // Job listings
   }
 }
 
@@ -206,9 +273,21 @@ function setupLogoutButtons() {
 
   logoutBtn.addEventListener("click", function () {
     if (confirm("Are you sure you want to logout?")) {
+      const user = window.StorageManager.getCurrentUser();
+
+      // Handle Google logout if needed
+      if (user && user.authSource === "google") {
+        if (typeof google !== "undefined") {
+          google.accounts.id.disableAutoSelect();
+        }
+      }
+
       window.StorageManager.logoutUser();
       alert("Logged out successfully");
-      window.location.href = "../login/login.html";
+
+      // Redirect to login page
+      const isInLoginDir = window.location.pathname.includes("/login/");
+      window.location.href = isInLoginDir ? "login.html" : "login/login.html";
     }
   });
 
