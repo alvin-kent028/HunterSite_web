@@ -78,10 +78,14 @@
 
         <div class="divider" role="separator" aria-label="or">or</div>
 
+        <div class="alert alert-info mb-3" role="alert">
+          <small><strong>Note:</strong> Only Gmail accounts are accepted for login. Please enter your Gmail address.</small>
+        </div>
+
         <form class="auth-form" action="../job-listing/job-listing.html" method="get" novalidate>
           <label class="field">
-            <span class="label">Email address <span class="req">*</span></span>
-            <input class="input" type="email" name="email" autocomplete="email" required placeholder="" />
+            <span class="label">Gmail address <span class="req">*</span></span>
+            <input class="input" type="email" name="email" autocomplete="email" required placeholder="yourname@gmail.com" />
           </label>
           <button class="btn-primary-lg" type="submit">
             <span>Continue</span>

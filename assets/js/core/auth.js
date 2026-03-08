@@ -61,6 +61,13 @@ function handleCredentialResponse(response) {
       return;
     }
 
+    // Validate that it's a Gmail address
+    if (!isValidGmail(payload.email)) {
+      console.error('Non-Gmail account attempted:', payload.email);
+      alert('Only Gmail accounts are allowed for sign-in. Please use your Gmail account.');
+      return;
+    }
+
     // Get user type (default to jobseeker)
     const userType = getUserTypeFromPage();
 
@@ -213,8 +220,9 @@ function setupLoginForm() {
       return;
     }
 
-    if (!isValidEmail(email)) {
-      if (emailInput) showError(emailInput, "Please enter a valid email address");
+    // Check if it's a valid Gmail address
+    if (!isValidGmail(email)) {
+      if (emailInput) showError(emailInput, "Please enter a valid Gmail address (e.g., yourname@gmail.com)");
       return;
     }
 
@@ -226,7 +234,7 @@ function setupLoginForm() {
 
     if (success) {
       // Show success message
-      alert("Login successful!");
+      alert(`Login successful! Welcome ${email}`);
 
       // Redirect to appropriate page
       redirectAfterLogin(userType);
@@ -239,8 +247,8 @@ function setupLoginForm() {
   const emailInput = loginForm.querySelector('input[type="email"]');
   if (emailInput) {
     emailInput.addEventListener("blur", function () {
-      if (this.value && !isValidEmail(this.value)) {
-        showError(this, "Invalid email format");
+      if (this.value && !isValidGmail(this.value)) {
+        showError(this, "Please enter a valid Gmail address (e.g., yourname@gmail.com)");
       } else {
         clearError(this);
       }
@@ -365,6 +373,17 @@ function setupLogoutButtons() {
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
+}
+
+function isValidGmail(email) {
+  // Check if it's a valid email format first
+  if (!isValidEmail(email)) {
+    return false;
+  }
+  
+  // Check if it's a Gmail address (including googlemail.com)
+  const domain = email.toLowerCase().split('@')[1];
+  return domain === 'gmail.com' || domain === 'googlemail.com';
 }
 
 function showError(input, message) {
