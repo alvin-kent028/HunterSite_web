@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function initAuth() {
+  // Ensure StorageManager is available
+  if (typeof window.StorageManager === 'undefined') {
+    console.error('StorageManager not loaded. Authentication will not work.');
+    return;
+  }
+
   // Check if user is logged in
   const user = window.StorageManager.getCurrentUser();
 
@@ -26,6 +32,9 @@ function initAuth() {
 
   // Make Google callback available globally
   window.handleCredentialResponse = handleCredentialResponse;
+  
+  // Initialize Google Sign-In if on login page
+  initializeGoogleSignIn();
 }
 
 /**
@@ -34,9 +43,23 @@ function initAuth() {
  */
 function handleCredentialResponse(response) {
   try {
+    // Check if response and credential exist
+    if (!response || !response.credential) {
+      console.error('Invalid response from Google Sign-In');
+      alert('Google Sign-In failed. Please try again.');
+      return;
+    }
+
     // Decode the JWT ID Token
     const payload = decodeJwtResponse(response.credential);
     console.log("Google user logged in:", payload);
+
+    // Validate payload
+    if (!payload.email || !payload.name) {
+      console.error('Invalid Google user data');
+      alert('Invalid user data received from Google.');
+      return;
+    }
 
     // Get user type (default to jobseeker)
     const userType = getUserTypeFromPage();
@@ -47,7 +70,7 @@ function handleCredentialResponse(response) {
       userType: userType,
       loginDate: new Date().toISOString(),
       name: payload.name,
-      picture: payload.picture,
+      picture: payload.picture || '',
       authSource: "google",
     };
 
@@ -64,7 +87,7 @@ function handleCredentialResponse(response) {
     }
   } catch (error) {
     console.error("Error handling Google login:", error);
-    alert("An error occurred during Google login.");
+    alert("An error occurred during Google login. Please try again.");
   }
 }
 
@@ -74,18 +97,36 @@ function handleCredentialResponse(response) {
  * @returns {Object} Decoded payload
  */
 function decodeJwtResponse(token) {
-  const base64Url = token.split(".")[1];
-  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
+  try {
+    if (!token || typeof token !== 'string') {
+      throw new Error('Invalid token provided');
+    }
 
-  return JSON.parse(jsonPayload);
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      throw new Error('Invalid JWT format');
+    }
+
+    const base64Url = parts[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    
+    // Add padding if needed
+    const paddedBase64 = base64 + '='.repeat((4 - base64.length % 4) % 4);
+    
+    const jsonPayload = decodeURIComponent(
+      atob(paddedBase64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    throw new Error('Failed to decode Google token');
+  }
 }
 
 function updateAuthUI(user) {
@@ -130,6 +171,32 @@ function showWelcomeMessage(user) {
   }, 4000);
 }
 
+function initializeGoogleSignIn() {
+  // Check if we're on the login page and Google Sign-In is configured
+  const googleSignInElement = document.getElementById('g_id_onload');
+  if (!googleSignInElement) return;
+  
+  const clientId = googleSignInElement.dataset.client_id;
+  if (!clientId || clientId === 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com') {
+    console.warn('Google Client ID is not configured. Please replace YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com with your actual Client ID.');
+    
+    // Hide Google Sign-In button if not configured
+    const googleButton = document.querySelector('.g_id_signin');
+    if (googleButton) {
+      googleButton.style.display = 'none';
+    }
+    
+    // Show a message to the user
+    const authActions = document.querySelector('.auth-actions');
+    if (authActions) {
+      const warningMsg = document.createElement('div');
+      warningMsg.className = 'alert alert-warning mt-2';
+      warningMsg.innerHTML = '<small>Google Sign-In is not configured. Please use email login or contact administrator.</small>';
+      authActions.appendChild(warningMsg);
+    }
+  }
+}
+
 function setupLoginForm() {
   const loginForm = document.querySelector(".auth-form");
   if (!loginForm) return;
@@ -138,16 +205,16 @@ function setupLoginForm() {
     e.preventDefault();
 
     const emailInput = this.querySelector('input[type="email"]');
-    const email = emailInput.value.trim();
+    const email = emailInput ? emailInput.value.trim() : '';
 
     // Validate email
     if (!email) {
-      showError(emailInput, "Please enter your email");
+      if (emailInput) showError(emailInput, "Please enter your email");
       return;
     }
 
     if (!isValidEmail(email)) {
-      showError(emailInput, "Please enter a valid email address");
+      if (emailInput) showError(emailInput, "Please enter a valid email address");
       return;
     }
 

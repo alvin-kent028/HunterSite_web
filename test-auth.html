@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Test - HunterSite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Authentication Test</h1>
+        <div id="test-results"></div>
+        
+        <div class="mt-4">
+            <h3>Test Storage Manager</h3>
+            <button class="btn btn-primary" onclick="testStorageManager()">Test Storage</button>
+            <button class="btn btn-success" onclick="testEmailLogin()">Test Email Login</button>
+            <button class="btn btn-info" onclick="checkCurrentUser()">Check Current User</button>
+            <button class="btn btn-danger" onclick="logoutUser()">Logout</button>
+        </div>
+        
+        <div class="mt-4">
+            <h3>Quick Login Form</h3>
+            <form id="quick-login">
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="test-email" placeholder="test@example.com">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">User Type</label>
+                    <select class="form-control" id="test-user-type">
+                        <option value="jobseeker">Job Seeker</option>
+                        <option value="employer">Employer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/core/utils.js"></script>
+    <script src="assets/js/core/storage.js"></script>
+    <script src="assets/js/core/auth.js"></script>
+    
+    <script>
+        function testStorageManager() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<div class="alert alert-info">Testing Storage Manager...</div>';
+            
+            try {
+                if (typeof window.StorageManager === 'undefined') {
+                    results.innerHTML = '<div class="alert alert-danger">StorageManager not loaded!</div>';
+                    return;
+                }
+                
+                // Test basic operations
+                const testData = { test: 'value', timestamp: new Date().toISOString() };
+                const saved = window.StorageManager.saveToStorage('test_key', testData);
+                
+                if (saved) {
+                    const loaded = window.StorageManager.getFromStorage('test_key');
+                    if (loaded && loaded.test === 'value') {
+                        results.innerHTML = '<div class="alert alert-success">Storage Manager working correctly!</div>';
+                    } else {
+                        results.innerHTML = '<div class="alert alert-warning">Storage loaded but data mismatch</div>';
+                    }
+                } else {
+                    results.innerHTML = '<div class="alert alert-danger">Failed to save to storage</div>';
+                }
+            } catch (error) {
+                results.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+            }
+        }
+        
+        function testEmailLogin() {
+            const email = 'test@example.com';
+            const userType = 'jobseeker';
+            
+            try {
+                const success = window.StorageManager.saveUserLogin(email, userType);
+                if (success) {
+                    alert('Email login test successful!');
+                    checkCurrentUser();
+                } else {
+                    alert('Email login test failed!');
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+        
+        function checkCurrentUser() {
+            try {
+                const user = window.StorageManager.getCurrentUser();
+                if (user) {
+                    alert(`Current user: ${user.name || user.email} (${user.userType})`);
+                } else {
+                    alert('No user logged in');
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+        
+        function logoutUser() {
+            try {
+                window.StorageManager.logoutUser();
+                alert('Logged out successfully');
+                checkCurrentUser();
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+        
+        // Quick login form
+        document.getElementById('quick-login').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('test-email').value;
+            const userType = document.getElementById('test-user-type').value;
+            
+            if (!email) {
+                alert('Please enter an email');
+                return;
+            }
+            
+            try {
+                const success = window.StorageManager.saveUserLogin(email, userType);
+                if (success) {
+                    alert(`Login successful! Welcome ${email}`);
+                    checkCurrentUser();
+                } else {
+                    alert('Login failed');
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        });
+        
+        // Auto-test on page load
+        window.addEventListener('load', function() {
+            setTimeout(testStorageManager, 1000);
+        });
+    </script>
+</body>
+</html>
