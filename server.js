@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { google } = require('google-auth-library');
+
+// Google Auth Library - only import if configured
+let { google } = require('google-auth-library');
 
 const app = express();
 const PORT = 5000;
@@ -48,7 +50,16 @@ function verifyToken(req, res, next) {
 
 // Google OAuth configuration
 const CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com'; // Replace with your actual client ID
-const client = new google.auth.OAuth2(CLIENT_ID);
+let client = null;
+
+// Only initialize Google OAuth if CLIENT_ID is configured
+if (CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com') {
+  try {
+    client = new google.auth.OAuth2(CLIENT_ID);
+  } catch (error) {
+    console.warn('Google OAuth initialization failed:', error.message);
+  }
+}
 
 // Routes
 
@@ -105,6 +116,11 @@ app.post('/api/auth/google', async (req, res) => {
     
     if (!credential) {
       return res.status(400).json({ error: 'Google credential required' });
+    }
+    
+    // Check if Google OAuth is configured
+    if (!client) {
+      return res.status(503).json({ error: 'Google OAuth not configured. Please use email login.' });
     }
     
     // Verify Google token

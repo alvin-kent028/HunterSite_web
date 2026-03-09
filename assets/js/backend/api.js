@@ -3,6 +3,8 @@
  * Handles all API calls to the backend server
  */
 
+console.log('🔧 Backend API script loading...');
+
 const API_BASE_URL = 'http://localhost:5000/api';
 
 class BackendAPI {
@@ -178,3 +180,4 @@ class BackendAPI {
 
 // Create global instance
 window.backendAPI = new BackendAPI();
+console.log('✅ Backend API loaded and available as window.backendAPI');
