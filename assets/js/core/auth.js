@@ -1,6 +1,7 @@
 /**
  * Authentication and User Management
  * Handles login, logout, and user type selection
+ * Now connects to backend API for proper authentication
  */
 
 // Initialize auth when page loads
@@ -9,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function initAuth() {
-  // Ensure StorageManager is available
-  if (typeof window.StorageManager === 'undefined') {
-    console.error('StorageManager not loaded. Authentication will not work.');
+  // Ensure BackendAPI is available
+  if (typeof window.backendAPI === 'undefined') {
+    console.error('BackendAPI not loaded. Authentication will not work.');
     return;
   }
 
-  // Check if user is logged in
-  const user = window.StorageManager.getCurrentUser();
+  // Check if user is logged in (from backend)
+  const user = window.backendAPI.getCachedUser();
 
   // Update UI based on login status
   updateAuthUI(user);
@@ -41,7 +42,7 @@ function initAuth() {
  * Handle Google Sign-In response
  * @param {Object} response - Credential response from Google
  */
-function handleCredentialResponse(response) {
+async function handleCredentialResponse(response) {
   try {
     // Check if response and credential exist
     if (!response || !response.credential) {
@@ -50,51 +51,33 @@ function handleCredentialResponse(response) {
       return;
     }
 
-    // Decode the JWT ID Token
+    // Validate that it's a Gmail address (backend will also validate)
     const payload = decodeJwtResponse(response.credential);
-    console.log("Google user logged in:", payload);
-
-    // Validate payload
-    if (!payload.email || !payload.name) {
-      console.error('Invalid Google user data');
-      alert('Invalid user data received from Google.');
-      return;
-    }
-
-    // Validate that it's a Gmail address
     if (!isValidGmail(payload.email)) {
       console.error('Non-Gmail account attempted:', payload.email);
       alert('Only Gmail accounts are allowed for sign-in. Please use your Gmail account.');
       return;
     }
 
+    console.log("Google user logged in:", payload);
+
     // Get user type (default to jobseeker)
     const userType = getUserTypeFromPage();
 
-    // Save login using our storage manager
-    const user = {
-      email: payload.email,
-      userType: userType,
-      loginDate: new Date().toISOString(),
-      name: payload.name,
-      picture: payload.picture || '',
-      authSource: "google",
-    };
-
-    const success = window.StorageManager.saveToStorage(
-      window.StorageManager.STORAGE_KEYS.USER,
-      user
-    );
-
-    if (success) {
-      alert(`Welcome, ${payload.name}! Login successful.`);
-      redirectAfterLogin(userType);
-    } else {
-      alert("Login failed. Please try again.");
+    // Call backend API for Google login
+    const result = await window.backendAPI.googleLogin(response.credential);
+    
+    // Update user type if needed
+    if (userType !== 'jobseeker') {
+      await window.backendAPI.updateUserType(userType);
     }
+
+    alert(`Welcome, ${payload.name}! Login successful.`);
+    redirectAfterLogin(userType);
+    
   } catch (error) {
     console.error("Error handling Google login:", error);
-    alert("An error occurred during Google login. Please try again.");
+    alert(error.message || "An error occurred during Google login. Please try again.");
   }
 }
 
@@ -136,10 +119,11 @@ function updateAuthUI(user) {
     return;
   }
 
-  // Update user name in navigation
+  // Update user name in navigation - handle both text content and empty links
   const userLinks = document.querySelectorAll(".user, .nav-right a");
   userLinks.forEach((link) => {
-    if (link.textContent.includes("Ruby Grace")) {
+    // Update if it contains "Ruby Grace" or if it's empty
+    if (link.textContent.includes("Ruby Grace") || link.textContent.trim() === "") {
       link.textContent = user.name || user.email.split("@")[0];
     }
   });
@@ -199,11 +183,11 @@ function initializeGoogleSignIn() {
   }
 }
 
-function setupLoginForm() {
+async function setupLoginForm() {
   const loginForm = document.querySelector(".auth-form");
   if (!loginForm) return;
 
-  loginForm.addEventListener("submit", function (e) {
+  loginForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const emailInput = this.querySelector('input[type="email"]');
@@ -224,17 +208,17 @@ function setupLoginForm() {
     // Get user type (default to jobseeker)
     const userType = getUserTypeFromPage();
 
-    // Save login
-    const success = window.StorageManager.saveUserLogin(email, userType);
-
-    if (success) {
+    try {
+      // Call backend API for login
+      const result = await window.backendAPI.login(email, userType);
+      
       // Show success message
       alert(`Login successful! Welcome ${email}`);
 
       // Redirect to appropriate page
       redirectAfterLogin(userType);
-    } else {
-      alert("Login failed. Please try again.");
+    } catch (error) {
+      alert(error.message || "Login failed. Please try again.");
     }
   });
 
@@ -329,9 +313,9 @@ function redirectAfterLogin(userType) {
   }
 }
 
-function setupLogoutButtons() {
+async function setupLogoutButtons() {
   // Add logout button to navigation if user is logged in
-  if (!window.StorageManager.isLoggedIn()) return;
+  if (!window.backendAPI.isLoggedIn()) return;
 
   const navRight = document.querySelector(".nav-right");
   if (!navRight || navRight.querySelector(".logout-btn")) return;
@@ -341,23 +325,20 @@ function setupLogoutButtons() {
   logoutBtn.textContent = "Logout";
   logoutBtn.style.fontSize = "12px";
 
-  logoutBtn.addEventListener("click", function () {
+  logoutBtn.addEventListener("click", async function () {
     if (confirm("Are you sure you want to logout?")) {
-      const user = window.StorageManager.getCurrentUser();
+      try {
+        await window.backendAPI.logout();
+        alert("Logged out successfully");
 
-      // Handle Google logout if needed
-      if (user && user.authSource === "google") {
-        if (typeof google !== "undefined") {
-          google.accounts.id.disableAutoSelect();
-        }
+        // Redirect to login page
+        const isInLoginDir = window.location.pathname.includes("/login/");
+        window.location.href = isInLoginDir ? "login.html" : "login/login.html";
+      } catch (error) {
+        console.error('Logout error:', error);
+        // Still redirect even if logout API call fails
+        window.location.href = "login/login.html";
       }
-
-      window.StorageManager.logoutUser();
-      alert("Logged out successfully");
-
-      // Redirect to login page
-      const isInLoginDir = window.location.pathname.includes("/login/");
-      window.location.href = isInLoginDir ? "login.html" : "login/login.html";
     }
   });
 
