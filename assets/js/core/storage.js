@@ -14,7 +14,8 @@
  * 2. LocalStorage (User-Specific Dynamic Data):
  *    - User modifications override static JSON
  *    - Persists across browser sessions
- *    - Each item includes timestamps for conflict resolution
+ *    - Each item includes timestamps for conflict
+ *  resolution
  *
  * 3. Data Flow:
  *    Page Load → Check localStorage first
@@ -289,130 +290,51 @@ function getActiveEmployerJobs() {
 
 /**
  * Get default profile structure when no data exists
- * Provides empty but properly structured profile object
- *
- * @returns {Object} Default empty profile
+ * Dynamically populates basic info based on the currently logged-in user
+ * * @returns {Object} Properly structured profile with current user data
  */
 function getDefaultProfileStructure() {
+  const user = getCurrentUser();
+  
+  // Use user data if available, otherwise use generic placeholders
+  const displayName = user ? user.name : "New User";
+  const displayEmail = user ? user.email : "email@example.com";
+  
   return {
     basicInfo: {
-      name: "Ruby Grace Jasper",
-      title: "Senior Full Stack Developer",
-      location: "Pasay, Metro Manila, Philippines",
-      email: "rubygracejasper@hotmail.com",
-      phone: "+1 123 456 7890",
-      avatar: "../assets/images/profile/profile-avatar.svg",
+      name: displayName,
+      title: "Profession / Job Title",
+      location: "City, Country",
+      email: displayEmail,
+      phone: "Add phone number",
+      avatar: "../assets/images/profile/profile-placeholder.svg",
       online: true,
-      jobStatus: "Passively looking for jobs",
-      views: 127,
+      jobStatus: "Looking for opportunities",
+      views: 0,
     },
     resume: {
-      fileName: "Ruby Grace Jasper.pdf",
+      fileName: user ? `${displayName}_Resume.pdf` : "No resume uploaded",
       url: "#",
     },
     skills: {
-      technical: [
-        { name: "JavaScript", level: 90 },
-        { name: "React", level: 85 },
-        { name: "Node.js", level: 80 },
-        { name: "Python", level: 75 },
-        { name: "TypeScript", level: 85 },
-        { name: "SQL", level: 70 },
-      ],
-      soft: [
-        "Leadership",
-        "Communication",
-        "Problem Solving",
-        "Team Collaboration",
-        "Project Management",
-        "Critical Thinking",
-        "Adaptability",
-        "Time Management",
-      ],
-      tools: [
-        { name: "Git", level: "Expert" },
-        { name: "VS Code", level: "Expert" },
-        { name: "Docker", level: "Advanced" },
-        { name: "Figma", level: "Intermediate" },
-        { name: "AWS", level: "Intermediate" },
-        { name: "Jira", level: "Advanced" },
-      ],
+      technical: [], // Empty for a new user to fill
+      soft: [],
+      tools: [],
     },
-    experience: [
-      {
-        title: "Senior Full Stack Developer",
-        company: "TechCorp Solutions",
-        duration: "2022 - Present",
-        location: "Manila, Philippines",
-        responsibilities: [
-          "Led a team of 5 developers in building scalable web applications using React and Node.js",
-          "Implemented CI/CD pipelines reducing deployment time by 60%",
-          "Collaborated with product team to deliver features for 50,000+ active users",
-        ],
-      },
-      {
-        title: "Frontend Developer",
-        company: "Digital Innovations Inc.",
-        duration: "2020 - 2022",
-        location: "Makati, Philippines",
-        responsibilities: [
-          "Developed responsive web applications using React, Vue.js, and TypeScript",
-          "Optimized application performance improving load times by 40%",
-          "Mentored junior developers and conducted code reviews",
-        ],
-      },
-      {
-        title: "Web Developer",
-        company: "StartupHub Philippines",
-        duration: "2018 - 2020",
-        location: "Quezon City, Philippines",
-        responsibilities: [
-          "Built and maintained multiple client websites using HTML, CSS, JavaScript, and PHP",
-          "Integrated third-party APIs and payment systems",
-          "Provided technical support and training to clients",
-        ],
-      },
-    ],
-    education: [
-      {
-        degree: "Bachelor of Science in Computer Science",
-        school: "University of the Philippines - Diliman",
-        graduation: "2014 - 2018",
-        gpa: "GPA: 3.8/4.0",
-        description:
-          "Graduated Magna Cum Laude. Specialized in Software Engineering and Web Development.",
-        coursesLabel: "Relevant Courses:",
-        courses: [
-          "Data Structures & Algorithms",
-          "Database Systems",
-          "Software Engineering",
-          "Web Development",
-          "Machine Learning",
-        ],
-      },
-      {
-        degree: "Full Stack Web Development Bootcamp",
-        school: "Kodego Bootcamp",
-        graduation: "2017",
-        gpa: "Certificate",
-        description:
-          "Intensive 6-month program covering modern web development technologies and best practices.",
-        coursesLabel: "Technologies Learned:",
-        courses: ["MEAN Stack", "React", "Node.js", "MongoDB", "Git & GitHub"],
-      },
-    ],
+    experience: [], // Empty array is more realistic for a fresh profile
+    education: [],
     todo: {
       items: {
         "create-account": true,
-        "complete-basic": true,
-        "work-experience": true,
-        "upload-resume": true,
-        "add-education": true,
+        "complete-basic": false,
+        "work-experience": false,
+        "upload-resume": false,
+        "add-education": false,
       },
       summary: {
         total: 5,
-        done: 5,
-        pct: 100,
+        done: 1,
+        pct: 20,
       },
     },
   };
