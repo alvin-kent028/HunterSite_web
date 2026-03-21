@@ -13,7 +13,6 @@
 <body class="login-bg">
   <header class="brand-hero" role="banner">
     <div class="brand-mark" aria-hidden="true">
-      <!-- Simple emblem -->
       <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="markG" x1="0" y1="0" x2="1" y2="1">
@@ -34,19 +33,10 @@
     <section class="auth-card" aria-labelledby="auth-title">
       <div class="auth-card__inner">
         <header class="auth-header">
-          <h2 id="auth-title">Ready to take a next step?</h2>
+          <h2 id="auth-title">Ready to take the next step?</h2>
           <p class="auth-sub">Create an account or sign in.</p>
         </header>
 
-        <p class="auth-terms">
-          By creating an account or signing in, you understand and agree to Indeed's
-          <a href="#" class="link">Terms</a>. You also acknowledge our <a href="#" class="link">Cookie</a> and
-          <a href="#" class="link">Privacy</a> policies. You will receive marketing messages from Indeed and may opt out
-          at
-          any time by following the unsubscribe link in our messages, or as detailed in our terms.
-        </p>
-
-        <!-- Social login buttons -->
         <div class="auth-actions">
           <div id="g_id_onload"
                data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
@@ -62,32 +52,43 @@
                data-theme="outline"
                data-text="signin_with"
                data-size="large"
-               data-logo_alignment="left">
+               data-logo_alignment="left"
+               style="width: 100%;">
           </div>
         </div>
 
         <div class="divider" role="separator" aria-label="or">or</div>
 
         <div class="alert alert-info mb-3" role="alert">
-          <small><strong>Note:</strong> Only Gmail accounts are accepted for login. Please enter your Gmail address.</small>
+          <small><strong>Note:</strong> Use your Gmail account to sign in.</small>
         </div>
 
-        <form class="auth-form" action="../job-listing/job-listing.html" method="get" novalidate>
-          <label class="field">
-            <span class="label">Gmail address <span class="req">*</span></span>
-            <input class="input" type="email" name="email" autocomplete="email" required placeholder="yourname@gmail.com" />
-          </label>
-          <button class="btn-primary-lg" type="submit">
+        <form class="auth-form" novalidate>
+          <div class="field mb-3">
+            <label class="label">Gmail address <span class="req">*</span></label>
+            <input class="input" type="email" name="email" id="loginEmail" autocomplete="email" required placeholder="yourname@gmail.com" />
+          </div>
+
+          <div class="field mb-3">
+            <label class="label">Password <span class="req">*</span></label>
+            <input class="input" type="password" name="password" id="loginPassword" autocomplete="current-password" required placeholder="••••••••" />
+          </div>
+
+          <button class="btn-primary-lg" type="submit" id="submitBtn">
             <span>Continue</span>
             <span class="arrow" aria-hidden="true"></span>
           </button>
         </form>
+
+        <p class="auth-terms mt-4">
+          By signing in, you agree to our 
+          <a href="#" class="link">Terms</a> and <a href="#" class="link">Privacy Policy</a>.
+        </p>
       </div>
     </section>
   </main>
 
-  <!-- Scripts - Load utilities first -->
-  <script src="https://accounts.google.com/gsi/client" async></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="../assets/js/core/utils.js"></script>
   <script src="../assets/js/core/storage.js"></script>
   <script src="../assets/js/core/auth.js"></script>
