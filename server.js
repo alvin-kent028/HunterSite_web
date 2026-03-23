@@ -2,17 +2,73 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 
 // Google Auth Library - only import if configured
 let { google } = require('google-auth-library');
 
 const app = express();
 const PORT = 5000;
-const JWT_SECRET = 'your-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production-min-32-chars';
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// Security middleware
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      scriptSrc: ["'self'", "https://accounts.google.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "http://localhost:5000", "https://accounts.google.com"]
+    }
+  }
+}));
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: { error: 'Too many requests from this IP, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 auth requests per windowMs
+  message: { error: 'Too many authentication attempts, please try again later.' },
+  skipSuccessfulRequests: true,
+});
+
+app.use(limiter);
+
+// CORS configuration
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:8080',
+      'http://127.0.0.1:8080',
+      'http://localhost:3000',
+      // Add your production domain here
+    ];
+    
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '10mb' })); // Limit request body size
 
 // In-memory user database (replace with real database in production)
 const users = [];
@@ -64,66 +120,96 @@ if (CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com') {
 // Routes
 
 // Register/Email Login
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', authLimiter, async (req, res) => {
   try {
     const { email, userType = 'jobseeker' } = req.body;
     
-    // Validate Gmail address
-    if (!email || !email.endsWith('@gmail.com') && !email.endsWith('@googlemail.com')) {
+    // Input validation
+    if (!email || typeof email !== 'string') {
+      return res.status(400).json({ error: 'Valid email address is required' });
+    }
+    
+    // Sanitize email
+    const sanitizedEmail = email.toLowerCase().trim();
+    
+    // Validate Gmail address with regex
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|googlemail\.com)$/;
+    if (!gmailRegex.test(sanitizedEmail)) {
       return res.status(400).json({ error: 'Only Gmail addresses are allowed' });
     }
     
     // Check if user exists
-    let user = users.find(u => u.email === email);
+    let user = users.find(u => u.email === sanitizedEmail);
     
     if (!user) {
       // Create new user
       user = {
-        id: Date.now().toString(),
-        email,
-        userType,
-        name: email.split('@')[0],
+        id: require('crypto').randomUUID(),
+        email: sanitizedEmail,
+        userType: userType,
+        name: sanitizedEmail.split('@')[0],
         authSource: 'email',
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+        loginCount: 1
       };
       users.push(user);
+    } else {
+      // Update login tracking
+      user.lastLogin = new Date().toISOString();
+      user.loginCount = (user.loginCount || 0) + 1;
     }
     
-    // Generate token
-    const token = generateToken(user);
+    // Generate token with shorter expiry for security
+    const token = jwt.sign(
+      { 
+        id: user.id, 
+        email: user.email, 
+        userType: user.userType,
+        name: user.name,
+        iat: Math.floor(Date.now() / 1000)
+      },
+      JWT_SECRET,
+      { expiresIn: '4h' } // Shorter token lifetime
+    );
+    
+    // Log security event (in production, use proper logging)
+    console.log(`[SECURITY] Login successful: ${sanitizedEmail} from ${req.ip}`);
     
     res.json({
       message: 'Login successful',
       token,
+      expiresIn: '4h',
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
         userType: user.userType,
-        authSource: user.authSource
+        authSource: user.authSource,
+        lastLogin: user.lastLogin
       }
     });
   } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({ error: 'Server error' });
+    console.error('[SECURITY] Login error:', error);
+    res.status(500).json({ error: 'Authentication service temporarily unavailable' });
   }
 });
 
 // Google OAuth Login
-app.post('/api/auth/google', async (req, res) => {
+app.post('/api/auth/google', authLimiter, async (req, res) => {
   try {
     const { credential } = req.body;
     
-    if (!credential) {
-      return res.status(400).json({ error: 'Google credential required' });
+    if (!credential || typeof credential !== 'string') {
+      return res.status(400).json({ error: 'Valid Google credential required' });
     }
     
     // Check if Google OAuth is configured
     if (!client) {
-      return res.status(503).json({ error: 'Google OAuth not configured. Please use email login.' });
+      return res.status(503).json({ error: 'Google OAuth service temporarily unavailable' });
     }
     
-    // Verify Google token
+    // Verify Google token with additional security checks
     const ticket = await client.verifyIdToken({
       idToken: credential,
       audience: CLIENT_ID,
@@ -131,46 +217,76 @@ app.post('/api/auth/google', async (req, res) => {
     
     const payload = ticket.getPayload();
     
-    // Validate Gmail
-    if (!payload.email.endsWith('@gmail.com') && !payload.email.endsWith('@googlemail.com')) {
+    // Validate Gmail with regex
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|googlemail\.com)$/;
+    if (!gmailRegex.test(payload.email)) {
+      console.log(`[SECURITY] Non-Gmail attempt blocked: ${payload.email} from ${req.ip}`);
       return res.status(400).json({ error: 'Only Gmail accounts are allowed' });
+    }
+    
+    // Additional security checks
+    if (!payload.email_verified) {
+      return res.status(400).json({ error: 'Email not verified by Google' });
     }
     
     // Check if user exists
     let user = users.find(u => u.email === payload.email);
     
     if (!user) {
-      // Create new user
+      // Create new user with enhanced security
       user = {
-        id: Date.now().toString(),
+        id: require('crypto').randomUUID(),
         email: payload.email,
         name: payload.name,
         picture: payload.picture,
         userType: 'jobseeker', // Default, can be updated later
         authSource: 'google',
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
+        loginCount: 1,
+        googleId: payload.sub // Store Google's unique user ID
       };
       users.push(user);
+    } else {
+      // Update login tracking
+      user.lastLogin = new Date().toISOString();
+      user.loginCount = (user.loginCount || 0) + 1;
+      if (payload.picture) user.picture = payload.picture;
     }
     
     // Generate token
-    const token = generateToken(user);
+    const token = jwt.sign(
+      { 
+        id: user.id, 
+        email: user.email, 
+        userType: user.userType,
+        name: user.name,
+        iat: Math.floor(Date.now() / 1000)
+      },
+      JWT_SECRET,
+      { expiresIn: '4h' }
+    );
+    
+    // Log security event
+    console.log(`[SECURITY] Google login successful: ${payload.email} from ${req.ip}`);
     
     res.json({
       message: 'Google login successful',
       token,
+      expiresIn: '4h',
       user: {
         id: user.id,
         email: user.email,
         name: user.name,
         picture: user.picture,
         userType: user.userType,
-        authSource: user.authSource
+        authSource: user.authSource,
+        lastLogin: user.lastLogin
       }
     });
   } catch (error) {
-    console.error('Google auth error:', error);
-    res.status(500).json({ error: 'Google authentication failed' });
+    console.error('[SECURITY] Google auth error:', error);
+    res.status(500).json({ error: 'Google authentication service temporarily unavailable' });
   }
 });
 

@@ -330,14 +330,13 @@ async function setupLogoutButtons() {
       try {
         await window.backendAPI.logout();
         alert("Logged out successfully");
-
-        // Redirect to login page
-        const isInLoginDir = window.location.pathname.includes("/login/");
-        window.location.href = isInLoginDir ? "login.html" : "login/login.html";
+        
+        // Reload current page to update UI (remove user name and logout button)
+        window.location.reload();
       } catch (error) {
         console.error('Logout error:', error);
-        // Still redirect even if logout API call fails
-        window.location.href = "login/login.html";
+        // Still reload page even if logout API call fails
+        window.location.reload();
       }
     }
   });
