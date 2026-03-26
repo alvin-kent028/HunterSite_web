@@ -332,9 +332,16 @@ function redirectAfterLogin(userType) {
   }
 }
 
+<<<<<<< HEAD
 function setupLogoutButtons() {
   // Add logout button to navigation if user is logged in
   if (!window.StorageManager.isLoggedIn()) return;
+=======
+<<<<<<< HEAD
+async function setupLogoutButtons() {
+  // Add logout button to navigation if user is logged in
+  if (!window.backendAPI.isLoggedIn()) return;
+>>>>>>> 4b207d62bb218f6735009f7dd2a0fbcf3215fb6c
 
   const navRight = document.querySelector(".nav-right");
   if (!navRight || navRight.querySelector(".logout-btn")) return;
@@ -344,6 +351,7 @@ function setupLogoutButtons() {
   logoutBtn.textContent = "Logout";
   logoutBtn.style.fontSize = "12px";
 
+<<<<<<< HEAD
   logoutBtn.addEventListener("click", function () {
     if (confirm("Are you sure you want to logout?")) {
       const user = window.StorageManager.getCurrentUser();
@@ -399,6 +407,21 @@ async function handleCredentialResponse(response) {
       // Redirect to login page
       const isInLoginDir = window.location.pathname.includes("/login/");
       window.location.href = isInLoginDir ? "login.html" : "login/login.html";
+=======
+  logoutBtn.addEventListener("click", async function () {
+    if (confirm("Are you sure you want to logout?")) {
+      try {
+        await window.backendAPI.logout();
+        alert("Logged out successfully");
+        
+        // Reload current page to update UI (remove user name and logout button)
+        window.location.reload();
+      } catch (error) {
+        console.error('Logout error:', error);
+        // Still reload page even if logout API call fails
+        window.location.reload();
+      }
+>>>>>>> 4b207d62bb218f6735009f7dd2a0fbcf3215fb6c
     }
   });
 
@@ -406,6 +429,11 @@ async function handleCredentialResponse(response) {
 }
 
 // Helper functions
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 1aa6a07653c45d4f1f604cc222c47ef589c0e2f0
+>>>>>>> 4b207d62bb218f6735009f7dd2a0fbcf3215fb6c
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
