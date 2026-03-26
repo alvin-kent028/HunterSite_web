@@ -1,6 +1,6 @@
 /**
  * Authentication and User Management
- * Handles Google Login, Email/Password Login, and Logout
+ * Handles login, logout, and user type selection
  */
 
 // Initialize auth when page loads
@@ -38,97 +38,167 @@ function initAuth() {
 }
 
 /**
- * Handle Google Sign-In (Secure Server-Side Flow)
- * This must be in the global scope for Google to find it
+ * Handle Google Sign-In response
+ * @param {Object} response - Credential response from Google
  */
-async function handleCredentialResponse(response) {
+function handleCredentialResponse(response) {
   try {
+    // Check if response and credential exist
     if (!response || !response.credential) {
-      throw new Error('No credential received from Google');
+      console.error('Invalid response from Google Sign-In');
+      alert('Google Sign-In failed. Please try again.');
+      return;
     }
 
+    // Decode the JWT ID Token
+    const payload = decodeJwtResponse(response.credential);
+    console.log("Google user logged in:", payload);
+
+    // Validate payload
+    if (!payload.email || !payload.name) {
+      console.error('Invalid Google user data');
+      alert('Invalid user data received from Google.');
+      return;
+    }
+
+    // Validate that it's a Gmail address
+    if (!isValidGmail(payload.email)) {
+      console.error('Non-Gmail account attempted:', payload.email);
+      alert('Only Gmail accounts are allowed for sign-in. Please use your Gmail account.');
+      return;
+    }
+
+    // Get user type (default to jobseeker)
     const userType = getUserTypeFromPage();
 
-    // 1. Send the token to your backend for verification
-    // Replace '/api/auth/google' with your actual backend endpoint
-    const serverResponse = await fetch('/api/auth/google', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        idToken: response.credential,
-        userType: userType
-      })
-    });
+    // Save login using our storage manager
+    const user = {
+      email: payload.email,
+      userType: userType,
+      loginDate: new Date().toISOString(),
+      name: payload.name,
+      picture: payload.picture || '',
+      authSource: "google",
+    };
 
-    const result = await serverResponse.json();
+    const success = window.StorageManager.saveToStorage(
+      window.StorageManager.STORAGE_KEYS.USER,
+      user
+    );
 
-    if (result.success) {
-      // 2. Only AFTER server validation do we update the UI/Storage
-      window.StorageManager.saveToStorage(
-        window.StorageManager.STORAGE_KEYS.USER,
-        result.user
-      );
-      
-      alert(`Welcome, ${result.user.name}!`);
-      redirectAfterLogin(result.user.userType || userType);
+    if (success) {
+      alert(`Welcome, ${payload.name}! Login successful.`);
+      redirectAfterLogin(userType);
     } else {
-      throw new Error(result.message || 'Server-side validation failed');
+      alert("Login failed. Please try again.");
     }
-
   } catch (error) {
-    console.error("Auth Error:", error);
-    alert("Authentication failed: " + error.message);
+    console.error("Error handling Google login:", error);
+    alert("An error occurred during Google login. Please try again.");
   }
 }
 
-/**
- * FIXED: Setup Logout Buttons
- * Handles local data clearing and Google session management
- */
-function setupLogoutButtons() {
-  // 1. Check if user is even logged in
-  if (!window.StorageManager.isLoggedIn()) return;
+function decodeJwtResponse(token) {
+  try {
+    if (!token || typeof token !== 'string') {
+      throw new Error('Invalid token provided');
+    }
 
-  const navRight = document.querySelector(".nav-right");
-  if (!navRight) return;
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      throw new Error('Invalid JWT format');
+    }
 
-  // 2. Prevent duplicate buttons
-  if (navRight.querySelector(".logout-btn")) return;
+    const base64Url = parts[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    
+    // Add padding if needed
+    const paddedBase64 = base64 + '='.repeat((4 - base64.length % 4) % 4);
+    
+    const jsonPayload = decodeURIComponent(
+      atob(paddedBase64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
 
-  const logoutBtn = document.createElement("button");
-  logoutBtn.className = "btn btn-sm btn-outline-danger logout-btn ms-2";
-  logoutBtn.textContent = "Logout";
-  logoutBtn.style.fontSize = "12px";
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('Error decoding JWT:', error);
+    throw new Error('Failed to decode Google token');
+  }
+}
 
-  logoutBtn.addEventListener("click", function () {
-    if (confirm("Are you sure you want to logout?")) {
-      const user = window.StorageManager.getCurrentUser();
+function updateAuthUI(user) {
+  if (!user) {
+    return;
+  }
 
-      // 3. If they used Google, disable the auto-login prompt for next time
-      if (user && user.authSource === "google") {
-        if (typeof google !== "undefined") {
-          google.accounts.id.disableAutoSelect();
-        }
-      }
-
-      // 4. Clear local data
-      window.StorageManager.logoutUser();
-      alert("Logged out successfully");
-
-      // 5. Redirect to login page
-      const isInLoginDir = window.location.pathname.includes("/login/");
-      window.location.href = isInLoginDir ? "login.html" : "login/login.html";
+  // Update user name in navigation
+  const userLinks = document.querySelectorAll(".user, .nav-right a");
+  userLinks.forEach((link) => {
+    if (link.textContent.includes("Ruby Grace")) {
+      link.textContent = user.name || user.email.split("@")[0];
     }
   });
 
-  navRight.appendChild(logoutBtn);
+  // Show welcome message on homepage
+  if (
+    window.location.pathname.includes("index.html") ||
+    window.location.pathname === "/"
+  ) {
+    showWelcomeMessage(user);
+  }
 }
 
-/**
- * Handle Traditional Login Form (Email + Password)
- */
+function showWelcomeMessage(user) {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+
+  const welcomeMsg = document.createElement("div");
+  welcomeMsg.className =
+    "alert alert-success position-fixed top-0 start-50 translate-middle-x mt-5";
+  welcomeMsg.style.zIndex = "9999";
+  welcomeMsg.innerHTML = `
+    Welcome back, ${user.name}! 
+    <span class="badge bg-primary ms-2">${user.userType}</span>
+  `;
+
+  document.body.appendChild(welcomeMsg);
+
+  setTimeout(() => {
+    welcomeMsg.remove();
+  }, 4000);
+}
+
+function initializeGoogleSignIn() {
+  // Check if we're on the login page and Google Sign-In is configured
+  const googleSignInElement = document.getElementById('g_id_onload');
+  if (!googleSignInElement) return;
+  
+  const clientId = googleSignInElement.dataset.client_id;
+  if (!clientId || clientId === 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com') {
+    console.warn('Google Client ID is not configured. Please replace YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com with your actual Client ID.');
+    
+    // Hide Google Sign-In button if not configured
+    const googleButton = document.querySelector('.g_id_signin');
+    if (googleButton) {
+      googleButton.style.display = 'none';
+    }
+    
+    // Show a message to the user
+    const authActions = document.querySelector('.auth-actions');
+    if (authActions) {
+      const warningMsg = document.createElement('div');
+      warningMsg.className = 'alert alert-warning mt-2';
+      warningMsg.innerHTML = '<small>Google Sign-In is not configured. Please use email login or contact administrator.</small>';
+      authActions.appendChild(warningMsg);
+    }
+  }
+}
+
 function setupLoginForm() {
   const loginForm = document.querySelector(".auth-form");
   if (!loginForm) return;
@@ -139,27 +209,39 @@ function setupLoginForm() {
     const emailInput = this.querySelector('input[type="email"]');
     const email = emailInput ? emailInput.value.trim() : '';
 
+    // Validate email
     if (!email) {
       if (emailInput) showError(emailInput, "Please enter your email");
       return;
     }
 
+    // Check if it's a valid Gmail address
     if (!isValidGmail(email)) {
       if (emailInput) showError(emailInput, "Please enter a valid Gmail address (e.g., yourname@gmail.com)");
       return;
     }
 
+    // Get user type (default to jobseeker)
     const userType = getUserTypeFromPage();
+
+    // Save login
     const success = window.StorageManager.saveUserLogin(email, userType);
 
     if (success) {
+      // Show success message
       alert(`Login successful! Welcome ${email}`);
+      
+
+      // Redirect to appropriate page
       redirectAfterLogin(userType);
     } else {
       alert("Login failed. Please try again.");
+
+      
     }
   });
 
+  // Add input validation
   const emailInput = loginForm.querySelector('input[type="email"]');
   if (emailInput) {
     emailInput.addEventListener("blur", function () {
@@ -172,75 +254,60 @@ function setupLoginForm() {
   }
 }
 
-function updateAuthUI(user) {
-  if (!user) return;
-
-  const userLinks = document.querySelectorAll(".user, .nav-right a");
-  userLinks.forEach((link) => {
-    if (link.textContent.includes("Ruby Grace")) {
-      link.textContent = user.name || user.email.split("@")[0];
-    }
-  });
-
-  if (window.location.pathname.includes("index.html") || window.location.pathname === "/") {
-    showWelcomeMessage(user);
-  }
-}
-
-function showWelcomeMessage(user) {
-  const hero = document.querySelector(".hero");
-  if (!hero) return;
-
-  const welcomeMsg = document.createElement("div");
-  welcomeMsg.className = "alert alert-success position-fixed top-0 start-50 translate-middle-x mt-5";
-  welcomeMsg.style.zIndex = "9999";
-  welcomeMsg.innerHTML = `Welcome back, ${user.name}! <span class="badge bg-primary ms-2">${user.userType}</span>`;
-
-  document.body.appendChild(welcomeMsg);
-  setTimeout(() => welcomeMsg.remove(), 4000);
-}
-
-function initializeGoogleSignIn() {
-  const googleSignInElement = document.getElementById('g_id_onload');
-  if (!googleSignInElement) return;
-  
-  const clientId = googleSignInElement.dataset.client_id;
-  if (!clientId || clientId === 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com') {
-    console.warn('Google Client ID is not configured.');
-    const googleButton = document.querySelector('.g_id_signin');
-    if (googleButton) googleButton.style.display = 'none';
-  }
-}
-
 function getUserTypeFromPage() {
+  // Check if there's a user type selector
   const selector = document.querySelector('input[name="userType"]:checked');
-  return selector ? selector.value : "jobseeker";
+  if (selector) {
+    return selector.value;
+  }
+
+  // Default to jobseeker
+  return "jobseeker";
 }
 
 function setupUserTypeSelector() {
   const loginForm = document.querySelector(".auth-form");
-  if (!loginForm || document.querySelector(".user-type-selector")) return;
+  if (!loginForm) return;
 
+  // Check if selector already exists
+  if (document.querySelector(".user-type-selector")) return;
+
+  // Check URL parameters to see if user type should be pre-selected
   const urlParams = new URLSearchParams(window.location.search);
-  const preselectedType = urlParams.get("as");
+  const preselectedType = urlParams.get("as"); // e.g., ?as=employer
 
+  // Determine which type should be checked by default
   let defaultType = "jobseeker";
   if (preselectedType === "employer" || preselectedType === "admin") {
     defaultType = preselectedType;
   }
 
+  // Create user type selector
   const selector = document.createElement("div");
   selector.className = "user-type-selector mb-3";
   selector.innerHTML = `
     <p class="small mb-2">I am a:</p>
     <div class="btn-group w-100" role="group">
-      <input type="radio" class="btn-check" name="userType" id="typeJobseeker" value="jobseeker" ${defaultType === "jobseeker" ? "checked" : ""}>
+      <input type="radio" class="btn-check" name="userType" id="typeJobseeker" value="jobseeker" ${
+        defaultType === "jobseeker" ? "checked" : ""
+      }>
       <label class="btn btn-outline-primary" for="typeJobseeker">Job Seeker</label>
-      <input type="radio" class="btn-check" name="userType" id="typeEmployer" value="employer" ${defaultType === "employer" ? "checked" : ""}>
+      
+      <input type="radio" class="btn-check" name="userType" id="typeEmployer" value="employer" ${
+        defaultType === "employer" ? "checked" : ""
+      }>
       <label class="btn btn-outline-primary" for="typeEmployer">Employer</label>
+      
+      <!-- Admin option commented out - not implemented yet
+      <input type="radio" class="btn-check" name="userType" id="typeAdmin" value="admin" ${
+        defaultType === "admin" ? "checked" : ""
+      }>
+      <label class="btn btn-outline-primary" for="typeAdmin">Admin</label>
+      -->
     </div>
   `;
 
+  // Insert before the email field
   const emailField = loginForm.querySelector(".field");
   if (emailField) {
     emailField.parentNode.insertBefore(selector, emailField);
@@ -248,46 +315,136 @@ function setupUserTypeSelector() {
 }
 
 function redirectAfterLogin(userType) {
+  // Determine the base path based on where we are
   const isInLoginDir = window.location.pathname.includes("/login/");
   const prefix = isInLoginDir ? "../" : "";
 
+  // Redirect based on user type
   switch (userType) {
     case "employer":
-      window.location.href = prefix + "employer/dashboard.html";
+      window.location.href = prefix + "employer/dashboard.html"; // Employer dashboard
       break;
     case "admin":
-      window.location.href = prefix + "admin/dashboard.html";
+      window.location.href = prefix + "admin/dashboard.html"; // Admin panel
       break;
     default:
-      window.location.href = prefix + "job-listing/job-listing.html";
+      window.location.href = prefix + "job-listing/job-listing.html"; // Job listings
   }
 }
 
+function setupLogoutButtons() {
+  // Add logout button to navigation if user is logged in
+  if (!window.StorageManager.isLoggedIn()) return;
+
+  const navRight = document.querySelector(".nav-right");
+  if (!navRight || navRight.querySelector(".logout-btn")) return;
+
+  const logoutBtn = document.createElement("button");
+  logoutBtn.className = "btn btn-sm btn-outline-danger logout-btn ms-2";
+  logoutBtn.textContent = "Logout";
+  logoutBtn.style.fontSize = "12px";
+
+  logoutBtn.addEventListener("click", function () {
+    if (confirm("Are you sure you want to logout?")) {
+      const user = window.StorageManager.getCurrentUser();
+
+      /**
+ * Handle Google Sign-In response by sending the ID Token to the server
+ * @param {Object} response - Credential response from Google
+ */
+async function handleCredentialResponse(response) {
+  try {
+    if (!response || !response.credential) {
+      throw new Error('No credential received from Google');
+    }
+
+    // 1. The Secure Way: Send the token to your backend
+    // Replace '/api/auth/google' with your actual backend endpoint
+    const serverResponse = await fetch('/api/auth/google', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        idToken: response.credential, // This is the 'response.credential'
+        userType: getUserTypeFromPage()
+      })
+    });
+
+    const result = await serverResponse.json();
+
+    if (result.success) {
+      // 2. Only AFTER server validation do we update the UI/Storage
+      // The server should return the verified user data
+      window.StorageManager.saveToStorage(
+        window.StorageManager.STORAGE_KEYS.USER,
+        result.user
+      );
+      
+      alert(`Welcome, ${result.user.name}!`);
+      redirectAfterLogin(result.user.userType);
+    } else {
+      throw new Error(result.message || 'Server-side validation failed');
+    }
+
+  } catch (error) {
+    console.error("Auth Error:", error);
+    alert("Authentication failed: " + error.message);
+  }
+}
+
+      window.StorageManager.logoutUser();
+      alert("Logged out successfully");
+
+      // Redirect to login page
+      const isInLoginDir = window.location.pathname.includes("/login/");
+      window.location.href = isInLoginDir ? "login.html" : "login/login.html";
+    }
+  });
+
+  navRight.appendChild(logoutBtn);
+}
+
+// Helper functions
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
 function isValidGmail(email) {
-  if (!isValidEmail(email)) return false;
+  // Check if it's a valid email format first
+  if (!isValidEmail(email)) {
+    return false;
+  }
+  
+  // Check if it's a Gmail address (including googlemail.com)
   const domain = email.toLowerCase().split('@')[1];
   return domain === 'gmail.com' || domain === 'googlemail.com';
 }
 
 function showError(input, message) {
+  // Remove existing error
   clearError(input);
+
+  // Add error class
   input.classList.add("border-danger");
+
+  // Create error message
   const error = document.createElement("small");
   error.className = "text-danger d-block mt-1";
   error.textContent = message;
   error.dataset.error = "true";
+
+  // Insert after input
   input.parentNode.appendChild(error);
 }
 
 function clearError(input) {
   input.classList.remove("border-danger");
   const error = input.parentNode.querySelector('[data-error="true"]');
-  if (error) error.remove();
+  if (error) {
+    error.remove();
+  }
 }
 
 console.log("🔐 Auth system loaded");
