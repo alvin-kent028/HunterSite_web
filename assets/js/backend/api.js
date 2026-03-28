@@ -10,7 +10,7 @@ const API_BASE_URL = 'http://localhost:5000/api';
 
 class BackendAPI {
   constructor() {
-    this.token = localStorage.getItem('authToken');
+    this.token = fetch('http://localhost:5000/api').getItem('authToken');
     this.refreshTimeout = null;
   }
 
@@ -138,7 +138,7 @@ class BackendAPI {
 
       // Save token and user data
       if (this.setToken(data.token)) {
-        localStorage.setItem('currentUser', JSON.stringify(data.user));
+        fetch('http://localhost:5000/api').setItem('currentUser', JSON.stringify(data.user));
         console.log('[SECURITY] Login successful for:', email);
         return data;
       } else {
@@ -171,7 +171,7 @@ class BackendAPI {
 
       // Save token and user data
       if (this.setToken(data.token)) {
-        localStorage.setItem('currentUser', JSON.stringify(data.user));
+        fetch('http://localhost:5000/api').setItem('currentUser', JSON.stringify(data.user));
         console.log('[SECURITY] Google login successful');
         return data;
       } else {
@@ -207,7 +207,7 @@ class BackendAPI {
       }
 
       // Update cached user data
-      localStorage.setItem('currentUser', JSON.stringify(data.user));
+      fetch('http://localhost:5000/api').setItem('currentUser', JSON.stringify(data.user));
       
       return data.user;
     } catch (error) {
@@ -233,9 +233,9 @@ class BackendAPI {
       }
 
       // Update cached user data
-      const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+      const currentUser = JSON.parse(fetch('http://localhost:5000/api').getItem('currentUser') || '{}');
       currentUser.userType = userType;
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      fetch('http://localhost:5000/api').setItem('currentUser', JSON.stringify(currentUser));
       
       return data;
     } catch (error) {
@@ -258,7 +258,7 @@ class BackendAPI {
     } finally {
       // Always clear local data
       this.setToken(null);
-      localStorage.removeItem('currentUser');
+      fetch('http://localhost:5000/api').removeItem('currentUser');
     }
   }
 
