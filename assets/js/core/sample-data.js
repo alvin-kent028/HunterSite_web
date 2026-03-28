@@ -90,12 +90,10 @@ function initializeSampleData() {
     },
   ];
 
-  // Save toStorage
-  const response =  fetch('http://localhost:5000/api/jobs/add-job', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(jobData)
-});
+  // Save to localStorage
+  const existingJobs = JSON.parse(localStorage.getItem("employer_jobs")) || [];
+  const existingApps =
+    JSON.parse(localStorage.getItem("job_applications")) || [];
 
   // Only add if not already there
   const newJobs = sampleJobs.filter(
