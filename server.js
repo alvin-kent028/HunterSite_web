@@ -16,11 +16,11 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      scriptSrc: ["'self'", "https://accounts.google.com"],
-      imgSrc: ["'self'", "data:", "https:"],
+      defaultSrc: ["'self'", "https:", "http:"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
+      scriptSrc: ["'self'", "https://accounts.google.com", "https://cdn.jsdelivr.net"],
+      imgSrc: ["'self'", "data:", "https:", "http:"],
       connectSrc: ["'self'", "http://localhost:5000", "https://accounts.google.com"]
     }
   }
@@ -51,6 +51,8 @@ const corsOptions = {
       'http://localhost:8080',
       'http://127.0.0.1:8080',
       'http://localhost:3000',
+      'http://localhost:5000',
+      'http://127.0.0.1:5000',
       // Add your production domain here
     ];
     
@@ -69,6 +71,14 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' })); // Limit request body size
+
+// Serve static files
+app.use(express.static(__dirname));
+
+// Serve index.html at root
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
 // In-memory user database (replace with real database in production)
 const users = [];
