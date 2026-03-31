@@ -30,7 +30,29 @@
 .divider { position: relative; text-align: center; color: var(--muted); margin: 6px 0 16px; font-weight: 600; }
 .divider::before, .divider::after { content: ""; display: inline-block; width: 42%; height: 2px; background: #e7c56b; vertical-align: middle; margin: 0 10px; }
 
-/* Form */
+/* register */
+.btn-auth {
+    background-color: #007bff; /* Primary Blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: sans-serif;
+}
+
+.btn-auth:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.btn-auth:active {
+    transform: scale(0.98); /* Slight click effect */
+}
+
+
+
 .auth-form { display: grid; gap: 16px; }
 .field { display: grid; gap: 8px; }
 .label { font-weight: 700; color: #1a1a1a; }
