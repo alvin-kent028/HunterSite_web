@@ -1,0 +1,2 @@
+MONGODB_URI=mongodb+srv://Alvin2:Alvin2.0@cluster0.qcuar6o.mongodb.net/HunterSiteDb?retryWrites=true&w=majority
+PORT=5000
