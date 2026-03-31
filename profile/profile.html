@@ -105,10 +105,33 @@
 
                         <div class="contact-info">
                           <div class="contact-item location">
-                            <span>Manila, PH</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path
+                                d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
+                                stroke="currentColor" stroke-width="2" />
+                              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                            <span id="display-city">Manila, PH</span>
                           </div>
+
                           <div class="contact-item email">
-                            <span id="display-email">email@example.com</span> </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path
+                                d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                                stroke="currentColor" stroke-width="2" />
+                              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                            <span id="display-email">email@example.com</span>
+                          </div>
+
+                          <div class="contact-item phone">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                              <path
+                                d="M22 16.92V19.92C22 20.52 21.39 21 20.84 21C9.28 21 0 11.72 0 0.16C0 -0.39 0.48 -1 1.08 -1H4.09C4.69 -1 5.23 -0.47 5.23 0.09C5.23 1.58 5.52 3.01 6.05 4.33C6.2 4.7 6.09 5.15 5.76 5.47L3.9 7.33C5.51 10.24 7.75 12.48 10.67 14.09L12.53 12.23C12.85 11.9 13.3 11.79 13.67 11.94C14.99 12.47 16.42 12.76 17.91 12.76C18.47 12.76 19 13.3 19 13.91V16.92C19 17.52 18.47 18 17.91 18H22Z"
+                                fill="currentColor" />
+                            </svg>
+                            <span id="display-phone">+63 123 456 7890</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -151,7 +174,7 @@
                 <span class="expand-icon">▼</span>
                 Resume
               </h2>
-              <button class="edit-btn" data-section="resume" onclick="event.stopPropagation();">EDIT</button>
+              <button class="edit-btn" data-bs-toggle="modal" data-bs-target="#editResumeModal">EDIT</button>
             </div>
 
             <div class="collapse show" id="resumeCollapse">
@@ -163,8 +186,8 @@
 
                 <div class="file-upload-section">
                   <div class="file-info">
-                    <span class="file-name"></span>
-                    <button class="remove-file" aria-label="Remove file">×</button>
+                    <span class="file-name" id="display-resume-file">No resume uploaded</span>
+                    <button class="remove-file" aria-label="Remove file" id="remove-resume-btn" style="display: none;">×</button>
                   </div>
                   <button class="btn-primary update-btn">UPDATE</button>
                 </div>
@@ -184,166 +207,13 @@
                 <span class="expand-icon">▼</span>
                 Skills
               </h2>
-              <button class="add-btn" data-section="skills" onclick="event.stopPropagation();">ADD</button>
+              <button class="add-btn" data-bs-toggle="modal" data-bs-target="#addSkillModal">ADD</button>
             </div>
 
             <div class="collapse show" id="skillsCollapse">
               <div class="card-content">
-                <div class="skills-container">
-                  <!-- Technical Skills -->
-                  <div class="skills-category">
-                    <h4 class="category-title">Technical Skills</h4>
-                    <div class="skills-grid">
-                      <div class="skill-item">
-                        <span class="skill-name">JavaScript</span>
-                        <div class="skill-level">
-                          <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                          </div>
-                          <span class="skill-percentage">90%</span>
-                        </div>
-                      </div>
-
-                      <div class="skill-item">
-                        <span class="skill-name">React</span>
-                        <div class="skill-level">
-                          <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                          </div>
-                          <span class="skill-percentage">85%</span>
-                        </div>
-                      </div>
-
-                      <div class="skill-item">
-                        <span class="skill-name">Node.js</span>
-                        <div class="skill-level">
-                          <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                          </div>
-                          <span class="skill-percentage">80%</span>
-                        </div>
-                      </div>
-
-                      <div class="skill-item">
-                        <span class="skill-name">Python</span>
-                        <div class="skill-level">
-                          <div class="skill-bar">
-                            <div class="skill-progress" style="width: 75%"></div>
-                          </div>
-                          <span class="skill-percentage">75%</span>
-                        </div>
-                      </div>
-
-                      <div class="skill-item">
-                        <span class="skill-name">SQL</span>
-                        <div class="skill-level">
-                          <div class="skill-bar">
-                            <div class="skill-progress" style="width: 70%"></div>
-                          </div>
-                          <span class="skill-percentage">70%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Soft Skills -->
-                  <div class="skills-category">
-                    <h4 class="category-title">Soft Skills</h4>
-                    <div class="skills-tags">
-                      <span class="skill-tag">Leadership</span>
-                      <span class="skill-tag">Communication</span>
-                      <span class="skill-tag">Problem Solving</span>
-                      <span class="skill-tag">Team Collaboration</span>
-                      <span class="skill-tag">Project Management</span>
-                      <span class="skill-tag">Critical Thinking</span>
-                      <span class="skill-tag">Adaptability</span>
-                      <span class="skill-tag">Time Management</span>
-                    </div>
-                  </div>
-
-                  <!-- Tools & Technologies -->
-                  <div class="skills-category">
-                    <h4 class="category-title">Tools & Technologies</h4>
-                    <div class="tools-grid">
-                      <div class="tool-item">
-                        <div class="tool-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
-                              stroke-linejoin="round" />
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"
-                              stroke-linejoin="round" />
-                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
-                              stroke-linejoin="round" />
-                          </svg>
-                        </div>
-                        <span class="tool-name">Git</span>
-                        <span class="tool-level">Expert</span>
-                      </div>
-
-                      <div class="tool-item">
-                        <div class="tool-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor"
-                              stroke-width="2" />
-                            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2" />
-                            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2" />
-                          </svg>
-                        </div>
-                        <span class="tool-name">VS Code</span>
-                        <span class="tool-level">Expert</span>
-                      </div>
-
-                      <div class="tool-item">
-                        <div class="tool-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path
-                              d="M14.7 6.3C15.1 5.9 15.1 5.3 14.7 4.9C14.3 4.5 13.7 4.5 13.3 4.9L9.3 8.9C8.9 9.3 8.9 9.9 9.3 10.3L13.3 14.3C13.7 14.7 14.3 14.7 14.7 14.3C15.1 13.9 15.1 13.3 14.7 12.9L12.4 10.6L20 10.6C20.6 10.6 21 10.2 21 9.6C21 9 20.6 8.6 20 8.6L12.4 8.6L14.7 6.3Z"
-                              fill="currentColor" />
-                          </svg>
-                        </div>
-                        <span class="tool-name">Docker</span>
-                        <span class="tool-level">Advanced</span>
-                      </div>
-
-                      <div class="tool-item">
-                        <div class="tool-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-                            <path d="M8 14S9.5 16 12 16S16 14 16 14" stroke="currentColor" stroke-width="2" />
-                            <line x1="9" y1="9" x2="9.01" y2="9" stroke="currentColor" stroke-width="2" />
-                            <line x1="15" y1="9" x2="15.01" y2="9" stroke="currentColor" stroke-width="2" />
-                          </svg>
-                        </div>
-                        <span class="tool-name">Figma</span>
-                        <span class="tool-level">Intermediate</span>
-                      </div>
-
-                      <div class="tool-item">
-                        <div class="tool-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M9 19C-2 19 -2 5 9 5H15C26 5 26 19 15 19" stroke="currentColor" stroke-width="2" />
-                            <path d="M15 5C26 5 26 19 15 19H9C-2 19 -2 5 9 5" stroke="currentColor" stroke-width="2" />
-                          </svg>
-                        </div>
-                        <span class="tool-name">AWS</span>
-                        <span class="tool-level">Intermediate</span>
-                      </div>
-
-                      <div class="tool-item">
-                        <div class="tool-icon">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor"
-                              stroke-width="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2" />
-                            <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2" />
-                            <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" />
-                          </svg>
-                        </div>
-                        <span class="tool-name">Jira</span>
-                        <span class="tool-level">Advanced</span>
-                      </div>
-                    </div>
-                  </div>
+                <div class="skills-container" id="skills-container">
+                  <!-- Skills will be populated dynamically -->
                 </div>
               </div>
             </div>
@@ -583,10 +453,204 @@
               <label for="bi-email" class="form-label">Email</label>
               <input type="email" class="form-control" id="bi-email" name="email" required />
             </div>
+            <div class="mb-3">
+              <label for="bi-city" class="form-label">City</label>
+              <input type="text" class="form-control" id="bi-city" name="city" />
+            </div>
+            <div class="mb-3">
+              <label for="bi-phone" class="form-label">Contact Number</label>
+              <input type="tel" class="form-control" id="bi-phone" name="phone" />
+            </div>
           </div>
           <div class="modal-footer">
              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
              <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Resume Modal -->
+  <div class="modal fade" id="editResumeModal" tabindex="-1" aria-labelledby="editResumeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editResumeLabel">Edit Resume</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="resumeForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="resume-file" class="form-label">Resume File</label>
+              <input type="file" class="form-control" id="resume-file" name="resumeFile" accept=".doc,.docx,.pdf,.rtf" />
+              <div class="form-text">Acceptable file types: DOC, DOCX, PDF, RTF. Max file size: 10 MB.</div>
+            </div>
+            <div class="mb-3">
+              <label for="resume-url" class="form-label">Resume URL (Optional)</label>
+              <input type="url" class="form-control" id="resume-url" name="resumeUrl" placeholder="https://example.com/resume.pdf" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Skill Modal -->
+  <div class="modal fade" id="addSkillModal" tabindex="-1" aria-labelledby="addSkillLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSkillLabel">Add New Skill</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="skillForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="skill-type" class="form-label">Skill Type</label>
+              <select class="form-control" id="skill-type" name="skillType" required>
+                <option value="">Select skill type</option>
+                <option value="technical">Technical Skill</option>
+                <option value="soft">Soft Skill</option>
+                <option value="tool">Tool & Technology</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="skill-name" class="form-label">Skill Name</label>
+              <input type="text" class="form-control" id="skill-name" name="skillName" required />
+            </div>
+            <div class="mb-3" id="skill-level-container">
+              <label for="skill-level" class="form-label">Skill Level</label>
+              <select class="form-control" id="skill-level" name="skillLevel">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="expert">Expert</option>
+              </select>
+            </div>
+            <div class="mb-3" id="skill-percentage-container" style="display: none;">
+              <label for="skill-percentage" class="form-label">Skill Level (%)</label>
+              <input type="number" class="form-control" id="skill-percentage" name="skillPercentage" min="0" max="100" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Skill</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Basic Info Modal -->
+  <div class="modal fade" id="editBasicInfoModal" tabindex="-1" aria-labelledby="editBasicInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBasicInfoLabel">Edit Basic Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="basicInfoForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="bi-name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="bi-name" name="name" required />
+            </div>
+            <div class="mb-3">
+              <label for="bi-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="bi-email" name="email" required />
+            </div>
+            <div class="mb-3">
+              <label for="bi-city" class="form-label">City</label>
+              <input type="text" class="form-control" id="bi-city" name="city" />
+            </div>
+            <div class="mb-3">
+              <label for="bi-phone" class="form-label">Contact Number</label>
+              <input type="tel" class="form-control" id="bi-phone" name="phone" />
+            </div>
+          </div>
+          <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Resume Modal -->
+  <div class="modal fade" id="editResumeModal" tabindex="-1" aria-labelledby="editResumeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editResumeLabel">Edit Resume</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="resumeForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="resume-file" class="form-label">Resume File</label>
+              <input type="file" class="form-control" id="resume-file" name="resumeFile" accept=".doc,.docx,.pdf,.rtf" />
+              <div class="form-text">Acceptable file types: DOC, DOCX, PDF, RTF. Max file size: 10 MB.</div>
+            </div>
+            <div class="mb-3">
+              <label for="resume-url" class="form-label">Resume URL (Optional)</label>
+              <input type="url" class="form-control" id="resume-url" name="resumeUrl" placeholder="https://example.com/resume.pdf" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Skill Modal -->
+  <div class="modal fade" id="addSkillModal" tabindex="-1" aria-labelledby="addSkillLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addSkillLabel">Add New Skill</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="skillForm" class="needs-validation" novalidate>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="skill-type" class="form-label">Skill Type</label>
+              <select class="form-control" id="skill-type" name="skillType" required>
+                <option value="">Select skill type</option>
+                <option value="technical">Technical Skill</option>
+                <option value="soft">Soft Skill</option>
+                <option value="tool">Tool & Technology</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="skill-name" class="form-label">Skill Name</label>
+              <input type="text" class="form-control" id="skill-name" name="skillName" required />
+            </div>
+            <div class="mb-3" id="skill-level-container">
+              <label for="skill-level" class="form-label">Skill Level</label>
+              <select class="form-control" id="skill-level" name="skillLevel">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="expert">Expert</option>
+              </select>
+            </div>
+            <div class="mb-3" id="skill-percentage-container" style="display: none;">
+              <label for="skill-percentage" class="form-label">Skill Level (%)</label>
+              <input type="number" class="form-control" id="skill-percentage" name="skillPercentage" min="0" max="100" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Skill</button>
           </div>
         </form>
       </div>
@@ -609,20 +673,129 @@
                 // 2. Automate Dashboard Display
                 const nameDisplay = document.getElementById('display-name');
                 const emailDisplay = document.getElementById('display-email');
+                const cityDisplay = document.getElementById('display-city');
+                const phoneDisplay = document.getElementById('display-phone');
                 const navNameDisplay = document.querySelector('.user-name');
                 const avatarImg = document.getElementById('display-avatar');
 
                 if (nameDisplay) nameDisplay.textContent = user.name || "User";
                 if (emailDisplay) emailDisplay.textContent = user.email || "";
+                if (cityDisplay) cityDisplay.textContent = user.city || "Manila, PH";
+                if (phoneDisplay) phoneDisplay.textContent = user.phone || "+63 123 456 7890";
                 if (navNameDisplay) navNameDisplay.textContent = user.name || user.email.split('@')[0];
                 if (avatarImg && user.picture) avatarImg.src = user.picture;
+
+                // Display resume info
+                const resumeFileDisplay = document.getElementById('display-resume-file');
+                const removeResumeBtn = document.getElementById('remove-resume-btn');
+                if (resumeFileDisplay) {
+                    if (user.resumeFile) {
+                        resumeFileDisplay.textContent = user.resumeFile;
+                        if (removeResumeBtn) removeResumeBtn.style.display = 'inline';
+                    } else if (user.resumeUrl) {
+                        resumeFileDisplay.textContent = 'Resume URL set';
+                        if (removeResumeBtn) removeResumeBtn.style.display = 'inline';
+                    } else {
+                        resumeFileDisplay.textContent = 'No resume uploaded';
+                        if (removeResumeBtn) removeResumeBtn.style.display = 'none';
+                    }
+                }
+
+                // Display skills
+                const skillsContainer = document.getElementById('skills-container');
+                if (skillsContainer && user.skills) {
+                    skillsContainer.innerHTML = '';
+                    
+                    // Technical Skills
+                    if (user.skills.technical && user.skills.technical.length > 0) {
+                        const techSection = document.createElement('div');
+                        techSection.className = 'skills-category';
+                        techSection.innerHTML = `
+                            <h4 class="category-title">Technical Skills</h4>
+                            <div class="skills-grid">
+                                ${user.skills.technical.map(skill => `
+                                    <div class="skill-item">
+                                        <span class="skill-name">${skill.name}</span>
+                                        <div class="skill-level">
+                                            <div class="skill-bar">
+                                                <div class="skill-progress" style="width: ${skill.level}%"></div>
+                                            </div>
+                                            <span class="skill-percentage">${skill.level}%</span>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        skillsContainer.appendChild(techSection);
+                    }
+                    
+                    // Soft Skills
+                    if (user.skills.soft && user.skills.soft.length > 0) {
+                        const softSection = document.createElement('div');
+                        softSection.className = 'skills-category';
+                        softSection.innerHTML = `
+                            <h4 class="category-title">Soft Skills</h4>
+                            <div class="skills-tags">
+                                ${user.skills.soft.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                            </div>
+                        `;
+                        skillsContainer.appendChild(softSection);
+                    }
+                    
+                    // Tools & Technologies
+                    if (user.skills.tools && user.skills.tools.length > 0) {
+                        const toolsSection = document.createElement('div');
+                        toolsSection.className = 'skills-category';
+                        toolsSection.innerHTML = `
+                            <h4 class="category-title">Tools & Technologies</h4>
+                            <div class="tools-grid">
+                                ${user.skills.tools.map(tool => `
+                                    <div class="tool-item">
+                                        <div class="tool-icon">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2" />
+                                            </svg>
+                                        </div>
+                                        <span class="tool-name">${tool.name}</span>
+                                        <span class="tool-level">${tool.level}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        skillsContainer.appendChild(toolsSection);
+                    }
+                } else if (skillsContainer) {
+                    // Default empty state
+                    skillsContainer.innerHTML = `
+                        <div class="skills-category">
+                            <h4 class="category-title">Technical Skills</h4>
+                            <p class="text-muted">No technical skills added yet.</p>
+                        </div>
+                        <div class="skills-category">
+                            <h4 class="category-title">Soft Skills</h4>
+                            <p class="text-muted">No soft skills added yet.</p>
+                        </div>
+                        <div class="skills-category">
+                            <h4 class="category-title">Tools & Technologies</h4>
+                            <p class="text-muted">No tools added yet.</p>
+                        </div>
+                    `;
+                }
 
                 // 3. Automate Modal Inputs (Pre-filling for the user)
                 const nameInput = document.getElementById('bi-name');
                 const emailInput = document.getElementById('bi-email');
+                const cityInput = document.getElementById('bi-city');
+                const phoneInput = document.getElementById('bi-phone');
 
                 if (nameInput) nameInput.value = user.name || "";
                 if (emailInput) emailInput.value = user.email || "";
+                if (cityInput) cityInput.value = user.city || "";
+                if (phoneInput) phoneInput.value = user.phone || "";
+                
+                // Pre-fill resume modal
+                const resumeUrlInput = document.getElementById('resume-url');
+                if (resumeUrlInput) resumeUrlInput.value = user.resumeUrl || "";
                 
                 console.log("Profile successfully automated for:", user.email);
             }
@@ -640,6 +813,166 @@
             }
             // Redirect to login page
             window.location.href = '../login/login.html';
+        });
+
+        // Menu button functionality - go back to jobs dashboard
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            window.location.href = '../index.html';
+        });
+
+        // Remove resume functionality
+        document.getElementById('remove-resume-btn').addEventListener('click', function() {
+            if (typeof window.StorageManager !== 'undefined') {
+                const user = window.StorageManager.getCurrentUser();
+                if (user) {
+                    const updatedUser = { ...user };
+                    delete updatedUser.resumeFile;
+                    delete updatedUser.resumeUrl;
+                    
+                    if (window.StorageManager.updateCurrentUser) {
+                        window.StorageManager.updateCurrentUser(updatedUser);
+                    }
+                    
+                    // Update display
+                    document.getElementById('display-resume-file').textContent = 'No resume uploaded';
+                    this.style.display = 'none';
+                }
+            }
+        });
+
+        // Handle Basic Info Form Submission
+        document.getElementById('basicInfoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const updatedUser = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                city: formData.get('city'),
+                phone: formData.get('phone')
+            };
+
+            // Update user data in StorageManager
+            if (typeof window.StorageManager !== 'undefined') {
+                // Assuming StorageManager has an updateCurrentUser method
+                if (window.StorageManager.updateCurrentUser) {
+                    window.StorageManager.updateCurrentUser(updatedUser);
+                }
+                // Refresh the display with new data
+                const user = window.StorageManager.getCurrentUser();
+                if (user) {
+                    document.getElementById('display-name').textContent = user.name || "User";
+                    document.getElementById('display-email').textContent = user.email || "";
+                    document.getElementById('display-city').textContent = user.city || "Manila, PH";
+                    document.getElementById('display-phone').textContent = user.phone || "+63 123 456 7890";
+                    document.querySelector('.user-name').textContent = user.name || user.email.split('@')[0];
+                }
+            }
+
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editBasicInfoModal'));
+            modal.hide();
+        });
+
+        // Handle Resume Form Submission
+        document.getElementById('resumeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const resumeFile = formData.get('resumeFile');
+            const resumeUrl = formData.get('resumeUrl');
+
+            // Update resume data in StorageManager
+            if (typeof window.StorageManager !== 'undefined') {
+                const user = window.StorageManager.getCurrentUser();
+                if (user) {
+                    const updatedUser = { ...user };
+                    if (resumeFile && resumeFile.size > 0) {
+                        // Handle file upload - in a real app, you'd upload to server
+                        updatedUser.resumeFile = resumeFile.name;
+                    }
+                    if (resumeUrl) {
+                        updatedUser.resumeUrl = resumeUrl;
+                    }
+                    
+                    if (window.StorageManager.updateCurrentUser) {
+                        window.StorageManager.updateCurrentUser(updatedUser);
+                    }
+                    
+                    // Update display
+                    const fileNameSpan = document.querySelector('.file-name');
+                    if (fileNameSpan) {
+                        fileNameSpan.textContent = resumeFile ? resumeFile.name : (resumeUrl ? 'Resume URL set' : '');
+                    }
+                }
+            }
+
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editResumeModal'));
+            modal.hide();
+        });
+
+        // Handle Skill Form Submission
+        document.getElementById('skillForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const skillType = formData.get('skillType');
+            const skillName = formData.get('skillName');
+            const skillLevel = formData.get('skillLevel') || formData.get('skillPercentage');
+
+            // Update skills data in StorageManager
+            if (typeof window.StorageManager !== 'undefined') {
+                const user = window.StorageManager.getCurrentUser();
+                if (user) {
+                    const updatedUser = { ...user };
+                    if (!updatedUser.skills) {
+                        updatedUser.skills = { technical: [], soft: [], tools: [] };
+                    }
+                    
+                    const newSkill = { name: skillName, level: skillLevel };
+                    
+                    if (skillType === 'technical') {
+                        updatedUser.skills.technical = updatedUser.skills.technical || [];
+                        updatedUser.skills.technical.push(newSkill);
+                    } else if (skillType === 'soft') {
+                        updatedUser.skills.soft = updatedUser.skills.soft || [];
+                        updatedUser.skills.soft.push(skillName); // Soft skills are just tags
+                    } else if (skillType === 'tool') {
+                        updatedUser.skills.tools = updatedUser.skills.tools || [];
+                        updatedUser.skills.tools.push(newSkill);
+                    }
+                    
+                    if (window.StorageManager.updateCurrentUser) {
+                        window.StorageManager.updateCurrentUser(updatedUser);
+                    }
+                    
+                    // Refresh the page to show new skills
+                    location.reload();
+                }
+            }
+
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addSkillModal'));
+            modal.hide();
+        });
+
+        // Handle skill type change to show/hide level inputs
+        document.getElementById('skill-type').addEventListener('change', function() {
+            const skillType = this.value;
+            const levelContainer = document.getElementById('skill-level-container');
+            const percentageContainer = document.getElementById('skill-percentage-container');
+            
+            if (skillType === 'technical') {
+                levelContainer.style.display = 'none';
+                percentageContainer.style.display = 'block';
+            } else if (skillType === 'tool') {
+                levelContainer.style.display = 'block';
+                percentageContainer.style.display = 'none';
+            } else {
+                levelContainer.style.display = 'none';
+                percentageContainer.style.display = 'none';
+            }
         });
     });
   </script>
