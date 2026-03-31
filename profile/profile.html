@@ -546,117 +546,6 @@
     </div>
   </div>
 
-  <!-- Edit Basic Info Modal -->
-  <div class="modal fade" id="editBasicInfoModal" tabindex="-1" aria-labelledby="editBasicInfoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editBasicInfoLabel">Edit Basic Information</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form id="basicInfoForm" class="needs-validation" novalidate>
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="bi-name" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="bi-name" name="name" required />
-            </div>
-            <div class="mb-3">
-              <label for="bi-email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="bi-email" name="email" required />
-            </div>
-            <div class="mb-3">
-              <label for="bi-city" class="form-label">City</label>
-              <input type="text" class="form-control" id="bi-city" name="city" />
-            </div>
-            <div class="mb-3">
-              <label for="bi-phone" class="form-label">Contact Number</label>
-              <input type="tel" class="form-control" id="bi-phone" name="phone" />
-            </div>
-          </div>
-          <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="submit" class="btn btn-primary">Save Changes</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit Resume Modal -->
-  <div class="modal fade" id="editResumeModal" tabindex="-1" aria-labelledby="editResumeLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editResumeLabel">Edit Resume</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form id="resumeForm" class="needs-validation" novalidate>
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="resume-file" class="form-label">Resume File</label>
-              <input type="file" class="form-control" id="resume-file" name="resumeFile" accept=".doc,.docx,.pdf,.rtf" />
-              <div class="form-text">Acceptable file types: DOC, DOCX, PDF, RTF. Max file size: 10 MB.</div>
-            </div>
-            <div class="mb-3">
-              <label for="resume-url" class="form-label">Resume URL (Optional)</label>
-              <input type="url" class="form-control" id="resume-url" name="resumeUrl" placeholder="https://example.com/resume.pdf" />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Add Skill Modal -->
-  <div class="modal fade" id="addSkillModal" tabindex="-1" aria-labelledby="addSkillLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addSkillLabel">Add New Skill</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form id="skillForm" class="needs-validation" novalidate>
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="skill-type" class="form-label">Skill Type</label>
-              <select class="form-control" id="skill-type" name="skillType" required>
-                <option value="">Select skill type</option>
-                <option value="technical">Technical Skill</option>
-                <option value="soft">Soft Skill</option>
-                <option value="tool">Tool & Technology</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="skill-name" class="form-label">Skill Name</label>
-              <input type="text" class="form-control" id="skill-name" name="skillName" required />
-            </div>
-            <div class="mb-3" id="skill-level-container">
-              <label for="skill-level" class="form-label">Skill Level</label>
-              <select class="form-control" id="skill-level" name="skillLevel">
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-                <option value="expert">Expert</option>
-              </select>
-            </div>
-            <div class="mb-3" id="skill-percentage-container" style="display: none;">
-              <label for="skill-percentage" class="form-label">Skill Level (%)</label>
-              <input type="number" class="form-control" id="skill-percentage" name="skillPercentage" min="0" max="100" />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add Skill</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/core/utils.js"></script>
@@ -973,6 +862,353 @@
                 levelContainer.style.display = 'none';
                 percentageContainer.style.display = 'none';
             }
+        });
+
+        // Language button functionality
+        document.querySelector('.lang-btn').addEventListener('click', function() {
+            // Create or toggle language dropdown
+            let langDropdown = document.getElementById('language-dropdown');
+            if (!langDropdown) {
+                langDropdown = document.createElement('div');
+                langDropdown.id = 'language-dropdown';
+                langDropdown.className = 'dropdown-menu show position-absolute';
+                langDropdown.style.cssText = 'right: 0; top: 100%; z-index: 1050; min-width: 200px;';
+                langDropdown.innerHTML = `
+                    <div class="dropdown-header p-3 border-bottom">
+                        <h6 class="m-0">Select Language</h6>
+                    </div>
+                    <div class="p-2">
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="EN">
+                            <span class="flag-icon me-2">🇺🇸</span>
+                            <span>English</span>
+                            <small class="text-muted ms-auto">EN</small>
+                        </button>
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="PH">
+                            <span class="flag-icon me-2">🇵🇭</span>
+                            <span>Filipino</span>
+                            <small class="text-muted ms-auto">PH</small>
+                        </button>
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="ES">
+                            <span class="flag-icon me-2">🇪🇸</span>
+                            <span>Español</span>
+                            <small class="text-muted ms-auto">ES</small>
+                        </button>
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="FR">
+                            <span class="flag-icon me-2">🇫🇷</span>
+                            <span>Français</span>
+                            <small class="text-muted ms-auto">FR</small>
+                        </button>
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="DE">
+                            <span class="flag-icon me-2">🇩🇪</span>
+                            <span>Deutsch</span>
+                            <small class="text-muted ms-auto">DE</small>
+                        </button>
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="JA">
+                            <span class="flag-icon me-2">🇯🇵</span>
+                            <span>日本語</span>
+                            <small class="text-muted ms-auto">JA</small>
+                        </button>
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="KO">
+                            <span class="flag-icon me-2">🇰🇷</span>
+                            <span>한국어</span>
+                            <small class="text-muted ms-auto">KO</small>
+                        </button>
+                        <button class="dropdown-item d-flex align-items-center lang-option" data-lang="ZH">
+                            <span class="flag-icon me-2">🇨🇳</span>
+                            <span>中文</span>
+                            <small class="text-muted ms-auto">ZH</small>
+                        </button>
+                    </div>
+                `;
+                this.parentNode.style.position = 'relative';
+                this.parentNode.appendChild(langDropdown);
+                
+                // Add click handlers for language options
+                langDropdown.querySelectorAll('.lang-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        const selectedLang = this.getAttribute('data-lang');
+                        const langText = this.querySelector('small').textContent;
+                        
+                        // Update button text
+                        document.querySelector('.lang-btn').textContent = langText;
+                        
+                        // Store language preference
+                        localStorage.setItem('preferredLanguage', selectedLang);
+                        
+                        // Update page text based on language
+                        updatePageLanguage(selectedLang);
+                        
+                        // Show confirmation toast
+                        showLanguageToast(selectedLang);
+                        
+                        // Close dropdown
+                        langDropdown.classList.remove('show');
+                    });
+                });
+            } else {
+                langDropdown.classList.toggle('show');
+            }
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!langDropdown.contains(e.target) && e.target !== document.querySelector('.lang-btn')) {
+                    langDropdown.classList.remove('show');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+        });
+
+        // Function to update page language
+        function updatePageLanguage(lang) {
+            const translations = {
+                'EN': {
+                    'Profile': 'Profile',
+                    'Basic Information': 'Basic Information',
+                    'Resume': 'Resume',
+                    'Skills': 'Skills',
+                    'Work Experience': 'Work Experience',
+                    'Education': 'Education'
+                },
+                'PH': {
+                    'Profile': 'Profile',
+                    'Basic Information': 'Pangunahing Impormasyon',
+                    'Resume': 'Resume',
+                    'Skills': 'Mga Kasanayan',
+                    'Work Experience': 'Karanasan sa Trabaho',
+                    'Education': 'Edukasyon'
+                },
+                'ES': {
+                    'Profile': 'Perfil',
+                    'Basic Information': 'Información Básica',
+                    'Resume': 'Currículum',
+                    'Skills': 'Habilidades',
+                    'Work Experience': 'Experiencia Laboral',
+                    'Education': 'Educación'
+                },
+                'FR': {
+                    'Profile': 'Profil',
+                    'Basic Information': 'Informations de Base',
+                    'Resume': 'CV',
+                    'Skills': 'Compétences',
+                    'Work Experience': 'Expérience Professionnelle',
+                    'Education': 'Éducation'
+                },
+                'DE': {
+                    'Profile': 'Profil',
+                    'Basic Information': 'Grundinformationen',
+                    'Resume': 'Lebenslauf',
+                    'Skills': 'Fähigkeiten',
+                    'Work Experience': 'Berufserfahrung',
+                    'Education': 'Bildung'
+                },
+                'JA': {
+                    'Profile': 'プロフィール',
+                    'Basic Information': '基本情報',
+                    'Resume': '履歴書',
+                    'Skills': 'スキル',
+                    'Work Experience': '職歴',
+                    'Education': '学歴'
+                },
+                'KO': {
+                    'Profile': '프로필',
+                    'Basic Information': '기본 정보',
+                    'Resume': '이력서',
+                    'Skills': '기술',
+                    'Work Experience': '직장 경험',
+                    'Education': '교육'
+                },
+                'ZH': {
+                    'Profile': '个人资料',
+                    'Basic Information': '基本信息',
+                    'Resume': '简历',
+                    'Skills': '技能',
+                    'Work Experience': '工作经验',
+                    'Education': '教育'
+                }
+            };
+            
+            const trans = translations[lang] || translations['EN'];
+            
+            // Update page title
+            const pageTitle = document.querySelector('.page-title');
+            if (pageTitle) pageTitle.textContent = trans['Profile'];
+            
+            // Update section titles
+            document.querySelectorAll('.section-title').forEach(title => {
+                const span = title.querySelector('span.expand-icon');
+                const text = title.textContent.replace(/[▼▶]/g, '').trim();
+                if (trans[text]) {
+                    title.innerHTML = `<span class="expand-icon">${span ? span.textContent : '▼'}</span>${trans[text]}`;
+                }
+            });
+        }
+
+        // Function to show language change toast
+        function showLanguageToast(lang) {
+            const langNames = {
+                'EN': 'English',
+                'PH': 'Filipino', 
+                'ES': 'Español',
+                'FR': 'Français',
+                'DE': 'Deutsch',
+                'JA': '日本語',
+                'KO': '한국어',
+                'ZH': '中文'
+            };
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast align-items-center text-white bg-success border-0 position-fixed top-0 end-0 m-3';
+            toast.setAttribute('role', 'alert');
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">Language changed to ${langNames[lang] || lang}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+            
+            setTimeout(() => document.body.removeChild(toast), 3000);
+        }
+
+        // Mail button functionality
+        document.querySelector('.mail-btn').addEventListener('click', function() {
+            // Create or toggle mail dropdown
+            let mailDropdown = document.getElementById('mail-dropdown');
+            if (!mailDropdown) {
+                mailDropdown = document.createElement('div');
+                mailDropdown.id = 'mail-dropdown';
+                mailDropdown.className = 'dropdown-menu show position-absolute';
+                mailDropdown.style.cssText = 'right: 0; top: 100%; z-index: 1050; min-width: 300px;';
+                mailDropdown.innerHTML = `
+                    <div class="dropdown-header p-3 border-bottom">
+                        <h6 class="m-0">Messages</h6>
+                    </div>
+                    <div class="p-2">
+                        <div class="mail-item p-2 border-bottom">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-circle bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 14px;">JD</div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-bold">John Doe</div>
+                                    <div class="text-muted small">New job opportunity available...</div>
+                                </div>
+                                <small class="text-muted">2m</small>
+                            </div>
+                        </div>
+                        <div class="mail-item p-2 border-bottom">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-circle bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 32px; height: 32px; font-size: 14px;">SM</div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-bold">Sarah Miller</div>
+                                    <div class="text-muted small">Your application has been reviewed...</div>
+                                </div>
+                                <small class="text-muted">1h</small>
+                            </div>
+                        </div>
+                        <div class="text-center p-2">
+                            <a href="#" class="text-decoration-none">View all messages</a>
+                        </div>
+                    </div>
+                `;
+                this.parentNode.style.position = 'relative';
+                this.parentNode.appendChild(mailDropdown);
+            } else {
+                mailDropdown.classList.toggle('show');
+            }
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!mailDropdown.contains(e.target) && e.target !== document.querySelector('.mail-btn')) {
+                    mailDropdown.classList.remove('show');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+        });
+
+        // Notification button functionality
+        document.querySelector('.notification-btn').addEventListener('click', function() {
+            // Create or toggle notifications dropdown
+            let notifDropdown = document.getElementById('notification-dropdown');
+            if (!notifDropdown) {
+                notifDropdown = document.createElement('div');
+                notifDropdown.id = 'notification-dropdown';
+                notifDropdown.className = 'dropdown-menu show position-absolute';
+                notifDropdown.style.cssText = 'right: 0; top: 100%; z-index: 1050; min-width: 350px;';
+                notifDropdown.innerHTML = `
+                    <div class="dropdown-header p-3 border-bottom">
+                        <h6 class="m-0">Notifications</h6>
+                    </div>
+                    <div class="p-2">
+                        <div class="notification-item p-2 border-bottom unread">
+                            <div class="d-flex">
+                                <div class="notification-icon bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-bold">Profile Viewed</div>
+                                    <div class="text-muted small">Your profile was viewed by TechCorp Solutions</div>
+                                    <small class="text-muted">5 minutes ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-item p-2 border-bottom">
+                            <div class="d-flex">
+                                <div class="notification-icon bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2"/>
+                                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-bold">Application Update</div>
+                                    <div class="text-muted small">Your application status has been updated</div>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-item p-2">
+                            <div class="d-flex">
+                                <div class="notification-icon bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                        <path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-bold">New Message</div>
+                                    <div class="text-muted small">You have a new message from HR</div>
+                                    <small class="text-muted">1 day ago</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center p-2 border-top mt-2">
+                            <a href="#" class="text-decoration-none">View all notifications</a>
+                        </div>
+                    </div>
+                `;
+                this.parentNode.style.position = 'relative';
+                this.parentNode.appendChild(notifDropdown);
+                
+                // Update badge count
+                const badge = this.querySelector('.notification-badge');
+                if (badge && badge.textContent !== '0') {
+                    badge.textContent = '0';
+                    badge.style.display = 'none';
+                }
+            } else {
+                notifDropdown.classList.toggle('show');
+            }
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!notifDropdown.contains(e.target) && e.target !== document.querySelector('.notification-btn')) {
+                    notifDropdown.classList.remove('show');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
         });
     });
   </script>
