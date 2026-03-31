@@ -49,7 +49,9 @@
           <span class="notification-badge">1</span>
         </button>
         <div class="user-profile">
-          <span class="user-name">Loading...</span> </div>
+          <span class="user-name">Loading...</span>
+        </div>
+        <button class="btn btn-outline-danger btn-sm" id="logout-btn">Logout</button>
       </div>
     </nav>
   </header>
@@ -627,6 +629,18 @@
         } else {
             console.error("StorageManager not found. Make sure storage.js is loaded.");
         }
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            if (typeof window.StorageManager !== 'undefined') {
+                // Clear the current user session
+                window.StorageManager.logout && window.StorageManager.logout();
+                // Alternatively, if no logout method, clear current user
+                // window.StorageManager.setCurrentUser(null);
+            }
+            // Redirect to login page
+            window.location.href = '../login/login.html';
+        });
     });
   </script>
 </body>
