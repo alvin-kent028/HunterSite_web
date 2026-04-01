@@ -1,0 +1,234 @@
+[debug] [2026-04-01T14:09:33.225Z] ----------------------------------------------------------------------
+[debug] [2026-04-01T14:09:33.231Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2026-04-01T14:09:33.232Z] CLI Version:   15.12.0
+[debug] [2026-04-01T14:09:33.232Z] Platform:      win32
+[debug] [2026-04-01T14:09:33.232Z] Node Version:  v24.14.0
+[debug] [2026-04-01T14:09:33.233Z] Time:          Wed Apr 01 2026 22:09:33 GMT+0800 (Taiwan Standard Time)
+[debug] [2026-04-01T14:09:33.233Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-01T14:09:37.123Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-01T14:09:37.123Z] > authorizing via signed-in user (lr.fvillarasa@mmdc.mcl.edu.ph)
+[debug] [2026-04-01T14:09:37.124Z] [iam] checking project huntersite-91dee for permissions ["cloudsql.databases.create","cloudsql.databases.update","cloudsql.instances.connect","cloudsql.instances.create","cloudsql.instances.get","cloudsql.instances.list","cloudsql.instances.update","cloudsql.users.create","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update","firebasedataconnect.connectors.create","firebasedataconnect.connectors.delete","firebasedataconnect.connectors.list","firebasedataconnect.connectors.update","firebasedataconnect.operations.get","firebasedataconnect.schemas.create","firebasedataconnect.schemas.delete","firebasedataconnect.schemas.list","firebasedataconnect.schemas.update","firebasedataconnect.services.create","firebasedataconnect.services.delete","firebasedataconnect.services.list","firebasedataconnect.services.update"]
+[debug] [2026-04-01T14:09:37.126Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:37.127Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:37.129Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/huntersite-91dee:testIamPermissions [none]
+[debug] [2026-04-01T14:09:37.129Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/huntersite-91dee:testIamPermissions  x-goog-user-project=huntersite-91dee
+[debug] [2026-04-01T14:09:37.129Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/huntersite-91dee:testIamPermissions {"permissions":["cloudsql.databases.create","cloudsql.databases.update","cloudsql.instances.connect","cloudsql.instances.create","cloudsql.instances.get","cloudsql.instances.list","cloudsql.instances.update","cloudsql.users.create","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update","firebasedataconnect.connectors.create","firebasedataconnect.connectors.delete","firebasedataconnect.connectors.list","firebasedataconnect.connectors.update","firebasedataconnect.operations.get","firebasedataconnect.schemas.create","firebasedataconnect.schemas.delete","firebasedataconnect.schemas.list","firebasedataconnect.schemas.update","firebasedataconnect.services.create","firebasedataconnect.services.delete","firebasedataconnect.services.list","firebasedataconnect.services.update"]}
+[debug] [2026-04-01T14:09:38.625Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/huntersite-91dee:testIamPermissions 200
+[debug] [2026-04-01T14:09:38.626Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/huntersite-91dee:testIamPermissions {"permissions":["cloudsql.databases.create","cloudsql.databases.update","cloudsql.instances.connect","cloudsql.instances.create","cloudsql.instances.get","cloudsql.instances.list","cloudsql.instances.update","cloudsql.users.create","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebase.projects.update","firebaseauth.configs.update","firebasedataconnect.connectors.create","firebasedataconnect.connectors.delete","firebasedataconnect.connectors.list","firebasedataconnect.connectors.update","firebasedataconnect.operations.get","firebasedataconnect.schemas.create","firebasedataconnect.schemas.delete","firebasedataconnect.schemas.list","firebasedataconnect.schemas.update","firebasedataconnect.services.create","firebasedataconnect.services.delete","firebasedataconnect.services.list","firebasedataconnect.services.update"]}
+[info] 
+[info] === Deploying to 'huntersite-91dee'...
+[info] 
+[info] i  deploying firestore, dataconnect, auth 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-04-01T14:09:38.698Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:38.698Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:38.698Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default) [none]
+[debug] [2026-04-01T14:09:40.542Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default) 200
+[debug] [2026-04-01T14:09:40.542Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default) {"name":"projects/huntersite-91dee/databases/(default)","uid":"e6bec8f1-7814-4231-bc4a-0cc8fe791e74","createTime":"2026-03-31T01:20:08.620421Z","updateTime":"2026-03-31T01:20:08.620421Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-01T13:09:34.584786Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IKHbqZHqzJMDMLjc+fzjy5MD"}
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-04-01T14:09:40.545Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:40.545Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:40.546Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee:test [none]
+[debug] [2026-04-01T14:09:40.546Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee:test [omitted]
+[debug] [2026-04-01T14:09:42.436Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee:test 200
+[debug] [2026-04-01T14:09:42.436Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2026-04-01T14:09:42.491Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:42.491Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:42.491Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/huntersite-91dee/billingInfo [none]
+[debug] [2026-04-01T14:09:44.045Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/huntersite-91dee/billingInfo 200
+[debug] [2026-04-01T14:09:44.045Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/huntersite-91dee/billingInfo {"name":"projects/huntersite-91dee/billingInfo","projectId":"huntersite-91dee","billingAccountName":"","billingEnabled":false}
+[debug] [2026-04-01T14:09:44.045Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:44.045Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:44.046Z] >>> [apiv2][query] GET https://mobilesdk-pa.googleapis.com/v1/accessmanagement/tos:getStatus [none]
+[debug] [2026-04-01T14:09:44.711Z] <<< [apiv2][status] GET https://mobilesdk-pa.googleapis.com/v1/accessmanagement/tos:getStatus 200
+[debug] [2026-04-01T14:09:44.711Z] <<< [apiv2][body] GET https://mobilesdk-pa.googleapis.com/v1/accessmanagement/tos:getStatus {"overallStatus":"ACCEPTED","uTosStatus":{"tos":{"id":"firebase","tosId":"FIREBASE_UNIVERSAL"},"status":"ACCEPTED","acceptedVersion":7},"childTosStatus":[{"tos":{"id":"cloud","tosId":"CLOUD_PLATFORM"},"status":"ACCEPTED","acceptedVersion":39},{"tos":{"id":"firebase_b2b","tosId":"FIREBASE_B2B"},"status":"ACCEPTED","acceptedVersion":1},{"tos":{"id":"universal","tosId":"GOOGLE_APIS"},"status":"ACCEPTED","acceptedVersion":6}],"termsUrl":"https://firebase.google.com/terms","perServiceStatus":[{"tosId":"APP_CHECK","serviceStatus":{"tos":{"id":"app_check","tosId":"APP_CHECK"},"status":"ACCEPTED","acceptedVersion":3}},{"tosId":"APP_HOSTING_TOS","serviceStatus":{"tos":{"id":"app_hosting","tosId":"APP_HOSTING_TOS"},"status":"ACCEPTED","acceptedVersion":3}},{"tosId":"FIREBASE_DATA_CONNECT","serviceStatus":{"tos":{"id":"data_connect","tosId":"FIREBASE_DATA_CONNECT"},"status":"ACCEPTED","acceptedVersion":3}},{"tosId":"CORE_APPS","serviceStatus":{"tos":{"id":"core_apps","tosId":"CORE_APPS"},"status":"ACCEPTED","acceptedVersion":1}},{"tosId":"VERTEX_AI_IN_FIREBASE","serviceStatus":{"tos":{"id":"vertex_ai_in_firebase","tosId":"VERTEX_AI_IN_FIREBASE"},"status":"ACCEPTED","acceptedVersion":2}},{"tosId":"FIREBASE_CRASHLYTICS_APP_DISTRIBUTION","serviceStatus":{"tos":{"id":"firebase_crashlytics_app_distribution","tosId":"FIREBASE_CRASHLYTICS_APP_DISTRIBUTION"},"status":"ACCEPTED","acceptedVersion":4}},{"tosId":"GENERATIVE_LANGUAGE","serviceStatus":{"tos":{"id":"generative-language-api","tosId":"GENERATIVE_LANGUAGE"},"status":"NEVER_ACCEPTED","acceptedVersion":3}}]}
+[debug] [2026-04-01T14:09:44.713Z] defaultcredentials: writing to file C:\Users\Administrator\AppData\Roaming\firebase\lr_fvillarasa_mmdc.mcl.edu.ph_application_default_credentials.json
+[debug] [2026-04-01T14:09:47.321Z] I0401 22:09:47.290733   19688 control.go:100] [projects/emulator/locations/emulator/services/huntersiteweb a35d] UpdateResources(): done
+Main schema: sources: schema\schema.gql [914B] 
+Connector "example": sources: 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0401 22:09:47.290733   19688 control.go:100] [projects/emulator/locations/emulator/services/huntersiteweb a35d] UpdateResources(): done\nMain schema: sources: schema\\schema.gql [914B] \nConnector \"example\": sources: \n"}}
+[info] i  dataconnect: Successfully compiled schema and connectors 
+[debug] [2026-04-01T14:09:47.322Z] {
+  "serviceInfos": [
+    {
+      "serviceName": "projects/huntersite-91dee/locations/us-west1/services/huntersiteweb",
+      "sourceDirectory": "C:\\Users\\Administrator\\Documents\\HunterSite_web\\dataconnect",
+      "schemas": [
+        {
+          "name": "projects/huntersite-91dee/locations/us-west1/services/huntersiteweb/schemas/main",
+          "datasources": [
+            {
+              "postgresql": {
+                "database": "fdcdb",
+                "cloudSql": {
+                  "instance": "projects/huntersite-91dee/locations/us-west1/instances/huntersiteweb-fdc"
+                }
+              }
+            }
+          ],
+          "source": {
+            "files": [
+              {
+                "path": "schema.gql",
+                "content": "type User @table {\n  email: String!\n  passwordHash: String!\n  userType: String!\n  createdAt: Timestamp!\n  displayName: String\n  profilePictureUrl: String\n}\n\ntype JobSeekerProfile @table {\n  user: User!\n  firstName: String!\n  lastName: String!\n  headline: String!\n  resumeUrl: String\n  contactPhone: String\n  experienceYears: Int\n  education: String\n  skills: [String]\n}\n\ntype Company @table {\n  user: User!\n  name: String!\n  industry: String!\n  description: String\n  websiteUrl: String\n  logoUrl: String\n}\n\ntype JobPosting @table {\n  company: Company!\n  recruiter: User!\n  title: String!\n  description: String!\n  location: String!\n  employmentType: String!\n  postedAt: Timestamp!\n  salaryRange: String\n  requirements: [String]\n  responsibilities: [String]\n}\n\ntype Application @table {\n  jobSeekerProfile: JobSeekerProfile!\n  jobPosting: JobPosting!\n  appliedAt: Timestamp!\n  status: String!\n  coverLetter: String\n}"
+              }
+            ]
+          }
+        }
+      ],
+      "dataConnectYaml": {
+        "specVersion": "v1",
+        "serviceId": "huntersiteweb",
+        "location": "us-west1",
+        "schemas": [
+          {
+            "source": "./schema",
+            "datasource": {
+              "postgresql": {
+                "database": "fdcdb",
+                "cloudSql": {
+                  "instanceId": "huntersiteweb-fdc"
+                }
+              }
+            }
+          }
+        ],
+        "connectorDirs": [
+          "./example"
+        ]
+      },
+      "connectorInfo": [
+        {
+          "directory": "C:\\Users\\Administrator\\Documents\\HunterSite_web\\dataconnect\\example",
+          "connectorYaml": {
+            "connectorId": "example",
+            "generate": {
+              "javascriptSdk": [
+                {
+                  "outputDir": "..\\..\\src\\dataconnect-generated",
+                  "package": "@dataconnect/generated",
+                  "packageJsonDir": "..\\..",
+                  "react": false,
+                  "angular": false
+                }
+              ]
+            }
+          },
+          "connector": {
+            "name": "projects/huntersite-91dee/locations/us-west1/services/huntersiteweb/connectors/example",
+            "source": {
+              "files": []
+            }
+          }
+        }
+      ],
+      "deploymentMetadata": {
+        "primaryDataSource": {
+          "postgres": {
+            "requiredExtensions": [
+              "uuid-ossp"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "deployStats": {
+    "numBuildErrors": 0,
+    "numBuildWarnings": {},
+    "numServiceCreated": 0,
+    "numServiceDeleted": 0,
+    "numSchemaMigrated": 0,
+    "numConnectorUpdatedBeforeSchema": 0,
+    "numConnectorUpdatedAfterSchema": 0,
+    "numSchemaSkippedDueToPendingCreate": 0,
+    "numSchemaSqlDiffs": 0,
+    "numSchemaInvalidConnectors": 0,
+    "missingBilling": true
+  }
+}
+[debug] [2026-04-01T14:09:47.323Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:47.323Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:47.324Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/huntersite-91dee/webApps pageSize=100
+[debug] [2026-04-01T14:09:47.992Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/huntersite-91dee/webApps 200
+[debug] [2026-04-01T14:09:47.992Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/huntersite-91dee/webApps {"apps":[{"name":"projects/huntersite-91dee/webApps/1:37022475446:web:124c95728d99fe72b3f217","appId":"1:37022475446:web:124c95728d99fe72b3f217","displayName":"HunterSite Website","projectId":"huntersite-91dee","webId":"ZTYxOWNmY2YtOGVlNy00N2NiLWE1Y2YtNWQzZGQyMjNhNmE1","apiKeyId":"76f6df51-1f90-4caa-959d-acd14cb99b0c","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_9b79ff51-80f2-45d0-8ba6-8e2e0b402b59"},{"name":"projects/huntersite-91dee/webApps/1:37022475446:web:455c0413981b18a1b3f217","appId":"1:37022475446:web:455c0413981b18a1b3f217","displayName":"Huntersite","projectId":"huntersite-91dee","webId":"NzRkYWMyN2EtODdmOS00YmJjLWJmZTUtYTA3YzBjMWQ3NTBl","apiKeyId":"76f6df51-1f90-4caa-959d-acd14cb99b0c","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z","etag":"1_951652de-114a-40bd-bf02-671e04debb4f"}]}
+[debug] [2026-04-01T14:09:47.994Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:47.994Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:47.994Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/releases pageSize=10&pageToken=
+[debug] [2026-04-01T14:09:49.755Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/releases 200
+[debug] [2026-04-01T14:09:49.755Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/releases {"releases":[{"name":"projects/huntersite-91dee/releases/cloud.firestore","rulesetName":"projects/huntersite-91dee/rulesets/43082c95-c7ef-4752-ad83-68a91ea568fb","createTime":"2026-03-31T01:20:15.632140Z","updateTime":"2026-04-01T05:27:51.061843Z"}]}
+[debug] [2026-04-01T14:09:49.756Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:49.756Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:49.756Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/rulesets/43082c95-c7ef-4752-ad83-68a91ea568fb [none]
+[debug] [2026-04-01T14:09:50.143Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/rulesets/43082c95-c7ef-4752-ad83-68a91ea568fb 200
+[debug] [2026-04-01T14:09:50.144Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/rulesets/43082c95-c7ef-4752-ad83-68a91ea568fb [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-04-01T14:09:50.146Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:50.146Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:50.146Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/rulesets [none]
+[debug] [2026-04-01T14:09:50.147Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/rulesets [omitted]
+[debug] [2026-04-01T14:09:50.786Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/rulesets 200
+[debug] [2026-04-01T14:09:50.786Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/huntersite-91dee/rulesets {"name":"projects/huntersite-91dee/rulesets/be1ce089-3e9b-4d7d-9099-260951987991","source":{"files":[{"content":"rules_version = '2';\n\nservice cloud.firestore {\n  match /databases/{database}/documents {\n\n    // This rule allows anyone with your Firestore database reference to view, edit,\n    // and delete all data in your Firestore database. It is useful for getting\n    // started, but it is configured to expire after 30 days because it\n    // leaves your app open to attackers. At that time, all client\n    // requests to your Firestore database will be denied.\n    //\n    // Make sure to write security rules for your app before that time, or else\n    // all client requests to your Firestore database will be denied until you Update\n    // your rules\n    match /{document=**} {\n      allow read, write: if request.time < timestamp.date(2026, 4, 30);\n    }\n  }\n}","name":"firestore.rules"}]},"createTime":"2026-04-01T14:09:45.053631Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-04-01T14:09:50.787Z] [rules] created ruleset projects/huntersite-91dee/rulesets/be1ce089-3e9b-4d7d-9099-260951987991
+[info] i  firestore: deploying indexes... 
+[debug] [2026-04-01T14:09:50.794Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:50.794Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:50.794Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2026-04-01T14:09:52.352Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2026-04-01T14:09:52.352Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2026-04-01T14:09:52.353Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:52.353Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:52.353Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2026-04-01T14:09:52.696Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2026-04-01T14:09:52.696Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/huntersite-91dee/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[debug] [2026-04-01T14:09:52.697Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:52.697Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:52.697Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default) [none]
+[debug] [2026-04-01T14:09:53.036Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default) 200
+[debug] [2026-04-01T14:09:53.036Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/huntersite-91dee/databases/(default) {"name":"projects/huntersite-91dee/databases/(default)","uid":"e6bec8f1-7814-4231-bc4a-0cc8fe791e74","createTime":"2026-03-31T01:20:08.620421Z","updateTime":"2026-03-31T01:20:08.620421Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-01T13:09:47.364381Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IO3XtZfqzJMDMLjc+fzjy5MD"}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[debug] [2026-04-01T14:09:53.037Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:53.038Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:53.038Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/huntersite-91dee/locations/-/services [none]
+[debug] [2026-04-01T14:09:54.970Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/huntersite-91dee/locations/-/services 200
+[debug] [2026-04-01T14:09:54.971Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/huntersite-91dee/locations/-/services {"services":[{"name":"projects/huntersite-91dee/locations/us-west1/services/huntersiteweb","createTime":"2026-03-31T12:20:05.618544182Z","updateTime":"2026-03-31T12:21:30.857237825Z","uid":"41f976fa-9750-45fa-99e6-9fc08c6f5eaa","reconciling":false,"etag":"XD2oELo3_ARTs0W8BtQTnxroCh7fJLGV9HuZhercPhA"}]}
+[info] i  dataconnect: Checking for CloudSQL resources... 
+[debug] [2026-04-01T14:09:54.972Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:54.973Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:54.973Z] >>> [apiv2][query] GET https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc [none]
+[debug] [2026-04-01T14:09:56.345Z] <<< [apiv2][status] GET https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc 200
+[debug] [2026-04-01T14:09:56.346Z] <<< [apiv2][body] GET https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc {"kind":"sql#instance","state":"RUNNABLE","databaseVersion":"POSTGRES_17","settings":{"authorizedGaeApplications":[],"tier":"db-f1-micro","kind":"sql#settings","userLabels":{"firebase-data-connect":"ft"},"availabilityType":"ZONAL","pricingPlan":"PER_USE","replicationType":"SYNCHRONOUS","activationPolicy":"ALWAYS","ipConfiguration":{"authorizedNetworks":[],"sslMode":"ALLOW_UNENCRYPTED_AND_ENCRYPTED","ipv4Enabled":true,"requireSsl":false,"serverCaMode":"GOOGLE_MANAGED_INTERNAL_CA","serverCertificateRotationMode":"SERVER_CERTIFICATE_ROTATION_MODE_UNSPECIFIED"},"locationPreference":{"zone":"us-west1-a","kind":"sql#locationPreference"},"databaseFlags":[{"name":"cloudsql.iam_authentication","value":"on"}],"dataDiskType":"PD_SSD","backupConfiguration":{"startTime":"22:00","kind":"sql#backupConfiguration","backupRetentionSettings":{"retentionUnit":"COUNT","retainedBackups":7},"enabled":false,"transactionLogRetentionDays":7,"transactionalLogStorageState":"TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED","backupTier":"STANDARD"},"insightsConfig":{"queryInsightsEnabled":true,"queryStringLength":1024,"queryPlansPerMinute":5},"edition":"ENTERPRISE","connectorEnforcement":"NOT_REQUIRED","settingsVersion":"3","storageAutoResizeLimit":"0","storageAutoResize":false,"dataDiskSizeGb":"10","deletionProtectionEnabled":false,"replicationLagMaxSeconds":31536000,"enableGoogleMlIntegration":false},"etag":"b7d87866201bc1538434bd2eed84260794e81012e06718b4316035416f3d8e89","ipAddresses":[{"type":"PRIMARY","ipAddress":"34.82.46.150"},{"type":"OUTGOING","ipAddress":"34.187.140.1"}],"serverCaCert":{"kind":"sql#sslCert","certSerialNumber":"0","cert":"-----BEGIN CERTIFICATE-----\nMIIDcTCCAlmgAwIBAgIBADANBgkqhkiG9w0BAQsFADBwMS0wKwYDVQQuEyQyMjgy\nNWU4Mi0wZjFjLTRhOWMtYmI4ZS04NGU3MmNmNGU4MzIxHDAaBgNVBAMTE0Nsb3Vk\nIFNRTCBTZXJ2ZXIgQ0ExFDASBgNVBAoTC0dvb2dsZSwgSW5jMQswCQYDVQQGEwJV\nUzAeFw0yNjAzMzExMjIwMzdaFw0zNjAzMjgxMjIxMzdaMHAxLTArBgNVBC4TJDIy\nODI1ZTgyLTBmMWMtNGE5Yy1iYjhlLTg0ZTcyY2Y0ZTgzMjEcMBoGA1UEAxMTQ2xv\ndWQgU1FMIFNlcnZlciBDQTEUMBIGA1UEChMLR29vZ2xlLCBJbmMxCzAJBgNVBAYT\nAlVTMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1ot6ZO9hz/EPNadX\nEaaY74QgTsJ5UfLaHHrMLsODfxAqIp48NJbpW0pn42uluf0iE6SgocR+9whWHrC3\nD5lVZAJbUSYJYVknY2c/RvQU2zcloQAw6gpqy71PUzlC1Cmn8sVPDxkaXmhrxeVO\njVAppmvsNke48hf6JhhUJZVKOfuHThxOKs8hmJEz+e7DXy+RhEg44e/U4M7sds6p\nG8to66o6jj2SHTdya+70x/tRyrfEyX1v8WmMvi+VJqf41mVbzweXl1Uma2TdDJQr\neTOtklKrABQNqksp/7gOZOWn2Ef7U3ntc+tf3LVYg6mKNra3Wi5/uQrbJwFMBj7b\n+5PxGwIDAQABoxYwFDASBgNVHRMBAf8ECDAGAQH/AgEAMA0GCSqGSIb3DQEBCwUA\nA4IBAQBrAz460Iwf0hAyDr0EbwGu9gtz83PFHKpbU11ZS2oUtMY9w3wWvgChWdkh\n2to18LiL2h8N2QtOlDJ+RH9wtXnhQi8/dk2kaD2d7XvTKmzcFbIFvszXN3/RHwiK\nEBFKLmWFRmiPHESIhWpM/yPbkcCFHWKY3YfVJu5c6l0DVvfzpgiYRgBVmIVOC4pC\n3QUvlG7ZQ2d/mPf5Eypsifx4XrKLiZBtQ0QwaaoPu3s1jra54n7sBj1Aj65Eve1/\nnded2cIxkDQyPsnCTucVAOEUKhJdEAZJd0fDRvR6U3aZcJSUnKjve+JRsF38uaM1\nmHK4KURawnXI/FVRgFqT60z2lc7T\n-----END CERTIFICATE-----","commonName":"C=US,O=Google\\, Inc,CN=Cloud SQL Server CA,dnQualifier=22825e82-0f1c-4a9c-bb8e-84e72cf4e832","sha1Fingerprint":"e23599239ffe4943fe6dac5bfbfccc6bd2a9ca79","instance":"huntersiteweb-fdc","createTime":"2026-03-31T12:20:37.892Z","expirationTime":"2036-03-28T12:21:37.892Z"},"instanceType":"CLOUD_SQL_INSTANCE","project":"huntersite-91dee","serviceAccountEmailAddress":"p37022475446-hmheel@gcp-sa-cloud-sql.iam.gserviceaccount.com","backendType":"SECOND_GEN","selfLink":"https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc","connectionName":"huntersite-91dee:us-west1:huntersiteweb-fdc","name":"huntersiteweb-fdc","region":"us-west1","gceZone":"us-west1-a","databaseInstalledVersion":"POSTGRES_17_9","maintenanceVersion":"POSTGRES_17_9.R20260319.00_02","createTime":"2026-03-31T12:19:57.807Z","sqlNetworkArchitecture":"NEW_NETWORK_ARCHITECTURE","satisfiesPzi":true,"includeReplicasForMajorVersionUpgrade":false}
+[info] i  dataconnect: Found existing Cloud SQL instance huntersiteweb-fdc. 
+[debug] [2026-04-01T14:09:56.347Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:56.347Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:56.347Z] >>> [apiv2][query] GET https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc/databases/fdcdb [none]
+[debug] [2026-04-01T14:09:57.145Z] <<< [apiv2][status] GET https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc/databases/fdcdb 200
+[debug] [2026-04-01T14:09:57.145Z] <<< [apiv2][body] GET https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc/databases/fdcdb {"kind":"sql#database","charset":"UTF8","collation":"en_US.UTF8","etag":"5616701749e1d1a49e0a765bdd97980388149c0cd02109d7ba0448b121af4311","name":"fdcdb","instance":"huntersiteweb-fdc","selfLink":"https://sqladmin.googleapis.com/v1/projects/huntersite-91dee/instances/huntersiteweb-fdc/databases/fdcdb","project":"huntersite-91dee"}
+[info] i  dataconnect: Found existing Postgres Database fdcdb. 
+[info] Enabling auth providers: email/password...
+[debug] [2026-04-01T14:09:57.152Z] [provision] Starting Firebase app provisioning...
+[debug] [2026-04-01T14:09:57.152Z] [provision] Request: {
+  "appNamespace": "1:37022475446:web:124c95728d99fe72b3f217",
+  "parent": "projects/huntersite-91dee",
+  "firebaseAuthInput": {
+    "emailAuthProviderMode": "PROVIDER_ENABLED"
+  },
+  "webInput": {}
+}
+[debug] [2026-04-01T14:09:57.153Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:57.153Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:57.153Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp [none]
+[debug] [2026-04-01T14:09:57.153Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"appNamespace":"1:37022475446:web:124c95728d99fe72b3f217","parent":"projects/huntersite-91dee","firebaseAuthInput":{"emailAuthProviderMode":"PROVIDER_ENABLED"},"webInput":{}}
+[debug] [2026-04-01T14:09:59.033Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp 200
+[debug] [2026-04-01T14:09:59.033Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"name":"operations/workflows/ZDliNTI0MTktZWMyZi00MTcyLTgyOGEtYzJhMGFkNzJjY2Ez"}
+[debug] [2026-04-01T14:09:59.033Z] [provision] Operation started: operations/workflows/ZDliNTI0MTktZWMyZi00MTcyLTgyOGEtYzJhMGFkNzJjY2Ez
+[debug] [2026-04-01T14:09:59.033Z] [provision] Polling for operation completion...
+[debug] [2026-04-01T14:09:59.035Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:59.035Z] Checked if tokens are valid: true, expires at: 1775055555854
+[debug] [2026-04-01T14:09:59.036Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/operations/workflows/ZDliNTI0MTktZWMyZi00MTcyLTgyOGEtYzJhMGFkNzJjY2Ez [none]

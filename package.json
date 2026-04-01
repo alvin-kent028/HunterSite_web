@@ -2,7 +2,26 @@
   "name": "huntersite-backend",
   "version": "1.0.0",
   "description": "Backend API for HunterSite job board",
+  "keywords": [
+    "job-board",
+    "authentication",
+    "api"
+  ],
+  "homepage": "https://github.com/alvin-kent028/HunterSite_web#readme",
+  "bugs": {
+    "url": "https://github.com/alvin-kent028/HunterSite_web/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvin-kent028/HunterSite_web.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
   "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -21,24 +40,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  },
-  "keywords": [
-    "job-board",
-    "authentication",
-    "api"
-  ],
-  "author": "",
-  "license": "MIT",
-  "directories": {
-    "doc": "docs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alvin-kent028/HunterSite_web.git"
-  },
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/alvin-kent028/HunterSite_web/issues"
-  },
-  "homepage": "https://github.com/alvin-kent028/HunterSite_web#readme"
+  }
 }
