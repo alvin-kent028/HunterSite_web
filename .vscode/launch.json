@@ -5,11 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "https://huntersite-91dee.web.app",
+            "webRoot": "${workspaceFolder}/public"
+        },
+        {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "name": "Launch Chrome against the live site",
+            "url": "https://huntersite-91dee.web.app",
+            "webRoot": "${workspaceFolder}/public"
         }
     ]
 }
